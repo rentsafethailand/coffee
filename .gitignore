@@ -1,0 +1,4 @@
+# Backup files
+*.before-*
+index.html.before-fix
+index.html.before-backdrop-fix
