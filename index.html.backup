@@ -12,49 +12,60 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* CSS Variables for Light/Dark Mode */
+    /* Theme Variables - Default Blue Gradient */
     :root {
-      /* Light Mode Colors */
-      --bg-primary: #f3f4f6;
-      --bg-secondary: #ffffff;
-      --bg-gradient-from: #6366f1;
-      --bg-gradient-to: #8b5cf6;
-      --text-primary: #1f2937;
-      --text-secondary: #6b7280;
-      --border-color: #e5e7eb;
-      --card-bg: rgba(255, 255, 255, 0.95);
-      --glass-bg: rgba(255, 255, 255, 0.1);
-      --glass-border: rgba(255, 255, 255, 0.2);
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --primary-from: #667eea;
+      --primary-to: #764ba2;
+      --accent-from: #f093fb;
+      --accent-to: #f5576c;
     }
 
-    /* Dark Mode Colors */
-    body.dark-mode {
-      --bg-primary: #111827;
-      --bg-secondary: #1f2937;
-      --bg-gradient-from: #4f46e5;
-      --bg-gradient-to: #7c3aed;
-      --text-primary: #f9fafb;
-      --text-secondary: #d1d5db;
-      --border-color: #374151;
-      --card-bg: rgba(31, 41, 55, 0.95);
-      --glass-bg: rgba(31, 41, 55, 0.3);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    /* Theme Variations */
+    body.theme-blue-gradient {
+      --primary-from: #667eea;
+      --primary-to: #764ba2;
+      --accent-from: #f093fb;
+      --accent-to: #f5576c;
+    }
+
+    body.theme-purple-gradient {
+      --primary-from: #8e2de2;
+      --primary-to: #4a00e0;
+      --accent-from: #c471f5;
+      --accent-to: #fa71cd;
+    }
+
+    body.theme-green-gradient {
+      --primary-from: #11998e;
+      --primary-to: #38ef7d;
+      --accent-from: #56ab2f;
+      --accent-to: #a8e063;
+    }
+
+    body.theme-dark-gradient {
+      --primary-from: #232526;
+      --primary-to: #414345;
+      --accent-from: #4b4b4b;
+      --accent-to: #6d6d6d;
+    }
+
+    body.theme-sunset-gradient {
+      --primary-from: #ff6b6b;
+      --primary-to: #ffa500;
+      --accent-from: #ff8c42;
+      --accent-to: #ffd93d;
     }
 
     /* Apply theme colors */
     body {
       font-family: 'Prompt', sans-serif;
-      background: linear-gradient(135deg, var(--bg-gradient-from) 0%, var(--bg-gradient-to) 100%); transition: background 0.3s ease;
+      background: linear-gradient(135deg, var(--primary-from) 0%, var(--primary-to) 100%);
     }
     .page { display: none; }
     .page.active { display: block; }
-    .gradient-bg { background: linear-gradient(135deg, var(--bg-gradient-from) 0%, var(--bg-gradient-to) 100%); transition: background 0.3s ease; }
-    .card-gradient { background: linear-gradient(135deg, var(--bg-gradient-from) 0%, var(--bg-gradient-to) 100%); }
-    .glass { background: var(--glass-bg); backdrop-filter: blur(16px) saturate(180%); border: 1px solid var(--glass-border); box-shadow: var(--shadow); transition: all 0.3s ease; }
+    .gradient-bg { background: linear-gradient(135deg, var(--primary-from) 0%, var(--primary-to) 100%); }
+    .card-gradient { background: linear-gradient(135deg, var(--accent-from) 0%, var(--accent-to) 100%); }
+    .glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
 
     /* Print Styles */
     @media print {
@@ -71,245 +82,12 @@
     .receipt-thermal-58 { width: 58mm; min-height: 100mm; padding: 3mm; font-size: 10px; }
 
     @page { margin: 0; }
-    /* Modern Card Design */
-    .modern-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      box-shadow: var(--shadow-lg);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .modern-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Smooth Transitions */
-    * {
-      transition-property: background-color, border-color, color, fill, stroke;
-      transition-duration: 0.2s;
-      transition-timing-function: ease-in-out;
-    }
-
-    /* Dark Mode Toggle Button */
-    .dark-mode-toggle {
-      background: var(--glass-bg);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--glass-border);
-      border-radius: 9999px;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .dark-mode-toggle:hover {
-      background: var(--card-bg);
-      transform: scale(1.05);
-    }
-
-    /* Enhanced Glass Morphism */
-    .glass-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--shadow-lg);
-      border-radius: 16px;
-      transition: all 0.3s ease;
-    }
-
-    .glass-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Modern Card Styles */
-    .card-modern {
-      background: var(--card-bg);
-      border-radius: 16px;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-    }
-
-    /* Navigation Link Styles */
-    .nav-link {
-      color: var(--text-primary);
-      transition: all 0.2s ease;
-      padding: 0.5rem 0.75rem;
-      border-radius: 0.5rem;
-    }
-
-    .nav-link:hover {
-      background: var(--glass-bg);
-      color: #6366f1;
-    }
-
-    /* Animations */
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .animate-slideUp {
-      animation: slideUp 0.4s ease-out;
-    }
-
-    .animate-fadeIn {
-      animation: fadeIn 0.3s ease-out;
-    }
-
-    /* Scrollbar Styling */
-    ::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg-secondary);
-      border-radius: 5px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--border-color);
-      border-radius: 5px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--text-secondary);
-    }
-
-    /* Dark Mode Text Smoothing */
-    body.dark-mode {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* Input Focus Styles */
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: #6366f1;
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-    }
-
-    /* Button Hover Effects */
-    .btn-modern {
-      transition: all 0.2s ease;
-    }
-
-    .btn-modern:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-modern:active {
-      transform: translateY(0);
-    }
-
-    /* Modal Backdrop */
-    .modal-backdrop {
-      backdrop-filter: blur(8px);
-    }
-
-    /* Gradient Text */
-    .text-gradient {
-      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    /* Card Hover Effect */
-    .card-hover {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .card-hover:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-    }
-  
-    /* Modern Product Card in Sales Page */
-    .product-card {
-      background: var(--card-bg);
-      border: 2px solid var(--border-color);
-      border-radius: 1rem;
-      padding: 0.75rem;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .product-card:hover {
-      border-color: #6366f1;
-      box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.2);
-      transform: translateY(-4px);
-    }
-
-    .product-card:active {
-      transform: translateY(-2px);
-    }
-
-    /* Modern Table Styles */
-    table {
-      border-collapse: separate;
-      border-spacing: 0;
-    }
-
-    table thead tr {
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-    }
-
-    table tbody tr {
-      transition: background-color 0.2s ease;
-    }
-
-    table tbody tr:hover {
-      background: var(--glass-bg);
-    }
-
-    /* Modern Button Styles */
-    .btn-primary {
-      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-      color: white;
-      font-weight: 600;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.75rem;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.3);
-    }
-
-    .btn-primary:hover {
-      box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.4);
-      transform: translateY(-2px);
-    }
-
-    /* Modern Badge Styles */
-    .badge-modern {
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-</style>
+  </style>
 </head>
-<body class="min-h-screen transition-colors duration-300">
+<body class="min-h-screen">
 
 <!-- Top Navigation (Desktop & Tablet) -->
-<nav id="topNav" class="hidden md:block transition-colors duration-300" style="display:none; background: var(--card-bg); box-shadow: var(--shadow-lg);">
+<nav id="topNav" class="hidden md:block bg-white shadow-lg" style="display:none;">
   <div class="max-w-7xl mx-auto px-4">
     <div class="flex justify-between items-center h-16">
       <div class="flex items-center space-x-4">
@@ -330,13 +108,48 @@
         <button onclick="showPage('reports')" class="nav-link"><i class="fas fa-file-alt mr-2"></i>รายงาน</button>
         <button onclick="showPage('settings')" class="nav-link"><i class="fas fa-cog mr-2"></i>ตั้งค่า</button>
 
-        <!-- Dark Mode Toggle -->
-        <button onclick="toggleDarkMode()" class="dark-mode-toggle flex items-center text-gray-700 dark:text-gray-200 text-sm hover:scale-105 transition" title="สลับโหมดมืด/สว่าง">
-          <i id="darkModeIcon" class="fas fa-moon mr-2"></i>
-          <span id="darkModeText">โหมดมืด</span>
-        </button>
+        <!-- Theme Selector -->
+        <div class="relative">
+          <button onclick="toggleThemeMenu()" class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm hover:bg-indigo-200 transition flex items-center" title="เปลี่ยนธีม">
+            <i class="fas fa-palette mr-1"></i><span id="currentTheme">ธีม</span>
+          </button>
+          <div id="themeMenu" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl z-50 border border-gray-200">
+            <div class="py-2">
+              <button onclick="changeTheme('blue-gradient')" class="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center justify-between">
+                <span>ฟ้า-ม่วง</span>
+                <div class="flex space-x-1">
+                  <div class="w-4 h-4 rounded-full" style="background: linear-gradient(135deg, #667eea, #764ba2)"></div>
+                </div>
+              </button>
+              <button onclick="changeTheme('purple-gradient')" class="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center justify-between">
+                <span>ม่วงเข้ม</span>
+                <div class="flex space-x-1">
+                  <div class="w-4 h-4 rounded-full" style="background: linear-gradient(135deg, #8e2de2, #4a00e0)"></div>
+                </div>
+              </button>
+              <button onclick="changeTheme('green-gradient')" class="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center justify-between">
+                <span>เขียวสด</span>
+                <div class="flex space-x-1">
+                  <div class="w-4 h-4 rounded-full" style="background: linear-gradient(135deg, #11998e, #38ef7d)"></div>
+                </div>
+              </button>
+              <button onclick="changeTheme('dark-gradient')" class="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center justify-between">
+                <span>เทาดำ</span>
+                <div class="flex space-x-1">
+                  <div class="w-4 h-4 rounded-full" style="background: linear-gradient(135deg, #232526, #414345)"></div>
+                </div>
+              </button>
+              <button onclick="changeTheme('sunset-gradient')" class="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center justify-between">
+                <span>พระอาทิตย์ตก</span>
+                <div class="flex space-x-1">
+                  <div class="w-4 h-4 rounded-full" style="background: linear-gradient(135deg, #ff6b6b, #ffa500)"></div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
 
-        <button onclick="showVersionChangelog()" class="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 px-3 py-1 rounded-full text-sm hover:bg-purple-200 transition" title="ดูประวัติการอัปเดต">
+        <button onclick="showVersionChangelog()" class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm hover:bg-purple-200 transition" title="ดูประวัติการอัปเดต">
           <i class="fas fa-code-branch mr-1"></i><span id="versionBadge">v1.0.0</span>
         </button>
         <button onclick="logout()" class="text-red-600 hover:text-red-800"><i class="fas fa-sign-out-alt mr-2"></i>ออกจากระบบ</button>
@@ -346,7 +159,7 @@
 </nav>
 
 <!-- Bottom Navigation (Mobile) -->
-<div id="bottomNav" class="md:hidden fixed bottom-0 left-0 right-0 z-50 transition-colors duration-300" style="display:none; background: var(--card-bg); box-shadow: var(--shadow-lg); border-top: 2px solid var(--border-color);">
+<div id="bottomNav" class="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-lg z-50" style="display:none;">
   <div class="flex justify-around py-2">
     <button onclick="showPage('dashboard')" class="flex flex-col items-center p-2"><i class="fas fa-chart-line text-xl"></i><span class="text-xs">หน้าหลัก</span></button>
     <button onclick="showPage('sales')" class="flex flex-col items-center p-2"><i class="fas fa-cash-register text-xl"></i><span class="text-xs">ขายหน้าร้าน</span></button>
@@ -356,40 +169,30 @@
 </div>
 
 <!-- Login Modal -->
-<div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 modal-backdrop">
-  <div class="card-modern max-w-md w-full mx-4 p-8 animate-slideUp">
-    <div class="text-center mb-8">
-      <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-xl">
-        <i class="fas fa-mug-hot text-4xl text-white"></i>
-      </div>
-      <h2 class="text-3xl font-bold mt-4 text-gradient">เข้าสู่ระบบ</h2>
-      <p style="color: var(--text-secondary);" class="mt-2">ระบบจัดการร้านกาแฟ</p>
+<div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+    <div class="text-center mb-6">
+      <i class="fas fa-mug-hot text-6xl text-purple-600"></i>
+      <h2 class="text-2xl font-bold mt-4 text-gray-800">เข้าสู่ระบบจัดการร้านกาแฟ</h2>
+      <p class="text-gray-600">ระบบติดตามการขาย</p>
     </div>
-    <form onsubmit="handleLogin(event)" class="space-y-4">
-      <div>
-        <label class="block font-medium mb-2" style="color: var(--text-primary);">อีเมล</label>
-        <div class="relative">
-          <i class="fas fa-envelope absolute left-3 top-3.5 text-gray-400"></i>
-          <input type="email" id="loginEmail" class="w-full pl-10 pr-4 py-3 rounded-xl border-2 transition-all" style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);" placeholder="your@email.com" required>
-        </div>
+    <form onsubmit="handleLogin(event)">
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-2">อีเมล</label>
+        <input type="email" id="loginEmail" class="w-full px-4 py-2 border rounded-lg" required>
       </div>
-      <div>
-        <label class="block font-medium mb-2" style="color: var(--text-primary);">รหัสผ่าน</label>
-        <div class="relative">
-          <i class="fas fa-lock absolute left-3 top-3.5 text-gray-400"></i>
-          <input type="password" id="loginPassword" class="w-full pl-10 pr-4 py-3 rounded-xl border-2 transition-all" style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);" placeholder="••••••••" required>
-        </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 mb-2">รหัสผ่าน</label>
+        <input type="password" id="loginPassword" class="w-full px-4 py-2 border rounded-lg" required>
       </div>
-      <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white py-4 rounded-xl font-bold text-lg shadow-lg btn-modern">
-        <i class="fas fa-sign-in-alt mr-2"></i>เข้าสู่ระบบ
-      </button>
+      <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg font-bold">เข้าสู่ระบบ</button>
     </form>
   </div>
 </div>
 
 <!-- Version Changelog Modal -->
 <div id="changelogModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display:none;">
-  <div class="rounded-lg max-w-3xl" style="background: var(--card-bg); w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
+  <div class="bg-white rounded-lg max-w-3xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
     <!-- Header -->
     <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6 flex justify-between items-center">
       <div>
@@ -412,7 +215,7 @@
 </div>
 
 <!-- Product Options Modal -->
-<div id="productOptionsModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50" style="display:none;">
+<div id="productOptionsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display:none;">
   <div class="bg-white rounded-lg max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
     <!-- Header -->
     <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6">
@@ -492,8 +295,8 @@
 </div>
 
 <!-- Combo Selection Modal -->
-<div id="comboModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50" style="display:none;">
-  <div class="rounded-lg max-w-3xl" style="background: var(--card-bg); w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
+<div id="comboModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display:none;">
+  <div class="bg-white rounded-lg max-w-3xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
     <!-- Header -->
     <div class="bg-gradient-to-r from-green-600 to-teal-600 text-white p-6">
       <div class="flex justify-between items-start">
@@ -550,7 +353,7 @@
 </div>
 
 <!-- Checkout Success Modal -->
-<div id="checkoutSuccessModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50" style="display:none;">
+<div id="checkoutSuccessModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display:none;">
   <div class="bg-white rounded-lg max-w-md w-full mx-4">
     <div class="bg-gradient-to-r from-green-500 to-green-700 text-white p-6 rounded-t-lg text-center">
       <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
@@ -575,7 +378,7 @@
 </div>
 
 <!-- Payment Split Modal -->
-<div id="paymentSplitModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50" style="display:none;">
+<div id="paymentSplitModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display:none;">
   <div class="bg-white rounded-lg max-w-lg w-full mx-4 max-h-[90vh] overflow-auto">
     <!-- Header -->
     <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 rounded-t-lg sticky top-0">
@@ -669,11 +472,11 @@
       <!-- Summary -->
       <div class="bg-blue-50 rounded-lg p-4 border-2 border-blue-200 space-y-2">
         <div class="flex justify-between text-sm">
-          <span class="text-gray-700" style="color: var(--text-primary);">ยอดที่ต้องชำระ:</span>
+          <span class="text-gray-700">ยอดที่ต้องชำระ:</span>
           <span class="font-bold text-gray-800">฿<span id="splitTotalAmount2">0.00</span></span>
         </div>
         <div class="flex justify-between text-sm">
-          <span class="text-gray-700" style="color: var(--text-primary);">ชำระแล้ว:</span>
+          <span class="text-gray-700">ชำระแล้ว:</span>
           <span class="font-bold text-blue-600">฿<span id="splitPaidAmount">0.00</span></span>
         </div>
         <div class="flex justify-between border-t pt-2">
@@ -700,7 +503,7 @@
 </div>
 
 <!-- Receipt Print Modal -->
-<div id="receiptPrintModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 overflow-auto" style="display:none;">
+<div id="receiptPrintModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-auto" style="display:none;">
   <div class="bg-white rounded-lg max-w-4xl w-full mx-4 my-8">
     <!-- Header -->
     <div class="bg-gray-800 text-white p-4 flex justify-between items-center rounded-t-lg">
@@ -783,7 +586,7 @@
 </div>
 
 
-<div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 p-4" style="display:none;">
+<div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display:none;">
   <div class="glass rounded-lg max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
     <div class="bg-white/10 p-4 border-b border-white/20">
@@ -864,7 +667,7 @@
   </div>
 </div>
 
-<div id="recipeModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 p-4" style="display:none;">
+<div id="recipeModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display:none;">
   <div class="glass rounded-lg max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
     <div class="bg-white/10 p-4 border-b border-white/20">
@@ -927,7 +730,7 @@
 </div>
 
 
-<div id="categoryManageModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 p-4" style="display:none;">
+<div id="categoryManageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display:none;">
   <div class="glass rounded-lg max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
     <div class="bg-white/10 p-4 border-b border-white/20 flex justify-between items-center">
@@ -977,7 +780,7 @@
 </div>
 
 
-<div id="purchaseModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 p-4" style="display:none;">
+<div id="purchaseModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display:none;">
   <div class="glass rounded-lg max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
     <div class="bg-white/10 p-4 border-b border-white/20">
@@ -1005,7 +808,7 @@
 </div>
 
 
-<div id="comboManageModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 p-4" style="display:none;">
+<div id="comboManageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display:none;">
   <div class="glass rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
     <div class="bg-white/10 p-4 border-b border-white/20 flex justify-between items-center">
@@ -1031,7 +834,7 @@
   </div>
 </div>
 
-<div id="optionsManageModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 p-4" style="display:none;">
+<div id="optionsManageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display:none;">
   <div class="glass rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
     <div class="bg-white/10 p-4 border-b border-white/20 flex justify-between items-center">
@@ -1058,7 +861,7 @@
 </div>
 
 
-<div id="wasteModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 p-4" style="display:none;">
+<div id="wasteModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display:none;">
   <div class="glass rounded-lg max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
     <div class="bg-white/10 p-4 border-b border-white/20">
@@ -1096,7 +899,7 @@
 <div id="page-dashboard" class="page active container mx-auto p-4 max-w-7xl">
   <h1 class="text-3xl font-bold text-white mb-6"><i class="fas fa-chart-line mr-2"></i>Dashboard</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-    <div class="card-modern p-6 card-hover">
+    <div class="bg-white rounded-lg shadow-lg p-6">
       <div class="flex items-center justify-between">
         <div>
           <p class="text-gray-500 text-sm">รายรับวันนี้</p>
@@ -1105,7 +908,7 @@
         <i class="fas fa-dollar-sign text-4xl text-green-200"></i>
       </div>
     </div>
-    <div class="card-modern p-6 card-hover">
+    <div class="bg-white rounded-lg shadow-lg p-6">
       <div class="flex items-center justify-between">
         <div>
           <p class="text-gray-500 text-sm">ต้นทุนรวม</p>
@@ -1114,7 +917,7 @@
         <i class="fas fa-money-bill text-4xl text-red-200"></i>
       </div>
     </div>
-    <div class="card-modern p-6 card-hover">
+    <div class="bg-white rounded-lg shadow-lg p-6">
       <div class="flex items-center justify-between">
         <div>
           <p class="text-gray-500 text-sm">กำไรสุทธิ</p>
@@ -1123,7 +926,7 @@
         <i class="fas fa-chart-line text-4xl text-blue-200"></i>
       </div>
     </div>
-    <div class="card-modern p-6 card-hover">
+    <div class="bg-white rounded-lg shadow-lg p-6">
       <div class="flex items-center justify-between">
         <div>
           <p class="text-gray-500 text-sm">สินค้าที่ขายได้</p>
@@ -1133,7 +936,7 @@
       </div>
     </div>
   </div>
-  <div class="card-modern p-6">
+  <div class="bg-white rounded-lg shadow-lg p-6">
     <h3 class="text-xl font-bold mb-4">สินค้าขายดี 5 อันดับ</h3>
     <div id="topProducts"></div>
   </div>
@@ -1612,7 +1415,7 @@
 
   <!-- First Row: Shop Info & Account -->
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-    <div class="card-modern p-6">
+    <div class="bg-white rounded-lg shadow-lg p-6">
       <h3 class="text-xl font-bold mb-4">ข้อมูลร้าน</h3>
       <form onsubmit="saveSettings(event)">
         <div class="mb-4">
@@ -1638,7 +1441,7 @@
       </form>
     </div>
 
-    <div class="card-modern p-6">
+    <div class="bg-white rounded-lg shadow-lg p-6">
       <h3 class="text-xl font-bold mb-4">บัญชี</h3>
       <button onclick="showLicenseModal()" class="w-full bg-blue-500 text-white py-3 rounded-lg mb-4">
         <i class="fas fa-certificate mr-2"></i>สถานะสิทธิ์การใช้งาน
@@ -1712,48 +1515,64 @@ function debounce(func, wait) {
 var debouncedSearch = debounce(filterProducts, 300);
 
 // ============================================
-// DARK MODE MANAGEMENT
+// THEME MANAGEMENT
 // ============================================
+var THEME_NAMES = {
+  'blue-gradient': 'ฟ้า-ม่วง',
+  'purple-gradient': 'ม่วงเข้ม',
+  'green-gradient': 'เขียวสด',
+  'dark-gradient': 'เทาดำ',
+  'sunset-gradient': 'พระอาทิตย์ตก'
+};
 
-function toggleDarkMode() {
-  const body = document.body;
-  const isDark = body.classList.toggle('dark-mode');
+function applyTheme(theme) {
+  // Remove all theme classes
+  document.body.classList.remove('theme-blue-gradient', 'theme-purple-gradient', 'theme-green-gradient', 'theme-dark-gradient', 'theme-sunset-gradient');
 
-  // Update icon and text
-  const icon = document.getElementById('darkModeIcon');
-  const text = document.getElementById('darkModeText');
+  // Add new theme class
+  document.body.classList.add('theme-' + theme);
 
-  if (icon && text) {
-    if (isDark) {
-      icon.className = 'fas fa-sun mr-2';
-      text.textContent = 'โหมดสว่าง';
-    } else {
-      icon.className = 'fas fa-moon mr-2';
-      text.textContent = 'โหมดมืด';
-    }
+  // Update theme display
+  var themeName = THEME_NAMES[theme] || 'Blue';
+  var themeElement = document.getElementById('currentTheme');
+  if (themeElement) {
+    themeElement.textContent = themeName;
   }
 
+  console.log('Theme applied:', theme);
+}
+
+function changeTheme(theme) {
+  // Apply theme immediately
+  applyTheme(theme);
+
   // Save to localStorage
-  localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+  localStorage.setItem('coffeeShopTheme', theme);
 
   // Save to Settings sheet (if logged in)
   if (appState.user && appState.user.sheetId) {
     google.script.run
       .withSuccessHandler(function(result) {
         if (result.success) {
-          console.log('Dark mode preference saved');
+          console.log('Theme saved to Settings sheet');
+        } else {
+          console.error('Failed to save theme:', result.message);
         }
       })
       .withFailureHandler(function(error) {
-        console.error('Error saving dark mode:', error);
+        console.error('Error saving theme:', error);
       })
-      .updateSettings(appState.user.sheetId, { 'DarkMode': isDark ? 'enabled' : 'disabled' });
+      .updateSettings(appState.user.sheetId, { 'Theme': theme });
   }
 
-  // Show toast
+  // Close menu
+  document.getElementById('themeMenu').classList.add('hidden');
+
+  // Show confirmation
   Swal.fire({
     icon: 'success',
-    title: isDark ? 'เปิดโหมดมืดแล้ว' : 'เปิดโหมดสว่างแล้ว',
+    title: 'เปลี่ยนธีมสำเร็จ!',
+    text: 'เปลี่ยนธีมเป็น ' + THEME_NAMES[theme],
     toast: true,
     position: 'top-end',
     timer: 2000,
@@ -1761,39 +1580,43 @@ function toggleDarkMode() {
   });
 }
 
-function loadDarkMode() {
+function toggleThemeMenu() {
+  var menu = document.getElementById('themeMenu');
+  menu.classList.toggle('hidden');
+}
+
+function loadTheme() {
   // Priority: localStorage > Settings sheet > default
-  const localDarkMode = localStorage.getItem('darkMode');
+  var localTheme = localStorage.getItem('coffeeShopTheme');
 
-  let isDark = false;
-
-  if (localDarkMode === 'enabled') {
-    isDark = true;
-  } else if (appState.settings && appState.settings.DarkMode === 'enabled') {
-    isDark = true;
-    localStorage.setItem('darkMode', 'enabled');
+  if (localTheme) {
+    console.log('Loading theme from localStorage:', localTheme);
+    applyTheme(localTheme);
+  } else if (appState.settings && appState.settings.Theme) {
+    console.log('Loading theme from Settings sheet:', appState.settings.Theme);
+    applyTheme(appState.settings.Theme);
+    // Sync to localStorage
+    localStorage.setItem('coffeeShopTheme', appState.settings.Theme);
+  } else {
+    console.log('Using default theme: blue-gradient');
+    applyTheme('blue-gradient');
   }
-
-  if (isDark) {
-    document.body.classList.add('dark-mode');
-    const icon = document.getElementById('darkModeIcon');
-    const text = document.getElementById('darkModeText');
-    if (icon) icon.className = 'fas fa-sun mr-2';
-    if (text) text.textContent = 'โหมดสว่าง';
-  }
-
-  console.log('Dark mode loaded:', isDark ? 'enabled' : 'disabled');
 }
 
 // Initialize
 window.onload = function() {
-  loadDarkMode(); // Load dark mode first
+  loadTheme(); // Load theme first
   checkSession();
 
   // Close theme menu when clicking outside
   document.addEventListener('click', function(event) {
     var themeMenu = document.getElementById('themeMenu');
+    var themeButton = event.target.closest('[onclick="toggleThemeMenu()"]');
 
+    if (!themeButton && !event.target.closest('#themeMenu')) {
+      if (themeMenu && !themeMenu.classList.contains('hidden')) {
+        themeMenu.classList.add('hidden');
+      }
     }
   });
 };
@@ -2934,7 +2757,7 @@ function loadDashboard() {
         d.topProducts.forEach(function(p, i) {
           html += '<div class="flex justify-between py-2 border-b"><span>' + (i+1) + '. ' + p.name + '</span><span class="font-bold">' + p.quantity + ' ชิ้น</span></div>';
         });
-        document.getElementById('topProducts').innerHTML = html || '<p class="text-gray-500" style="color: var(--text-secondary);">ยังไม่มียอดขาย</p>';
+        document.getElementById('topProducts').innerHTML = html || '<p class="text-gray-500">ยังไม่มียอดขาย</p>';
       }
     })
     .getDashboardData(appState.user.sheetId, today);
@@ -3826,7 +3649,7 @@ function removeHeldOrderFromStorage(idx) {
 function showManageOptionsModal() {
   Swal.fire({
     title: 'Product Options Management',
-    html: '<p class="text-gray-600" style="color: var(--text-secondary);">ฟีเจอร์จัดการ Product Options จะพัฒนาในเวอร์ชันถัดไป</p><p class="text-sm text-gray-500 mt-2">ตอนนี้ Options ถูก hard-code ไว้ในระบบ</p>',
+    html: '<p class="text-gray-600">ฟีเจอร์จัดการ Product Options จะพัฒนาในเวอร์ชันถัดไป</p><p class="text-sm text-gray-500 mt-2">ตอนนี้ Options ถูก hard-code ไว้ในระบบ</p>',
     icon: 'info',
     confirmButtonText: 'เข้าใจแล้ว'
   });
@@ -3836,7 +3659,7 @@ function showManageOptionsModal() {
 function showManageCombosModal() {
   Swal.fire({
     title: 'Combo Sets Management',
-    html: '<p class="text-gray-600" style="color: var(--text-secondary);">ฟีเจอร์จัดการ Combo Sets จะพัฒนาในเวอร์ชันถัดไป</p><p class="text-sm text-gray-500 mt-2">ระบบ Combo อยู่ระหว่างการพัฒนา</p>',
+    html: '<p class="text-gray-600">ฟีเจอร์จัดการ Combo Sets จะพัฒนาในเวอร์ชันถัดไป</p><p class="text-sm text-gray-500 mt-2">ระบบ Combo อยู่ระหว่างการพัฒนา</p>',
     icon: 'info',
     confirmButtonText: 'เข้าใจแล้ว'
   });
@@ -4898,7 +4721,7 @@ function renderDailyCosts(costs) {
         '<button onclick="deleteCost(\'DailyCosts\', \'' + c.ID + '\')" class="text-red-600 text-sm"><i class="fas fa-trash"></i></button>' +
       '</div>' +
       '</div>';
-  }).join('') || '<p class="text-gray-500" style="color: var(--text-secondary);">ยังไม่มีค่าใช้จ่าย</p>';
+  }).join('') || '<p class="text-gray-500">ยังไม่มีค่าใช้จ่าย</p>';
 }
 
 function renderMonthlyCosts(costs) {
@@ -4914,7 +4737,7 @@ function renderMonthlyCosts(costs) {
         '<button onclick="deleteCost(\'MonthlyCosts\', \'' + c.ID + '\')" class="text-red-600 text-sm"><i class="fas fa-trash"></i></button>' +
       '</div>' +
       '</div>';
-  }).join('') || '<p class="text-gray-500" style="color: var(--text-secondary);">ยังไม่มีค่าใช้จ่าย</p>';
+  }).join('') || '<p class="text-gray-500">ยังไม่มีค่าใช้จ่าย</p>';
 }
 
 function showAddDailyCostModal() {
