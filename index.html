@@ -54,7 +54,7 @@
     .page.active { display: block; }
     .gradient-bg { background: linear-gradient(135deg, var(--bg-gradient-from) 0%, var(--bg-gradient-to) 100%); transition: background 0.3s ease; }
     .card-gradient { background: linear-gradient(135deg, var(--bg-gradient-from) 0%, var(--bg-gradient-to) 100%); }
-    .glass { background: var(--glass-bg); backdrop-filter: blur(16px) saturate(180%); border: 1px solid var(--glass-border); box-shadow: var(--shadow); transition: all 0.3s ease; }
+    .glass { background: var(--glass-bg); border: 1px solid var(--glass-border); box-shadow: var(--shadow); transition: all 0.3s ease; }
     .glass-th { background: var(--glass-bg); }
 
     /* Print Styles */
@@ -94,7 +94,6 @@
     /* Dark Mode Toggle Button */
     .dark-mode-toggle {
       background: var(--glass-bg);
-      backdrop-filter: blur(16px);
       border: 1px solid var(--glass-border);
       border-radius: 9999px;
       padding: 0.5rem 1rem;
@@ -109,7 +108,6 @@
     /* Enhanced Glass Morphism */
     .glass-card {
       background: var(--glass-bg);
-      backdrop-filter: blur(20px) saturate(180%);
       border: 1px solid var(--glass-border);
       box-shadow: var(--shadow-lg);
       border-radius: 16px;
@@ -217,7 +215,6 @@
 
     /* Modal Backdrop */
     .modal-backdrop {
-      backdrop-filter: blur(8px);
     }
 
     /* Gradient Text */
@@ -499,7 +496,6 @@
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(8px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -677,7 +673,7 @@
 </div>
 
 <!-- Login Modal -->
-<div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 modal-backdrop">
+<div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 modal-backdrop">
   <div class="card-modern max-w-md w-full mx-4 p-8 animate-slideUp">
     <div class="text-center mb-8">
       <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-xl">
@@ -733,7 +729,7 @@
 </div>
 
 <!-- Product Options Modal - Enhanced Design -->
-<div id="productOptionsModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md modal-backdrop flex items-center justify-center z-50 animate-fadeIn" style="display:none;">
+<div id="productOptionsModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn" style="display:none;">
   <div class="card-modern max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col animate-slideUp shadow-2xl">
     <!-- Header with Gradient -->
     <div class="p-6 border-b bg-gradient-to-r from-purple-600 to-pink-600 text-white">
@@ -817,7 +813,7 @@
 </div>
 
 <!-- Combo Selection Modal - Enhanced Design -->
-<div id="comboModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md modal-backdrop flex items-center justify-center z-50 animate-fadeIn" style="display:none;">
+<div id="comboModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn" style="display:none;">
   <div class="card-modern max-w-3xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col animate-slideUp shadow-2xl">
     <!-- Header with Gradient -->
     <div class="p-6 border-b bg-gradient-to-r from-green-600 to-teal-600 text-white">
@@ -878,14 +874,14 @@
 </div>
 
 <!-- Checkout Success Modal - Enhanced Design -->
-<div id="checkoutSuccessModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 animate-fadeIn" style="display:none;">
+<div id="checkoutSuccessModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn" style="display:none;">
   <div class="card-modern max-w-md w-full mx-4 animate-scaleIn shadow-2xl">
     <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-8 rounded-t-2xl text-center">
       <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl animate-pulse">
         <i class="fas fa-check text-6xl text-green-500"></i>
       </div>
       <h2 class="text-3xl font-bold mb-2">บันทึกรายการสำเร็จ!</h2>
-      <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 mt-4">
+      <div class="bg-white/20 rounded-xl p-4 mt-4">
         <p class="text-sm opacity-90 mb-1">Order Number</p>
         <p class="text-2xl font-bold">#<span id="successOrderNumber"></span></p>
         <p class="text-lg font-bold mt-2">รวม ฿<span id="successTotal"></span></p>
@@ -906,7 +902,7 @@
 </div>
 
 <!-- Payment Split Modal - Enhanced Design -->
-<div id="paymentSplitModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 animate-fadeIn" style="display:none;">
+<div id="paymentSplitModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn" style="display:none;">
   <div class="card-modern max-w-lg w-full mx-4 max-h-[90vh] overflow-auto animate-slideUp shadow-2xl">
     <!-- Header -->
     <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-t-2xl sticky top-0">
@@ -1049,7 +1045,7 @@
     </div>
 
 <!-- Receipt Print Modal -->
-<div id="receiptPrintModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 animate-fadeIn overflow-auto" style="display:none;">
+<div id="receiptPrintModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn overflow-auto" style="display:none;">
   <div class="card-modern rounded-2xl max-w-4xl animate-slideUp w-full mx-4 my-8">
     <!-- Header -->
     <div class="bg-gray-800 text-white p-4 flex justify-between items-center rounded-t-lg">
@@ -1132,7 +1128,7 @@
 </div>
 
 
-<div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 p-4 animate-fadeIn" style="display:none;">
+<div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 p-4 animate-fadeIn" style="display:none;">
   <div class="card-modern rounded-2xl max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col animate-slideUp shadow-2xl">
 
     <div class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
@@ -1225,7 +1221,7 @@
 </div>
 
 
-<div id="categoryManageModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
+<div id="categoryManageModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
   <div class="card-modern rounded-2xl max-w-lg animate-slideUp w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
     <div class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600" class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600 text-white flex justify-between items-center" style="border-color: var(--border-color);">
@@ -1275,7 +1271,7 @@
 </div>
 
 
-<div id="purchaseModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
+<div id="purchaseModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
   <div class="card-modern rounded-2xl max-w-lg animate-slideUp w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
     <div class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600" style="border-color: var(--border-color);">
@@ -1303,7 +1299,7 @@
 </div>
 
 
-<div id="comboManageModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
+<div id="comboManageModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
   <div class="card-modern rounded-2xl max-w-4xl animate-slideUp w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
     <div class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600" class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600 text-white flex justify-between items-center" style="border-color: var(--border-color);">
@@ -1329,7 +1325,7 @@
   </div>
 </div>
 
-<div id="optionsManageModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
+<div id="optionsManageModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
   <div class="card-modern rounded-2xl max-w-4xl animate-slideUp w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
     <div class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600" class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600 text-white flex justify-between items-center" style="border-color: var(--border-color);">
@@ -1356,7 +1352,7 @@
 </div>
 
 
-<div id="wasteModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
+<div id="wasteModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
   <div class="card-modern rounded-2xl max-w-lg animate-slideUp w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
     <div class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600" style="border-color: var(--border-color);">
@@ -1581,7 +1577,7 @@
                 <span id="cartItemCount">0</span> รายการในตะกร้า
               </p>
             </div>
-            <div class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+            <div class="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center">
               <i class="fas fa-receipt text-2xl"></i>
             </div>
           </div>
