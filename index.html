@@ -55,6 +55,7 @@
     .gradient-bg { background: linear-gradient(135deg, var(--bg-gradient-from) 0%, var(--bg-gradient-to) 100%); transition: background 0.3s ease; }
     .card-gradient { background: linear-gradient(135deg, var(--bg-gradient-from) 0%, var(--bg-gradient-to) 100%); }
     .glass { background: var(--glass-bg); backdrop-filter: blur(16px) saturate(180%); border: 1px solid var(--glass-border); box-shadow: var(--shadow); transition: all 0.3s ease; }
+    .glass-th { background: var(--glass-bg); }
 
     /* Print Styles */
     @media print {
@@ -265,7 +266,7 @@
 
     table thead tr {
       background: var(--glass-bg);
-      backdrop-filter: blur(10px);
+      
     }
 
     table tbody tr {
@@ -1739,12 +1740,12 @@
       <table class="w-full min-w-[700px]" id="productsTable">
         <thead>
         <tr class="text-left">
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">ชื่อสินค้า</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">หมวดหมู่</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">ราคา</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">ต้นทุน</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">กำไร</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">จัดการ</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ชื่อสินค้า</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">หมวดหมู่</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ราคา</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ต้นทุน</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">กำไร</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">จัดการ</th>
           </tr>
         </thead>
         <tbody>
@@ -1777,10 +1778,10 @@
       <table class="w-full min-w-[600px]" id="recipesTable">
         <thead>
         <tr class="text-left">
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">สินค้า (ที่มีสูตร)</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">จำนวนวัตถุดิบ</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">ต้นทุน (จากสูตร)</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">จัดการสูตร</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">สินค้า (ที่มีสูตร)</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">จำนวนวัตถุดิบ</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ต้นทุน (จากสูตร)</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">จัดการสูตร</th>
           </tr>
         </thead>
         <tbody id="recipesTableBody" class="text-white">
@@ -1801,12 +1802,12 @@
     <table class="w-full">
       <thead>
         <tr class="text-left">
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">รหัสวัตถุดิบ</th>
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">ชื่อวัตถุดิบ</th>
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">หน่วย</th>
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">ราคาต่อหน่วย</th>
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">ผู้จัดจำหน่าย</th>
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">จัดการ</th>
+          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">รหัสวัตถุดิบ</th>
+          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ชื่อวัตถุดิบ</th>
+          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">หน่วย</th>
+          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ราคาต่อหน่วย</th>
+          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ผู้จัดจำหน่าย</th>
+          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">จัดการ</th>
         </tr>
       </thead>
       <tbody id="materialsTableBody"></tbody>
@@ -1897,10 +1898,10 @@
       <table class="w-full min-w-[700px]" id="inventoryTable">
         <thead>
         <tr class="text-left">
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">วัตถุดิบ</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">คงเหลือ</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">ขั้นต่ำ</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">สถานะ</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">วัตถุดิบ</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">คงเหลือ</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ขั้นต่ำ</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">สถานะ</th>
           </tr>
         </thead>
         <tbody id="inventoryTableBody" class="text-white">
@@ -1915,11 +1916,11 @@
       <table class="w-full min-w-[700px]" id="stockLedgerTable">
         <thead>
         <tr class="text-left">
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">เวลา</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">วัตถุดิบ</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">จำนวน</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">เหตุผล</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">Order #</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">เวลา</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">วัตถุดิบ</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">จำนวน</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">เหตุผล</th>
+            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">Order #</th>
           </tr>
         </thead>
         <tbody>
@@ -5423,9 +5424,9 @@ function renderReport(sales) {
     <table class="w-full">
       <thead>
         <tr class="text-left">
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">สินค้า</th>
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">จำนวน</th>
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); backdrop-filter: blur(10px);">รายรับ</th>
+          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">สินค้า</th>
+          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">จำนวน</th>
+          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">รายรับ</th>
         </tr>
       </thead>
       <tbody>
