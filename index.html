@@ -23,8 +23,8 @@
       --text-secondary: #6b7280;
       --border-color: #e5e7eb;
       --card-bg: rgba(255, 255, 255, 0.95);
-      --glass-bg: rgba(255, 255, 255, 0.1);
-      --glass-border: rgba(255, 255, 255, 0.2);
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-border: rgba(255, 255, 255, 0.25);
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     }
@@ -39,7 +39,7 @@
       --text-secondary: #d1d5db;
       --border-color: #374151;
       --card-bg: rgba(31, 41, 55, 0.95);
-      --glass-bg: rgba(31, 41, 55, 0.3);
+      --glass-bg: rgba(31, 41, 55, 0.4);
       --glass-border: rgba(255, 255, 255, 0.1);
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
@@ -48,14 +48,130 @@
     /* Apply theme colors */
     body {
       font-family: 'Prompt', sans-serif;
-      background: linear-gradient(135deg, var(--bg-gradient-from) 0%, var(--bg-gradient-to) 100%); transition: background 0.3s ease;
+      background: linear-gradient(135deg, var(--bg-gradient-from) 0%, var(--bg-gradient-to) 100%);
     }
     .page { display: none; }
     .page.active { display: block; }
-    .gradient-bg { background: linear-gradient(135deg, var(--bg-gradient-from) 0%, var(--bg-gradient-to) 100%); transition: background 0.3s ease; }
+    .gradient-bg { background: linear-gradient(135deg, var(--bg-gradient-from) 0%, var(--bg-gradient-to) 100%); }
     .card-gradient { background: linear-gradient(135deg, var(--bg-gradient-from) 0%, var(--bg-gradient-to) 100%); }
-    .glass { background: var(--glass-bg); border: 1px solid var(--glass-border); box-shadow: var(--shadow); transition: all 0.3s ease; }
-    .glass-th { background: var(--glass-bg); }
+    .glass { background: var(--glass-bg); border: 1px solid var(--glass-border); }
+
+    /* Modern Navigation Styles */
+    #topNav {
+      background: var(--card-bg);
+      box-shadow: var(--shadow-lg);
+      transition: all 0.3s ease;
+    }
+
+    #topNav .flex.items-center.space-x-4 i {
+      background: linear-gradient(135deg, var(--bg-gradient-from), var(--bg-gradient-to));
+      color: transparent;
+      background-clip: text;
+    }
+
+    #topNav h1, #topNav p {
+      color: var(--text-primary);
+    }
+
+    #topNav p {
+      color: var(--text-secondary);
+    }
+
+    .nav-link {
+      position: relative;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: all 0.2s ease;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      color: var(--bg-gradient-from);
+      background: var(--glass-bg);
+      transform: translateY(-2px);
+    }
+
+    .nav-link i {
+      background: linear-gradient(135deg, var(--bg-gradient-from), var(--bg-gradient-to));
+      color: transparent;
+      background-clip: text;
+    }
+
+    #bottomNav {
+      background: var(--card-bg);
+      box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    #bottomNav button {
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+    }
+
+    #bottomNav button:hover {
+      color: var(--bg-gradient-from);
+      transform: scale(1.1);
+    }
+
+    /* Modern Dashboard Cards */
+    .dashboard-card {
+      background: var(--card-bg);
+      border-radius: 1rem;
+      box-shadow: var(--shadow-lg);
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .dashboard-card-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .dashboard-card-revenue .dashboard-card-icon {
+      background: linear-gradient(135deg, #10b981, #34d399);
+      color: white;
+    }
+
+    .dashboard-card-cost .dashboard-card-icon {
+      background: linear-gradient(135deg, #ef4444, #f87171);
+      color: white;
+    }
+
+    .dashboard-card-profit .dashboard-card-icon {
+      background: linear-gradient(135deg, var(--bg-gradient-from), var(--bg-gradient-to));
+      color: white;
+    }
+
+    .dashboard-card-items .dashboard-card-icon {
+      background: linear-gradient(135deg, #a855f7, #c084fc);
+      color: white;
+    }
+
+    .dashboard-card-title {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .dashboard-card-value {
+      color: var(--text-primary);
+      font-size: 2rem;
+      font-weight: 700;
+    }
 
     /* Print Styles */
     @media print {
@@ -72,614 +188,89 @@
     .receipt-thermal-58 { width: 58mm; min-height: 100mm; padding: 3mm; font-size: 10px; }
 
     @page { margin: 0; }
-    /* Modern Card Design */
-    .modern-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      box-shadow: var(--shadow-lg);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .modern-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Dark Mode Toggle Button */
-    .dark-mode-toggle {
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 9999px;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .dark-mode-toggle:hover {
-      background: var(--card-bg);
-      transform: scale(1.05);
-    }
-
-    /* Enhanced Glass Morphism */
-    .glass-card {
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--shadow-lg);
-      border-radius: 16px;
-      transition: all 0.3s ease;
-    }
-
-    .glass-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Modern Card Styles */
-    .card-modern {
-      background: var(--card-bg);
-      border-radius: 16px;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-    }
-
-    /* Navigation Link Styles */
-    .nav-link {
-      color: var(--text-primary);
-      transition: all 0.2s ease;
-      padding: 0.5rem 0.75rem;
-      border-radius: 0.5rem;
-    }
-
-    .nav-link:hover {
-      background: var(--glass-bg);
-      color: #6366f1;
-    }
-
-    /* Animations */
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .animate-slideUp {
-      animation: slideUp 0.4s ease-out;
-    }
-
-    .animate-fadeIn {
-      animation: fadeIn 0.3s ease-out;
-    }
-
-    /* Scrollbar Styling */
-    /* Input Focus Styles */
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: #6366f1;
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-    }
-
-    /* Button Hover Effects */
-    .btn-modern {
-      transition: all 0.2s ease;
-    }
-
-    .btn-modern:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-modern:active {
-      transform: translateY(0);
-    }
-
-    /* Modal Backdrop */
-    .modal-backdrop {
-    }
-
-    /* Gradient Text */
-    .text-gradient {
-      color: #8b5cf6;
-      font-weight: 700;
-    }
-
-    /* Card Hover Effect */
-    .card-hover {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .card-hover:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-    }
-  
-    /* Modern Product Card in Sales Page */
-    .product-card {
-      background: var(--card-bg);
-      border: 2px solid var(--border-color);
-      border-radius: 1rem;
-      padding: 0.75rem;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .product-card:hover {
-      border-color: #6366f1;
-      box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.2);
-      transform: translateY(-4px);
-    }
-
-    .product-card:active {
-      transform: translateY(-2px);
-    }
-
-    /* Modern Table Styles */
-    table {
-      border-collapse: separate;
-      border-spacing: 0;
-    }
-
-    table thead tr {
-      background: var(--glass-bg);
-      
-    }
-
-    table tbody tr {
-      transition: background-color 0.2s ease;
-    }
-
-    table tbody tr:hover {
-      background: var(--glass-bg);
-    }
-
-    /* Modern Button Styles */
-    .btn-primary {
-      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-      color: white;
-      font-weight: 600;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.75rem;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.3);
-    }
-
-    .btn-primary:hover {
-      box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.4);
-      transform: translateY(-2px);
-    }
-
-    /* Modern Badge Styles */
-    .badge-modern {
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    /* Additional Modern Animations */
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes scaleIn {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-      20%, 40%, 60%, 80% { transform: translateX(5px); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
-    }
-
-    .animate-slideDown {
-      animation: slideDown 0.4s ease-out;
-    }
-
-    .animate-scaleIn {
-      animation: scaleIn 0.3s ease-out;
-    }
-
-    .animate-shake {
-      animation: shake 0.5s ease-in-out;
-    }
-
-    .animate-pulse {
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    /* Enhanced Nav Link Styles */
-    .nav-link {
-      position: relative;
-      color: var(--text-primary);
-      transition: all 0.3s ease;
-      padding: 0.75rem 1rem;
-      border-radius: 0.75rem;
-      font-weight: 500;
-    }
-
-    .nav-link:hover {
-      background: var(--glass-bg);
-      color: #6366f1;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.2);
-    }
-
-    .nav-link.active {
-      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-      color: white;
-      box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.4);
-    }
-
-    /* Enhanced Bottom Nav (Mobile) */
-    #bottomNav button {
-      position: relative;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      padding: 0.75rem;
-      border-radius: 1rem;
-    }
-
-    #bottomNav button:hover {
-      background: var(--glass-bg);
-      transform: translateY(-4px);
-    }
-
-    #bottomNav button:active {
-      transform: translateY(-2px) scale(0.95);
-    }
-
-    #bottomNav button i {
-      transition: transform 0.3s ease;
-      font-size: 1.5rem;
-    }
-
-    #bottomNav button:hover i {
-      transform: scale(1.2);
-    }
-
-    /* Enhanced Product Card */
-    .product-card {
-      background: var(--card-bg);
-      border: 2px solid var(--border-color);
-      border-radius: 1rem;
-      padding: 0.75rem;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .product-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .product-card:hover::before {
-      opacity: 1;
-    }
-
-    .product-card:hover {
-      border-color: #6366f1;
-      box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.2);
-      transform: translateY(-4px) scale(1.02);
-    }
-
-    .product-card:active {
-      transform: translateY(-2px) scale(0.98);
-    }
-
-    /* Badge Modern */
-    .badge-modern {
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Scroll Reveal Animation */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in-up {
-      animation: fadeInUp 0.6s ease-out;
-    }
-
-    /* Smooth Scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Enhanced Focus States */
-    button:focus-visible,
-    input:focus-visible,
-    select:focus-visible,
-    textarea:focus-visible {
-      outline: 3px solid rgba(99, 102, 241, 0.5);
-      outline-offset: 2px;
-    }
-
-    /* Enhanced Active States */
-    button:active {
-      transform: scale(0.97);
-    }
-
-    .nav-link:active {
-      transform: translateY(0);
-    }
-
-    /* Global Loading Overlay */
-    .loading-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      animation: fadeIn 0.3s ease-out;
-    }
-
-    .loading-spinner {
-      width: 60px;
-      height: 60px;
-      border: 4px solid rgba(255, 255, 255, 0.2);
-      border-top-color: #6366f1;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* Enhanced Swal Styling */
-    .swal2-popup {
-      border-radius: 1.5rem !important;
-      padding: 2rem !important;
-    }
-
-    .swal2-title {
-      font-size: 1.75rem !important;
-      font-weight: 700 !important;
-    }
-
-    /* Dark Mode Specific Enhancements */
-    body.dark-mode {
-      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
-    }
-
-    body.dark-mode .glass-card {
-      background: rgba(31, 41, 55, 0.5);
-      border-color: rgba(255, 255, 255, 0.1);
-    }
-
-    body.dark-mode .card-modern {
-      background: rgba(31, 41, 55, 0.8);
-      border-color: rgba(255, 255, 255, 0.1);
-    }
-
-    body.dark-mode input,
-    body.dark-mode select,
-    body.dark-mode textarea {
-      background: rgba(17, 24, 39, 0.8) !important;
-      border-color: rgba(75, 85, 99, 0.5) !important;
-      color: #f9fafb !important;
-    }
-
-    body.dark-mode input::placeholder,
-    body.dark-mode textarea::placeholder {
-      color: rgba(156, 163, 175, 0.7) !important;
-    }
-
-    /* Responsive Improvements */
-    @media (max-width: 768px) {
-      .glass-card {
-        padding: 1rem !important;
-      }
-
-      .card-modern {
-        padding: 1rem !important;
-      }
-
-      .modal-content {
-        margin: 1rem !important;
-      }
-
-      #mainApp {
-        padding-bottom: 5rem !important;
-      }
-    }
-
-    /* Better Mobile Touch Targets */
-    @media (max-width: 768px) {
-      button,
-      a,
-      .nav-link {
-        min-height: 44px;
-        min-width: 44px;
-      }
-    }
-</style>
+  </style>
 </head>
-<body class="min-h-screen transition-colors duration-300">
+<body class="min-h-screen">
 
-<!-- Top Navigation (Desktop & Tablet) - Modern Glass Design -->
-<nav id="topNav" class="hidden md:block glass fixed top-0 left-0 right-0 z-40 animate-slideDown" style="display:none;">
+<!-- Top Navigation (Desktop & Tablet) -->
+<nav id="topNav" class="hidden md:block" style="display:none;">
   <div class="max-w-7xl mx-auto px-4">
-    <div class="flex justify-between items-center h-20">
-      <!-- Logo Section -->
+    <div class="flex justify-between items-center h-16">
       <div class="flex items-center space-x-4">
-        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
-          <i class="fas fa-mug-hot text-2xl text-white"></i>
-        </div>
+        <i class="fas fa-mug-hot text-3xl"></i>
         <div>
-          <h1 class="text-xl font-bold text-gradient" id="shopNameTop">Coffee Shop</h1>
-          <p class="text-xs" style="color: var(--text-secondary);" id="shopEmailTop"></p>
+          <h1 class="text-xl font-bold" id="shopNameTop">Coffee Shop</h1>
+          <p class="text-xs" id="shopEmailTop"></p>
         </div>
       </div>
-
-      <!-- Navigation Links -->
-      <div class="flex items-center space-x-2">
-        <button onclick="showPage('dashboard')" class="nav-link transition-all duration-200">
-          <i class="fas fa-chart-line mr-2"></i>หน้าหลัก
-        </button>
-        <button onclick="showPage('sales')" class="nav-link transition-all duration-200">
-          <i class="fas fa-cash-register mr-2"></i>ขายหน้าร้าน
-        </button>
-        <button onclick="showPage('products')" class="nav-link transition-all duration-200">
-          <i class="fas fa-box mr-2"></i>สินค้า
-        </button>
-        <button onclick="showPage('recipes')" class="nav-link transition-all duration-200">
-          <i class="fas fa-book mr-2"></i>สูตรอาหาร
-        </button>
-        <button onclick="showPage('materials')" class="nav-link transition-all duration-200">
-          <i class="fas fa-warehouse mr-2"></i>วัตถุดิบ
-        </button>
-        <button onclick="showPage('costs')" class="nav-link transition-all duration-200">
-          <i class="fas fa-money-bill mr-2"></i>ค่าใช้จ่าย
-        </button>
-        <button onclick="showPage('inventory')" class="nav-link transition-all duration-200">
-          <i class="fas fa-boxes mr-2"></i>สต็อก
-        </button>
-        <button onclick="showPage('reports')" class="nav-link transition-all duration-200">
-          <i class="fas fa-file-alt mr-2"></i>รายงาน
-        </button>
-        <button onclick="showPage('settings')" class="nav-link transition-all duration-200">
-          <i class="fas fa-cog mr-2"></i>ตั้งค่า
-        </button>
+      <div class="flex items-center space-x-6">
+        <button onclick="showPage('dashboard')" class="nav-link"><i class="fas fa-chart-line mr-2"></i>หน้าหลัก</button>
+        <button onclick="showPage('sales')" class="nav-link"><i class="fas fa-cash-register mr-2"></i>ขายหน้าร้าน</button>
+        <button onclick="showPage('products')" class="nav-link"><i class="fas fa-box mr-2"></i>สินค้า</button>
+        <button onclick="showPage('recipes')" class="nav-link"><i class="fas fa-book mr-2"></i>สูตรอาหาร</button>
+        <button onclick="showPage('materials')" class="nav-link"><i class="fas fa-warehouse mr-2"></i>วัตถุดิบ</button>
+        <button onclick="showPage('costs')" class="nav-link"><i class="fas fa-money-bill mr-2"></i>ค่าใช้จ่าย</button>
+        <button onclick="showPage('inventory')" class="nav-link"><i class="fas fa-boxes mr-2"></i>สต็อก</button>
+        <button onclick="showPage('reports')" class="nav-link"><i class="fas fa-file-alt mr-2"></i>รายงาน</button>
+        <button onclick="showPage('settings')" class="nav-link"><i class="fas fa-cog mr-2"></i>ตั้งค่า</button>
 
         <!-- Dark Mode Toggle -->
-        <button onclick="toggleDarkMode()" class="dark-mode-toggle flex items-center text-sm hover:scale-110 transition transition-all duration-200">
+        <button onclick="toggleDarkMode()" class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm hover:bg-indigo-200 transition flex items-center" title="เปลี่ยนโหมด">
           <i id="darkModeIcon" class="fas fa-moon mr-2"></i>
           <span id="darkModeText">โหมดมืด</span>
         </button>
 
-        <button onclick="showVersionChangelog()" class="btn-primary px-4 py-2 text-sm transition-all duration-200" title="ดูประวัติการอัปเดต">
+        <button onclick="showVersionChangelog()" class="px-3 py-1 rounded-full text-sm transition flex items-center" style="background: var(--glass-bg); color: var(--text-primary);" title="ดูประวัติการอัปเดต">
           <i class="fas fa-code-branch mr-1"></i><span id="versionBadge">v1.0.0</span>
         </button>
-
-        <button onclick="logout()" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg font-bold transition transition-all duration-200">
-          <i class="fas fa-sign-out-alt mr-2"></i>ออก
-        </button>
+        <button onclick="logout()" class="nav-link" style="color: #ef4444;"><i class="fas fa-sign-out-alt mr-2"></i>ออกจากระบบ</button>
       </div>
     </div>
   </div>
 </nav>
 
-<!-- Bottom Navigation (Mobile) - Modern Glass Design -->
-<div id="bottomNav" class="md:hidden fixed fixed bottom-0 left-0 right-0 z-50 glass animate-slideUp" style="display:none;">
-  <div class="flex justify-around items-center py-3 px-2">
-    <button onclick="showPage('dashboard')" class="flex flex-col items-center space-y-1 group transition-all duration-200">
-      <i class="fas fa-chart-line text-2xl group-hover:text-indigo-500 transition"></i>
-      <span class="text-xs font-medium" style="color: var(--text-primary);">หน้าหลัก</span>
-    </button>
-    <button onclick="showPage('sales')" class="flex flex-col items-center space-y-1 group transition-all duration-200">
-      <i class="fas fa-cash-register text-2xl group-hover:text-green-500 transition"></i>
-      <span class="text-xs font-medium" style="color: var(--text-primary);">ขาย</span>
-    </button>
-    <button onclick="showPage('inventory')" class="flex flex-col items-center space-y-1 group transition-all duration-200">
-      <i class="fas fa-boxes text-2xl group-hover:text-orange-500 transition"></i>
-      <span class="text-xs font-medium" style="color: var(--text-primary);">สต็อก</span>
-    </button>
-    <button onclick="openMoreMenu()" class="flex flex-col items-center space-y-1 group transition-all duration-200">
-      <i class="fas fa-th text-2xl group-hover:text-purple-500 transition"></i>
-      <span class="text-xs font-medium" style="color: var(--text-primary);">เพิ่มเติม</span>
-    </button>
+<!-- Bottom Navigation (Mobile) -->
+<div id="bottomNav" class="md:hidden fixed bottom-0 left-0 right-0 z-50" style="display:none;">
+  <div class="flex justify-around py-2">
+    <button onclick="showPage('dashboard')" class="flex flex-col items-center p-2"><i class="fas fa-chart-line text-xl"></i><span class="text-xs">หน้าหลัก</span></button>
+    <button onclick="showPage('sales')" class="flex flex-col items-center p-2"><i class="fas fa-cash-register text-xl"></i><span class="text-xs">ขายหน้าร้าน</span></button>
+    <button onclick="showPage('inventory')" class="flex flex-col items-center p-2"><i class="fas fa-boxes text-xl"></i><span class="text-xs">สต็อก</span></button>
+    <button onclick="openMoreMenu()" class="flex flex-col items-center p-2"><i class="fas fa-cog text-xl"></i><span class="text-xs">เพิ่มเติม</span></button>
   </div>
 </div>
 
 <!-- Login Modal -->
-<div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 modal-backdrop">
-  <div class="card-modern max-w-md w-full mx-4 p-8 animate-slideUp">
-    <div class="text-center mb-8">
-      <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-xl">
-        <i class="fas fa-mug-hot text-4xl text-white"></i>
-      </div>
-      <h2 class="text-3xl font-bold mt-4 text-gradient">เข้าสู่ระบบ</h2>
-      <p style="color: var(--text-secondary);" class="mt-2">ระบบจัดการร้านกาแฟ</p>
+<div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+    <div class="text-center mb-6">
+      <i class="fas fa-mug-hot text-6xl text-purple-600"></i>
+      <h2 class="text-2xl font-bold mt-4 text-gray-800">เข้าสู่ระบบจัดการร้านกาแฟ</h2>
+      <p class="text-gray-600">ระบบติดตามการขาย</p>
     </div>
-    <form onsubmit="handleLogin(event)" class="space-y-4">
-      <div>
-        <label class="block font-medium mb-2" style="color: var(--text-primary);">อีเมล</label>
-        <div class="relative">
-          <i class="fas fa-envelope absolute left-3 top-3.5 text-gray-400"></i>
-          <input type="email" id="loginEmail" class="w-full pl-10 pr-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);" placeholder="your@email.com" required>
-        </div>
+    <form onsubmit="handleLogin(event)">
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-2">อีเมล</label>
+        <input type="email" id="loginEmail" class="w-full px-4 py-2 border rounded-lg" required>
       </div>
-      <div>
-        <label class="block font-medium mb-2" style="color: var(--text-primary);">รหัสผ่าน</label>
-        <div class="relative">
-          <i class="fas fa-lock absolute left-3 top-3.5 text-gray-400"></i>
-          <input type="password" id="loginPassword" class="w-full pl-10 pr-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);" placeholder="••••••••" required>
-        </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 mb-2">รหัสผ่าน</label>
+        <input type="password" id="loginPassword" class="w-full px-4 py-2 border rounded-lg" required>
       </div>
-      <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white py-4 rounded-xl font-bold text-lg shadow-lg btn-modern transition-all duration-200">
-        <i class="fas fa-sign-in-alt mr-2"></i>เข้าสู่ระบบ
-      </button>
+      <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg font-bold">เข้าสู่ระบบ</button>
     </form>
   </div>
 </div>
 
 <!-- Version Changelog Modal -->
 <div id="changelogModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display:none;">
-  <div class="rounded-lg max-w-3xl" style="background: var(--card-bg); w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
+  <div class="bg-white rounded-lg max-w-3xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
     <!-- Header -->
-    <div class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600 text-white flex justify-between items-center" style="border-color: var(--border-color);">
+    <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6 flex justify-between items-center">
       <div>
         <h2 class="text-2xl font-bold"><i class="fas fa-code-branch mr-2"></i>ประวัติการอัปเดต</h2>
         <p class="text-sm opacity-90 mt-1">เวอร์ชันปัจจุบัน: <span id="currentVersionText">v1.0.0</span></p>
       </div>
-      <button onclick="closeChangelogModal()" class="text-white hover:text-gray-200 text-2xl transition-all duration-200">
+      <button onclick="closeChangelogModal()" class="text-white hover:text-gray-200 text-2xl">
         <i class="fas fa-times"></i>
       </button>
     </div>
@@ -687,66 +278,63 @@
     <!-- Content -->
     <div id="changelogContent" class="p-6 overflow-y-auto flex-1">
       <div class="text-center text-gray-500 py-8">
-        <i class="fas fa-spinner fa-spin animate-pulse text-3xl"></i>
+        <i class="fas fa-spinner fa-spin text-3xl"></i>
         <p class="mt-2">กำลังโหลด...</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Product Options Modal - Enhanced Design -->
-<div id="productOptionsModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn" style="display:none;">
-  <div class="card-modern max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col animate-slideUp shadow-2xl">
-    <!-- Header with Gradient -->
-    <div class="p-6 border-b bg-gradient-to-r from-purple-600 to-pink-600 text-white">
+<!-- Product Options Modal -->
+<div id="productOptionsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display:none;">
+  <div class="bg-white rounded-lg max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6">
       <div class="flex justify-between items-start">
         <div>
-          <h2 class="text-3xl font-bold flex items-center">
-            <i class="fas fa-sliders-h mr-3"></i>ปรับแต่งสินค้า
-          </h2>
-          <p class="text-sm opacity-90 mt-2" id="optionsProductName">-</p>
+          <h2 class="text-2xl font-bold"><i class="fas fa-sliders-h mr-2"></i>ปรับแต่งสินค้า</h2>
+          <p class="text-sm opacity-90 mt-1" id="optionsProductName">-</p>
         </div>
-        <button onclick="closeProductOptionsModal()" class="w-12 h-12 rounded-full hover:bg-white/20 transition-all transform hover:rotate-90 transition-all duration-200">
-          <i class="fas fa-times text-2xl"></i>
+        <button onclick="closeProductOptionsModal()" class="text-white hover:text-gray-200 text-2xl">
+          <i class="fas fa-times"></i>
         </button>
       </div>
     </div>
 
     <!-- Content -->
-    <div class="p-6 overflow-y-auto flex-1" style="background: var(--bg-primary);">
-      <!-- Price Display with Glass Effect -->
-      <div class="glass-card p-6 mb-6 border-2 border-purple-200 dark:border-purple-700">
+    <div class="p-6 overflow-y-auto flex-1">
+      <!-- Price Display -->
+      <div class="bg-purple-50 border-2 border-purple-200 rounded-lg p-4 mb-6">
         <div class="flex justify-between items-center">
-          <span class="text-lg font-medium" style="color: var(--text-primary);">ราคาปัจจุบัน:</span>
-          <span id="optionsCurrentPrice" class="text-4xl font-bold text-gradient">฿0.00</span>
+          <span class="text-gray-700 font-medium">ราคาปัจจุบัน:</span>
+          <span id="optionsCurrentPrice" class="text-3xl font-bold text-purple-600">฿0.00</span>
         </div>
       </div>
 
       <!-- Options Sections -->
-      <div id="optionsSections" class="space-y-4">
+      <div id="optionsSections" class="space-y-6">
         <!-- Options will be loaded dynamically -->
       </div>
 
       <!-- Notes Section -->
       <div class="mt-6">
-        <label class="block font-bold mb-3" style="color: var(--text-primary);">
-          <i class="fas fa-comment mr-2 text-indigo-500"></i>หมายเหตุเพิ่มเติม (ถ้ามี)
+        <label class="block font-bold text-gray-700 mb-2">
+          <i class="fas fa-comment mr-2"></i>หมายเหตุเพิ่มเติม (ถ้ามี)
         </label>
         <textarea
           id="productNotes"
           rows="3"
-          class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
-          style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           placeholder="เช่น: ไม่ใส่น้ำตาล, ใส่กระดาษไว้ด้วย, ฯลฯ"></textarea>
       </div>
 
-      <!-- Quantity with Modern Controls -->
+      <!-- Quantity -->
       <div class="mt-6">
-        <label class="block font-bold mb-3" style="color: var(--text-primary);">
-          <i class="fas fa-sort-numeric-up mr-2 text-indigo-500"></i>จำนวน
+        <label class="block font-bold text-gray-700 mb-2">
+          <i class="fas fa-sort-numeric-up mr-2"></i>จำนวน
         </label>
-        <div class="flex items-center justify-center space-x-4">
-          <button onclick="adjustOptionsQuantity(-1)" class="w-14 h-14 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-xl font-bold text-2xl transition transform hover:scale-110 shadow-lg transition-all duration-200">
+        <div class="flex items-center space-x-4">
+          <button onclick="adjustOptionsQuantity(-1)" class="w-12 h-12 bg-red-500 hover:bg-red-600 text-white rounded-lg font-bold text-xl transition">
             <i class="fas fa-minus"></i>
           </button>
           <input
@@ -754,10 +342,9 @@
             id="optionsQuantity"
             value="1"
             min="1"
-            class="w-32 text-center text-3xl font-bold border-2 rounded-xl py-3"
-            style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);"
+            class="w-24 text-center text-2xl font-bold border-2 border-gray-300 rounded-lg py-2"
             onchange="updateOptionsPrice()">
-          <button onclick="adjustOptionsQuantity(1)" class="w-14 h-14 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-xl font-bold text-2xl transition transform hover:scale-110 shadow-lg transition-all duration-200">
+          <button onclick="adjustOptionsQuantity(1)" class="w-12 h-12 bg-green-500 hover:bg-green-600 text-white rounded-lg font-bold text-xl transition">
             <i class="fas fa-plus"></i>
           </button>
         </div>
@@ -765,12 +352,12 @@
     </div>
 
     <!-- Footer Actions -->
-    <div class="border-t p-6" style="border-color: var(--border-color); background: var(--bg-secondary);">
+    <div class="border-t border-gray-200 p-4 bg-gray-50">
       <div class="flex space-x-3">
-        <button onclick="closeProductOptionsModal()" class="flex-1 bg-gradient-to-r from-gray-400 to-gray-500 hover:from-gray-500 hover:to-gray-600 text-white py-4 rounded-xl font-bold transition transform hover:scale-105 shadow-lg transition-all duration-200">
+        <button onclick="closeProductOptionsModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-3 rounded-lg font-bold transition">
           <i class="fas fa-times mr-2"></i>ยกเลิก
         </button>
-        <button onclick="confirmAddToCart()" class="flex-1 btn-primary py-4 text-lg shadow-xl transition-all duration-200">
+        <button onclick="confirmAddToCart()" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-3 rounded-lg font-bold transition">
           <i class="fas fa-cart-plus mr-2"></i>เพิ่มลงตะกร้า
         </button>
       </div>
@@ -778,60 +365,57 @@
   </div>
 </div>
 
-<!-- Combo Selection Modal - Enhanced Design -->
-<div id="comboModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn" style="display:none;">
-  <div class="card-modern max-w-3xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col animate-slideUp shadow-2xl">
-    <!-- Header with Gradient -->
-    <div class="p-6 border-b bg-gradient-to-r from-green-600 to-teal-600 text-white">
+<!-- Combo Selection Modal -->
+<div id="comboModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display:none;">
+  <div class="bg-white rounded-lg max-w-3xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-green-600 to-teal-600 text-white p-6">
       <div class="flex justify-between items-start">
         <div>
-          <h2 class="text-3xl font-bold flex items-center">
-            <i class="fas fa-layer-group mr-3"></i>เลือกคอมโบเซ็ต
-          </h2>
-          <p class="text-sm opacity-90 mt-2" id="comboProductName">-</p>
+          <h2 class="text-2xl font-bold"><i class="fas fa-layer-group mr-2"></i>เลือกคอมโบเซ็ต</h2>
+          <p class="text-sm opacity-90 mt-1" id="comboProductName">-</p>
         </div>
-        <button onclick="closeComboModal()" class="w-12 h-12 rounded-full hover:bg-white/20 transition-all transform hover:rotate-90 transition-all duration-200">
-          <i class="fas fa-times text-2xl"></i>
+        <button onclick="closeComboModal()" class="text-white hover:text-gray-200 text-2xl">
+          <i class="fas fa-times"></i>
         </button>
       </div>
     </div>
 
     <!-- Content -->
-    <div class="p-6 overflow-y-auto flex-1" style="background: var(--bg-primary);">
+    <div class="p-6 overflow-y-auto flex-1">
       <!-- Combo Price Display -->
-      <div class="glass-card p-6 mb-6 border-2 border-green-200 dark:border-green-700">
+      <div class="bg-green-50 border-2 border-green-200 rounded-lg p-4 mb-6">
         <div class="flex justify-between items-center">
-          <span class="text-lg font-medium" style="color: var(--text-primary);">ราคาคอมโบ:</span>
-          <span id="comboCurrentPrice" class="text-4xl font-bold text-gradient">฿0.00</span>
+          <span class="text-gray-700 font-medium">ราคาคอมโบ:</span>
+          <span id="comboCurrentPrice" class="text-3xl font-bold text-green-600">฿0.00</span>
         </div>
       </div>
 
       <!-- Combo Items Selection -->
-      <div id="comboItemsSections" class="space-y-4">
+      <div id="comboItemsSections" class="space-y-6">
         <!-- Combo items will be loaded dynamically -->
       </div>
 
       <!-- Combo Notes -->
       <div class="mt-6">
-        <label class="block font-bold mb-3" style="color: var(--text-primary);">
-          <i class="fas fa-comment mr-2 text-green-500"></i>หมายเหตุ
+        <label class="block font-bold text-gray-700 mb-2">
+          <i class="fas fa-comment mr-2"></i>หมายเหตุ
         </label>
         <textarea
           id="comboNotes"
           rows="2"
-          class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-green-500 focus:ring-2 focus:ring-green-200"
-          style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
           placeholder="หมายเหตุเพิ่มเติมสำหรับคอมโบ"></textarea>
       </div>
     </div>
 
     <!-- Footer Actions -->
-    <div class="border-t p-6" style="border-color: var(--border-color); background: var(--bg-secondary);">
+    <div class="border-t border-gray-200 p-4 bg-gray-50">
       <div class="flex space-x-3">
-        <button onclick="closeComboModal()" class="flex-1 bg-gradient-to-r from-gray-400 to-gray-500 hover:from-gray-500 hover:to-gray-600 text-white py-4 rounded-xl font-bold transition transform hover:scale-105 shadow-lg transition-all duration-200">
+        <button onclick="closeComboModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-3 rounded-lg font-bold transition">
           <i class="fas fa-times mr-2"></i>ยกเลิก
         </button>
-        <button onclick="confirmAddComboToCart()" class="flex-1 bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white py-4 rounded-xl font-bold transition transform hover:scale-105 shadow-xl transition-all duration-200">
+        <button onclick="confirmAddComboToCart()" class="flex-1 bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white py-3 rounded-lg font-bold transition">
           <i class="fas fa-cart-plus mr-2"></i>เพิ่มคอมโบ
         </button>
       </div>
@@ -839,27 +423,24 @@
   </div>
 </div>
 
-<!-- Checkout Success Modal - Enhanced Design -->
-<div id="checkoutSuccessModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn" style="display:none;">
-  <div class="card-modern max-w-md w-full mx-4 animate-scaleIn shadow-2xl">
-    <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-8 rounded-t-2xl text-center">
-      <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl animate-pulse">
-        <i class="fas fa-check text-6xl text-green-500"></i>
+<!-- Checkout Success Modal -->
+<div id="checkoutSuccessModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display:none;">
+  <div class="bg-white rounded-lg max-w-md w-full mx-4">
+    <div class="bg-gradient-to-r from-green-500 to-green-700 text-white p-6 rounded-t-lg text-center">
+      <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+        <i class="fas fa-check text-5xl text-green-500"></i>
       </div>
-      <h2 class="text-3xl font-bold mb-2">บันทึกรายการสำเร็จ!</h2>
-      <div class="bg-white/20 rounded-xl p-4 mt-4">
-        <p class="text-sm opacity-90 mb-1">Order Number</p>
-        <p class="text-2xl font-bold">#<span id="successOrderNumber"></span></p>
-        <p class="text-lg font-bold mt-2">รวม ฿<span id="successTotal"></span></p>
-      </div>
+      <h2 class="text-2xl font-bold">บันทึกรายการสำเร็จ!</h2>
+      <p class="mt-2 opacity-90">Order #<span id="successOrderNumber"></span></p>
+      <p class="text-lg font-bold mt-1">รวม ฿<span id="successTotal"></span></p>
     </div>
 
-    <div class="p-6" style="background: var(--bg-secondary);">
+    <div class="p-6">
       <div class="grid grid-cols-2 gap-3">
-        <button onclick="printReceipt()" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white py-4 px-4 rounded-xl font-bold transition transform hover:scale-105 shadow-lg transition-all duration-200">
+        <button onclick="printReceipt()" class="bg-purple-600 text-white py-3 px-4 rounded-lg font-bold hover:bg-purple-700 transition">
           <i class="fas fa-print mr-2"></i>พิมพ์ใบเสร็จ
         </button>
-        <button onclick="closeCheckoutSuccess()" class="bg-gradient-to-r from-gray-400 to-gray-500 hover:from-gray-500 hover:to-gray-600 text-white py-4 px-4 rounded-xl font-bold transition transform hover:scale-105 shadow-lg transition-all duration-200">
+        <button onclick="closeCheckoutSuccess()" class="bg-gray-200 text-gray-800 py-3 px-4 rounded-lg font-bold hover:bg-gray-300 transition">
           <i class="fas fa-times mr-2"></i>ปิด
         </button>
       </div>
@@ -867,31 +448,27 @@
   </div>
 </div>
 
-<!-- Payment Split Modal - Enhanced Design -->
-<div id="paymentSplitModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn" style="display:none;">
-  <div class="card-modern max-w-lg w-full mx-4 max-h-[90vh] overflow-auto animate-slideUp shadow-2xl">
+<!-- Payment Split Modal -->
+<div id="paymentSplitModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display:none;">
+  <div class="bg-white rounded-lg max-w-lg w-full mx-4 max-h-[90vh] overflow-auto">
     <!-- Header -->
-    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-t-2xl sticky top-0">
-      <div class="flex items-center justify-between">
-        <div>
-          <h2 class="text-2xl font-bold flex items-center">
-            <i class="fas fa-money-check-alt mr-3"></i>แบ่งชำระเงิน
-          </h2>
-          <p class="text-sm opacity-90 mt-1">ยอดที่ต้องชำระ: ฿<span id="splitTotalAmount">0.00</span></p>
-        </div>
-      </div>
+    <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 rounded-t-lg sticky top-0">
+      <h2 class="text-xl font-bold">
+        <i class="fas fa-money-check-alt mr-2"></i>แบ่งชำระเงิน
+      </h2>
+      <p class="text-sm opacity-90 mt-1">ยอดที่ต้องชำระ: ฿<span id="splitTotalAmount">0.00</span></p>
     </div>
 
     <!-- Body -->
-    <div class="p-6" style="background: var(--bg-primary);">
+    <div class="p-4">
       <!-- Payment Methods -->
-      <div class="space-y-4 mb-6">
-        <div class="glass-card p-4 border-2 hover:border-green-500 transition-all">
-          <label class="flex items-center justify-between mb-3 cursor-pointer">
+      <div class="space-y-3 mb-4">
+        <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <label class="flex items-center justify-between mb-2">
             <div class="flex items-center">
-              <input type="checkbox" id="splitCash" class="mr-3 w-5 h-5 text-blue-600 rounded" onchange="toggleSplitMethod('cash')">
-              <i class="fas fa-money-bill-wave text-green-600 mr-2 text-xl"></i>
-              <span class="font-bold text-lg" style="color: var(--text-primary);">เงินสด</span>
+              <input type="checkbox" id="splitCash" class="mr-3 w-4 h-4 text-blue-600" onchange="toggleSplitMethod('cash')">
+              <i class="fas fa-money-bill-wave text-green-600 mr-2"></i>
+              <span class="font-medium">เงินสด</span>
             </div>
           </label>
           <input
@@ -902,16 +479,15 @@
             step="0.01"
             disabled
             oninput="calculateSplitRemaining()"
-            class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-green-500 focus:ring-2 focus:ring-green-200"
-            style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);">
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100">
         </div>
 
-        <div class="glass-card p-4 border-2 hover:border-blue-500 transition-all">
-          <label class="flex items-center justify-between mb-3 cursor-pointer">
+        <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <label class="flex items-center justify-between mb-2">
             <div class="flex items-center">
-              <input type="checkbox" id="splitTransfer" class="mr-3 w-5 h-5 text-blue-600 rounded" onchange="toggleSplitMethod('transfer')">
-              <i class="fas fa-exchange-alt text-blue-600 mr-2 text-xl"></i>
-              <span class="font-bold text-lg" style="color: var(--text-primary);">โอนเงิน</span>
+              <input type="checkbox" id="splitTransfer" class="mr-3 w-4 h-4 text-blue-600" onchange="toggleSplitMethod('transfer')">
+              <i class="fas fa-exchange-alt text-blue-600 mr-2"></i>
+              <span class="font-medium">โอนเงิน</span>
             </div>
           </label>
           <input
@@ -922,16 +498,15 @@
             step="0.01"
             disabled
             oninput="calculateSplitRemaining()"
-            class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-            style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);">
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100">
         </div>
 
-        <div class="glass-card p-4 border-2 hover:border-purple-500 transition-all">
-          <label class="flex items-center justify-between mb-3 cursor-pointer">
+        <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <label class="flex items-center justify-between mb-2">
             <div class="flex items-center">
-              <input type="checkbox" id="splitQR" class="mr-3 w-5 h-5 text-blue-600 rounded" onchange="toggleSplitMethod('qr')">
-              <i class="fas fa-qrcode text-purple-600 mr-2 text-xl"></i>
-              <span class="font-bold text-lg" style="color: var(--text-primary);">QR Code</span>
+              <input type="checkbox" id="splitQR" class="mr-3 w-4 h-4 text-blue-600" onchange="toggleSplitMethod('qr')">
+              <i class="fas fa-qrcode text-purple-600 mr-2"></i>
+              <span class="font-medium">QR Code</span>
             </div>
           </label>
           <input
@@ -942,16 +517,15 @@
             step="0.01"
             disabled
             oninput="calculateSplitRemaining()"
-            class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-purple-500 focus:ring-2 focus:ring-purple-200"
-            style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);">
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100">
         </div>
 
-        <div class="glass-card p-4 border-2 hover:border-orange-500 transition-all">
-          <label class="flex items-center justify-between mb-3 cursor-pointer">
+        <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <label class="flex items-center justify-between mb-2">
             <div class="flex items-center">
-              <input type="checkbox" id="splitCredit" class="mr-3 w-5 h-5 text-blue-600 rounded" onchange="toggleSplitMethod('credit')">
-              <i class="fas fa-credit-card text-orange-600 mr-2 text-xl"></i>
-              <span class="font-bold text-lg" style="color: var(--text-primary);">บัตรเครดิต</span>
+              <input type="checkbox" id="splitCredit" class="mr-3 w-4 h-4 text-blue-600" onchange="toggleSplitMethod('credit')">
+              <i class="fas fa-credit-card text-orange-600 mr-2"></i>
+              <span class="font-medium">บัตรเครดิต</span>
             </div>
           </label>
           <input
@@ -962,38 +536,37 @@
             step="0.01"
             disabled
             oninput="calculateSplitRemaining()"
-            class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
-            style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);">
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100">
         </div>
       </div>
 
       <!-- Summary -->
-      <div class="glass-card p-6 border-2 border-blue-200 dark:border-blue-700 space-y-3">
-        <div class="flex justify-between text-lg">
-          <span style="color: var(--text-secondary);">ยอดที่ต้องชำระ:</span>
-          <span class="font-bold" style="color: var(--text-primary);">฿<span id="splitTotalAmount2">0.00</span></span>
+      <div class="bg-blue-50 rounded-lg p-4 border-2 border-blue-200 space-y-2">
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-700">ยอดที่ต้องชำระ:</span>
+          <span class="font-bold text-gray-800">฿<span id="splitTotalAmount2">0.00</span></span>
         </div>
-        <div class="flex justify-between text-lg">
-          <span style="color: var(--text-secondary);">ชำระแล้ว:</span>
-          <span id="splitPaidAmount" class="font-bold text-blue-600">฿0.00</span>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-700">ชำระแล้ว:</span>
+          <span class="font-bold text-blue-600">฿<span id="splitPaidAmount">0.00</span></span>
         </div>
-        <div class="flex justify-between border-t pt-3" style="border-color: var(--border-color);">
-          <span class="font-bold text-xl" style="color: var(--text-primary);">คงเหลือ:</span>
-          <span id="splitRemainingAmount" class="font-bold text-2xl text-red-600">฿0.00</span>
+        <div class="flex justify-between border-t pt-2">
+          <span class="font-bold text-gray-700">คงเหลือ:</span>
+          <span id="splitRemainingAmount" class="font-bold text-lg text-red-600">฿0.00</span>
         </div>
-        <div id="splitChangeSection" class="flex justify-between pt-3 border-t" style="display:none; border-color: var(--border-color);">
-          <span class="font-bold text-xl" style="color: var(--text-primary);">เงินทอน:</span>
-          <span id="splitChangeAmount" class="font-bold text-2xl text-green-600">฿0.00</span>
+        <div id="splitChangeSection" class="flex justify-between pt-2 border-t" style="display:none;">
+          <span class="font-bold text-gray-700">เงินทอน:</span>
+          <span id="splitChangeAmount" class="font-bold text-lg text-green-600">฿0.00</span>
         </div>
       </div>
     </div>
 
     <!-- Footer -->
-    <div class="border-t p-6 flex space-x-3" style="border-color: var(--border-color); background: var(--bg-secondary);">
-      <button onclick="closePaymentSplit()" class="flex-1 bg-gradient-to-r from-gray-400 to-gray-500 hover:from-gray-500 hover:to-gray-600 text-white py-4 rounded-xl font-bold transition transform hover:scale-105 shadow-lg transition-all duration-200">
+    <div class="border-t border-gray-200 p-4 bg-gray-50 flex space-x-3">
+      <button onclick="closePaymentSplit()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-3 rounded-lg font-bold transition">
         <i class="fas fa-times mr-2"></i>ยกเลิก
       </button>
-      <button onclick="confirmPaymentSplit()" class="flex-1 btn-primary py-4 text-lg shadow-xl transition-all duration-200">
+      <button onclick="confirmPaymentSplit()" class="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-3 rounded-lg font-bold transition">
         <i class="fas fa-check-circle mr-2"></i>ยืนยันชำระเงิน
       </button>
     </div>
@@ -1001,23 +574,23 @@
 </div>
 
 <!-- Receipt Print Modal -->
-<div id="receiptPrintModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn overflow-auto" style="display:none;">
-  <div class="card-modern rounded-2xl max-w-4xl animate-slideUp w-full mx-4 my-8">
+<div id="receiptPrintModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-auto" style="display:none;">
+  <div class="bg-white rounded-lg max-w-4xl w-full mx-4 my-8">
     <!-- Header -->
     <div class="bg-gray-800 text-white p-4 flex justify-between items-center rounded-t-lg">
       <div class="flex items-center space-x-4">
         <h2 class="text-xl font-bold"><i class="fas fa-receipt mr-2"></i>ใบเสร็จรับเงิน</h2>
-        <select id="paperSize" onchange="updateReceiptSize()" class="bg-gray-700 text-white px-3 py-1 rounded-xl">
+        <select id="paperSize" onchange="updateReceiptSize()" class="bg-gray-700 text-white px-3 py-1 rounded">
           <option value="a4">กระดาษ A4 (210x297mm)</option>
           <option value="thermal-80">กระดาษความร้อน 80mm</option>
           <option value="thermal-58">กระดาษความร้อน 58mm</option>
         </select>
       </div>
       <div class="flex items-center space-x-2">
-        <button onclick="window.print()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-all duration-200">
+        <button onclick="window.print()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
           <i class="fas fa-print mr-2"></i>พิมพ์
         </button>
-        <button onclick="closeReceiptPrint()" class="text-white hover:text-gray-300 transition-all duration-200">
+        <button onclick="closeReceiptPrint()" class="text-white hover:text-gray-300">
           <i class="fas fa-times text-2xl"></i>
         </button>
       </div>
@@ -1044,37 +617,37 @@
 
     <div class="grid grid-cols-3 gap-4 text-center">
       
-      <button onclick="showPageAndCloseMenu('recipes')" class="flex flex-col items-center p-3 rounded-lg hover:bg-gray-100 transition transition-all duration-200">
+      <button onclick="showPageAndCloseMenu('recipes')" class="flex flex-col items-center p-3 rounded-lg hover:bg-gray-100 transition">
         <i class="fas fa-book text-3xl text-purple-600 mb-2"></i>
         <span class="text-xs font-medium text-gray-700">สูตรอาหาร</span>
       </button>
 
-      <button onclick="showPageAndCloseMenu('materials')" class="flex flex-col items-center p-3 rounded-lg hover:bg-gray-100 transition transition-all duration-200">
+      <button onclick="showPageAndCloseMenu('materials')" class="flex flex-col items-center p-3 rounded-lg hover:bg-gray-100 transition">
         <i class="fas fa-warehouse text-3xl text-blue-600 mb-2"></i>
         <span class="text-xs font-medium text-gray-700">วัตถุดิบ</span>
       </button>
 
-      <button onclick="showPageAndCloseMenu('products')" class="flex flex-col items-center p-3 rounded-lg hover:bg-gray-100 transition transition-all duration-200">
+      <button onclick="showPageAndCloseMenu('products')" class="flex flex-col items-center p-3 rounded-lg hover:bg-gray-100 transition">
         <i class="fas fa-box text-3xl text-teal-600 mb-2"></i>
         <span class="text-xs font-medium text-gray-700">สินค้า</span>
     </button>
 
-      <button onclick="showPageAndCloseMenu('costs')" class="flex flex-col items-center p-3 rounded-lg hover:bg-gray-100 transition transition-all duration-200">
+      <button onclick="showPageAndCloseMenu('costs')" class="flex flex-col items-center p-3 rounded-lg hover:bg-gray-100 transition">
         <i class="fas fa-money-bill text-3xl text-red-600 mb-2"></i>
         <span class="text-xs font-medium text-gray-700">ค่าใช้จ่าย</span>
       </button>
 
-      <button onclick="showPageAndCloseMenu('reports')" class="flex flex-col items-center p-3 rounded-lg hover:bg-gray-100 transition transition-all duration-200">
+      <button onclick="showPageAndCloseMenu('reports')" class="flex flex-col items-center p-3 rounded-lg hover:bg-gray-100 transition">
         <i class="fas fa-file-alt text-3xl text-green-600 mb-2"></i>
         <span class="text-xs font-medium text-gray-700">รายงาน</span>
       </button>
 
-      <button onclick="showPageAndCloseMenu('settings')" class="flex flex-col items-center p-3 rounded-lg hover:bg-gray-100 transition transition-all duration-200">
+      <button onclick="showPageAndCloseMenu('settings')" class="flex flex-col items-center p-3 rounded-lg hover:bg-gray-100 transition">
         <i class="fas fa-cog text-3xl text-gray-600 mb-2"></i>
         <span class="text-xs font-medium text-gray-700">ตั้งค่า</span>
       </button>
 
-      <button onclick="closeMoreMenu()" class="flex flex-col items-center p-3 rounded-lg hover:bg-red-100 transition transition-all duration-200">
+      <button onclick="closeMoreMenu()" class="flex flex-col items-center p-3 rounded-lg hover:bg-red-100 transition">
         <i class="fas fa-times text-3xl text-red-500 mb-2"></i>
         <span class="text-xs font-medium text-red-700">ปิด</span>
       </button>
@@ -1084,105 +657,156 @@
 </div>
 
 
-<div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 p-4 animate-fadeIn" style="display:none;">
-  <div class="card-modern rounded-2xl max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col animate-slideUp shadow-2xl">
-
-    <div class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
+<div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display:none;">
+  <div class="glass rounded-lg max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
+    
+    <div class="bg-white/10 p-4 border-b border-white/20">
       <div class="flex justify-between items-center">
-        <h2 id="productModalTitle" class="text-2xl font-bold flex items-center">
-          <i class="fas fa-box mr-3"></i>เพิ่มสินค้า
+        <h2 id="productModalTitle" class="text-xl font-bold">
+          <i class="fas fa-box mr-2"></i>เพิ่มสินค้า
         </h2>
-        <button onclick="closeProductModal()" class="w-12 h-12 rounded-full hover:bg-white/20 transition-all transform hover:rotate-90 transition-all duration-200">
-          <i class="fas fa-times text-2xl"></i>
+        <button onclick="closeProductModal()" class="text-white hover:text-red-400 text-2xl transition">
+          <i class="fas fa-times"></i>
         </button>
       </div>
     </div>
 
-    <form id="productForm" onsubmit="saveProduct(event)" class="p-6 overflow-y-auto space-y-4" style="background: var(--bg-primary);">
-
+    <form id="productForm" onsubmit="saveProduct(event)" class="p-6 overflow-y-auto space-y-4">
+      
       <input type="hidden" id="modalProductId">
 
       <div>
-        <label class="block font-bold mb-2 flex items-center" style="color: var(--text-primary);" for="modalProductName">
-          <i class="fas fa-tag mr-2 text-indigo-500"></i>ชื่อสินค้า
-        </label>
-        <input
-          type="text"
-          id="modalProductName"
-          class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
-          style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);"
+        <label class="block font-bold mb-2" for="modalProductName">ชื่อสินค้า</label>
+        <input 
+          type="text" 
+          id="modalProductName" 
+          class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 focus:border-white focus:ring-0 outline-none transition" 
           required>
       </div>
-
+      
       <div>
-        <label class="block font-bold mb-2 flex items-center" style="color: var(--text-primary);" for="modalCategory">
-          <i class="fas fa-folder mr-2 text-indigo-500"></i>หมวดหมู่ (เลือก หรือ พิมพ์ใหม่)
-        </label>
-        <input
-          type="text"
-          id="modalCategory"
+        <label class="block font-bold mb-2" for="modalCategory">หมวดหมู่ (เลือก หรือ พิมพ์ใหม่)</label>
+        <input 
+          type="text" 
+          id="modalCategory" 
           list="categoryDatalist"
-          class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
-          style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);"
+          class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 focus:border-white focus:ring-0 outline-none transition" 
           placeholder="เช่น Hot Coffee, Bakery">
-
-        <datalist id="categoryDatalist"></datalist>
+        
+        <datalist id="categoryDatalist">
+          </datalist>
       </div>
-
+      
       <div class="grid grid-cols-2 gap-4">
         <div>
-          <label class="block font-bold mb-2 flex items-center" style="color: var(--text-primary);" for="modalPrice">
-            <i class="fas fa-coins mr-2 text-yellow-500"></i>ราคา (บาท)
-          </label>
-          <input
-            type="number"
-            step="0.01"
+          <label class="block font-bold mb-2" for="modalPrice">ราคา (บาท)</label>
+          <input 
+            type="number" 
+            step="0.01" 
             min="0"
-            id="modalPrice"
-            class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
-            style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);"
+            id="modalPrice" 
+            class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 focus:border-white focus:ring-0 outline-none transition" 
             required>
         </div>
         <div>
-          <label class="block font-bold mb-2 flex items-center" style="color: var(--text-primary);" for="modalCost">
-            <i class="fas fa-dollar-sign mr-2 text-green-500"></i>ต้นทุน (บาท)
-          </label>
-          <input
-            type="number"
-            step="0.01"
+          <label class="block font-bold mb-2" for="modalCost">ต้นทุน (บาท)</label>
+          <input 
+            type="number" 
+            step="0.01" 
             min="0"
-            id="modalCost"
-            class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
-            style="background: var(--bg-secondary); border-color: var(--border-color); color: var(--text-primary);"
+            id="modalCost" 
+            class="w-full px-4 py-3 rounded-lg bg-white/20 border-2 border-white/30 focus:border-white focus:ring-0 outline-none transition" 
             placeholder="0.00">
         </div>
       </div>
-
+      
       <div class="flex justify-end space-x-3 pt-4">
-        <button
-          type="button"
-          onclick="closeProductModal()"
-          class="px-6 py-3 bg-gradient-to-r from-gray-400 to-gray-500 hover:from-gray-500 hover:to-gray-600 text-white rounded-xl font-bold transition transform hover:scale-105 shadow-lg transition-all duration-200">
+        <button 
+          type="button" 
+          onclick="closeProductModal()" 
+          class="px-6 py-2 bg-gray-500 hover:bg-gray-600 rounded-lg font-bold transition">
           ยกเลิก
         </button>
-        <button
-          type="submit"
-          class="px-6 py-3 btn-primary shadow-xl transition-all duration-200">
+        <button 
+          type="submit" 
+          class="px-6 py-2 bg-green-500 hover:bg-green-600 rounded-lg font-bold transition">
           <i class="fas fa-save mr-2"></i>บันทึก
         </button>
       </div>
     </form>
+    
+  </div>
+</div>
+
+<div id="recipeModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display:none;">
+  <div class="glass rounded-lg max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
+    
+    <div class="bg-white/10 p-4 border-b border-white/20">
+      <div class="flex justify-between items-center">
+        <h2 id="recipeModalTitle" class="text-xl font-bold">
+          <i class="fas fa-book mr-2"></i>เพิ่ม/แก้ไขสูตร
+        </h2>
+        <button onclick="closeRecipeModal()" class="text-white hover:text-red-400 text-2xl transition">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="p-6 overflow-y-auto space-y-4 flex-1">
+      
+      <div>
+        <label class="block font-bold mb-2" for="modalRecipeProductSelect">สินค้า (เจ้าของสูตร)</label>
+        <select 
+          id="modalRecipeProductSelect" 
+          onchange="handleProductSelectChange(this.value)"
+          class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 focus:border-white focus:ring-0 outline-none transition text-white">
+          <option value="" class="text-black">กำลังโหลด...</option>
+        </select>
+      </div>
+      
+      <div>
+        <label class="block font-bold mb-2">วัตถุดิบในสูตรนี้</label>
+        <div id="modalRecipeListContainer" class="space-y-2 max-h-40 overflow-y-auto bg-black/20 p-3 rounded-lg">
+          <p class="text-center text-white/70 p-4">กรุณาเลือกสินค้า...</p>
+        </div>
+      </div>
+      
+      <div class="bg-white/10 p-4 rounded-lg space-y-3">
+        <p class="font-bold">เพิ่มวัตถุดิบใหม่</p>
+        <div>
+          <label class="block text-sm mb-1">เลือกวัตถุดิบ</label>
+          <select id="modalRecipeMaterialSelect" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 focus:border-white focus:ring-0 outline-none transition text-white" disabled>
+            <option value="" class="text-black">...</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm mb-1">จำนวน (ตามหน่วย)</label>
+          <input type="number" step="0.01" min="0" id="modalRecipeQtyInput" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 focus:border-white focus:ring-0 outline-none transition" placeholder="เช่น 18 (g)" disabled>
+        </div>
+        <button id="modalRecipeAddButton" onclick="addRecipeItem()" class="w-full bg-blue-500 hover:bg-blue-600 p-3 rounded-lg font-bold transition opacity-50 cursor-not-allowed" disabled>
+          <i class="fas fa-plus mr-2"></i>เพิ่มลงสูตร
+        </button>
+      </div>
+
+    </div> <div class="flex justify-end p-4 bg-white/10 border-t border-white/20">
+      <button 
+        type="button" 
+        onclick="closeRecipeModal()" 
+        class="px-6 py-2 bg-gray-500 hover:bg-gray-600 rounded-lg font-bold transition text-white">
+        ปิด
+      </button>
+    </div>
 
   </div>
 </div>
 
 
-<div id="categoryManageModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
-  <div class="card-modern rounded-2xl max-w-lg animate-slideUp w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
+<div id="categoryManageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display:none;">
+  <div class="glass rounded-lg max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
-    <div class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600" class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600 text-white flex justify-between items-center" style="border-color: var(--border-color);">
+    <div class="bg-white/10 p-4 border-b border-white/20 flex justify-between items-center">
       <h2 class="text-xl font-bold"><i class="fas fa-tags mr-2"></i>จัดการหมวดหมู่</h2>
-      <button onclick="closeManageCategoriesModal()" class="text-white hover:text-red-400 text-2xl transition transition-all duration-200"><i class="fas fa-times"></i></button>
+      <button onclick="closeManageCategoriesModal()" class="text-white hover:text-red-400 text-2xl transition"><i class="fas fa-times"></i></button>
     </div>
 
     <div class="p-6 overflow-y-auto space-y-6 flex-1">
@@ -1192,15 +816,15 @@
         <form id="categoryRenameForm" onsubmit="handleRenameCategory(event)" class="space-y-3">
           <div>
             <label class="block text-sm mb-1" for="categoryRenameSelect">เลือกหมวดหมู่ที่จะแก้ไข</label>
-            <select id="categoryRenameSelect" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white">
+            <select id="categoryRenameSelect" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white">
               <option value="" class="text-black">กำลังโหลด...</option>
             </select>
           </div>
           <div>
             <label class="block text-sm mb-1" for="categoryNewNameInput">ชื่อใหม่</label>
-            <input type="text" id="categoryNewNameInput" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 bg-white/20 border-2 border-white/30" placeholder="เช่น เครื่องดื่มร้อน" required>
+            <input type="text" id="categoryNewNameInput" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30" placeholder="เช่น เครื่องดื่มร้อน" required>
           </div>
-          <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 shadow-lg transform hover:scale-105 transition p-3 rounded-lg font-bold transition transition-all duration-200">
+          <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 p-3 rounded-lg font-bold transition">
             <i class="fas fa-edit mr-2"></i>เปลี่ยนชื่อ
           </button>
         </form>
@@ -1212,11 +836,11 @@
         <form id="categoryDeleteForm" onsubmit="handleDeleteCategory(event)" class="space-y-3">
           <div>
             <label class="block text-sm mb-1" for="categoryDeleteSelect">เลือกหมวดหมู่ที่จะลบ</label>
-            <select id="categoryDeleteSelect" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white">
+            <select id="categoryDeleteSelect" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white">
               <option value="" class="text-black">กำลังโหลด...</option>
             </select>
           </div>
-          <button type="submit" class="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg transform hover:scale-105 transition p-3 rounded-lg font-bold transition transition-all duration-200">
+          <button type="submit" class="w-full bg-red-500 hover:bg-red-600 p-3 rounded-lg font-bold transition">
             <i class="fas fa-trash mr-2"></i>ยืนยันการลบ
           </button>
         </form>
@@ -1227,46 +851,46 @@
 </div>
 
 
-<div id="purchaseModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
-  <div class="card-modern rounded-2xl max-w-lg animate-slideUp w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
+<div id="purchaseModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display:none;">
+  <div class="glass rounded-lg max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
-    <div class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600" style="border-color: var(--border-color);">
+    <div class="bg-white/10 p-4 border-b border-white/20">
       <h2 class="text-xl font-bold"><i class="fas fa-truck-loading mr-2"></i>รับของเข้าสต็อก (สั่งซื้อ)</h2>
     </div>
 
     <form id="purchaseForm" onsubmit="savePurchase(event)" class="p-6 overflow-y-auto space-y-4">
       <div>
         <label class="block font-bold mb-2" for="purchaseMaterialSelect">วัตถุดิบ</label>
-        <select id="purchaseMaterialSelect" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white" required>
+        <select id="purchaseMaterialSelect" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white" required>
           <option value="" class="text-black">กำลังโหลด...</option>
         </select>
       </div>
       <div>
         <label class="block font-bold mb-2" for="purchaseQty">จำนวนที่รับเข้า</label>
-        <input type="number" step="0.01" min="0.01" id="purchaseQty" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 bg-white/20 border-2 border-white/30" required>
+        <input type="number" step="0.01" min="0.01" id="purchaseQty" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30" required>
       </div>
       
       <div class="flex justify-end space-x-3 pt-4">
-        <button type="button" onclick="closePurchaseModal()" class="px-6 py-2 bg-gradient-to-r from-gray-500 to-gray-600 hover:bg-gray-600 rounded-lg font-bold transition transition-all duration-200">ยกเลิก</button>
-        <button type="submit" class="px-6 py-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-lg transform hover:scale-105 transition rounded-lg font-bold transition transition-all duration-200">บันทึกรับเข้า</button>
+        <button type="button" onclick="closePurchaseModal()" class="px-6 py-2 bg-gray-500 hover:bg-gray-600 rounded-lg font-bold transition">ยกเลิก</button>
+        <button type="submit" class="px-6 py-2 bg-green-500 hover:bg-green-600 rounded-lg font-bold transition">บันทึกรับเข้า</button>
       </div>
     </form>
   </div>
 </div>
 
 
-<div id="comboManageModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
-  <div class="card-modern rounded-2xl max-w-4xl animate-slideUp w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
+<div id="comboManageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display:none;">
+  <div class="glass rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
-    <div class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600" class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600 text-white flex justify-between items-center" style="border-color: var(--border-color);">
+    <div class="bg-white/10 p-4 border-b border-white/20 flex justify-between items-center">
       <h2 class="text-xl font-bold"><i class="fas fa-layer-group mr-2"></i>จัดการ Combo Sets</h2>
-      <button onclick="closeManageCombosModal()" class="text-white hover:text-red-400 text-2xl transition transition-all duration-200"><i class="fas fa-times"></i></button>
+      <button onclick="closeManageCombosModal()" class="text-white hover:text-red-400 text-2xl transition"><i class="fas fa-times"></i></button>
     </div>
 
     <div class="flex-1 flex overflow-hidden">
       
       <div class="w-1/3 overflow-y-auto bg-black/10 p-4 border-r border-white/20">
-        <button onclick="showAddComboForm()" class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-lg transform hover:scale-105 transition p-3 rounded-lg font-bold transition mb-4 transition-all duration-200">
+        <button onclick="showAddComboForm()" class="w-full bg-green-500 hover:bg-green-600 p-3 rounded-lg font-bold transition mb-4">
           <i class="fas fa-plus mr-2"></i>สร้าง Combo ใหม่
         </button>
         <div id="comboListContainer" class="space-y-2">
@@ -1281,18 +905,18 @@
   </div>
 </div>
 
-<div id="optionsManageModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
-  <div class="card-modern rounded-2xl max-w-4xl animate-slideUp w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
+<div id="optionsManageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display:none;">
+  <div class="glass rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
-    <div class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600" class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600 text-white flex justify-between items-center" style="border-color: var(--border-color);">
+    <div class="bg-white/10 p-4 border-b border-white/20 flex justify-between items-center">
       <h2 class="text-xl font-bold"><i class="fas fa-sliders-h mr-2"></i>จัดการตัวเลือก (Options)</h2>
-      <button onclick="closeManageOptionsModal()" class="text-white hover:text-red-400 text-2xl transition transition-all duration-200"><i class="fas fa-times"></i></button>
+      <button onclick="closeManageOptionsModal()" class="text-white hover:text-red-400 text-2xl transition"><i class="fas fa-times"></i></button>
     </div>
 
     <div class="flex-1 flex overflow-hidden">
       
       <div class="w-1/3 overflow-y-auto bg-black/10 p-4 border-r border-white/20">
-        <button onclick="showAddOptionGroupForm()" class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-lg transform hover:scale-105 transition p-3 rounded-lg font-bold transition mb-4 transition-all duration-200">
+        <button onclick="showAddOptionGroupForm()" class="w-full bg-green-500 hover:bg-green-600 p-3 rounded-lg font-bold transition mb-4">
           <i class="fas fa-plus mr-2"></i>สร้างกลุ่มใหม่
         </button>
         <div id="optionGroupListContainer" class="space-y-2">
@@ -1308,175 +932,144 @@
 </div>
 
 
-<div id="wasteModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
-  <div class="card-modern rounded-2xl max-w-lg animate-slideUp w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
+<div id="wasteModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display:none;">
+  <div class="glass rounded-lg max-w-lg w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
     
-    <div class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600" style="border-color: var(--border-color);">
+    <div class="bg-white/10 p-4 border-b border-white/20">
       <h2 class="text-xl font-bold"><i class="fas fa-dumpster-fire mr-2"></i>บันทึกของเสีย</h2>
     </div>
 
     <form id="wasteForm" onsubmit="saveWaste(event)" class="p-6 overflow-y-auto space-y-4">
       <div>
         <label class="block font-bold mb-2" for="wasteMaterialSelect">วัตถุดิบ</label>
-        <select id="wasteMaterialSelect" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white" required>
+        <select id="wasteMaterialSelect" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white" required>
           <option value="" class="text-black">กำลังโหลด...</option>
         </select>
       </div>
       <div>
         <label class="block font-bold mb-2" for="wasteQty">จำนวนที่เสีย</label>
-        <input type="number" step="0.01" min="0.01" id="wasteQty" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 bg-white/20 border-2 border-white/30" required>
+        <input type="number" step="0.01" min="0.01" id="wasteQty" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30" required>
       </div>
       <div>
         <label class="block font-bold mb-2" for="wasteReason">เหตุผล (เช่น หมดอายุ, ตกหล่น)</label>
-        <input type="text" id="wasteReason" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 bg-white/20 border-2 border-white/30" placeholder="เช่น หมดอายุ" required>
+        <input type="text" id="wasteReason" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30" placeholder="เช่น หมดอายุ" required>
       </div>
       
       <div class="flex justify-end space-x-3 pt-4">
-        <button type="button" onclick="closeWasteModal()" class="px-6 py-2 bg-gradient-to-r from-gray-500 to-gray-600 hover:bg-gray-600 rounded-lg font-bold transition transition-all duration-200">ยกเลิก</button>
-        <button type="submit" class="px-6 py-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg transform hover:scale-105 transition rounded-lg font-bold transition transition-all duration-200">บันทึกของเสีย</button>
+        <button type="button" onclick="closeWasteModal()" class="px-6 py-2 bg-gray-500 hover:bg-gray-600 rounded-lg font-bold transition">ยกเลิก</button>
+        <button type="submit" class="px-6 py-2 bg-red-500 hover:bg-red-600 rounded-lg font-bold transition">บันทึกของเสีย</button>
       </div>
     </form>
   </div>
 </div>
 
-<!-- Recipe Management Modal -->
-<div id="recipeModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 animate-fadeIn p-4" style="display:none;">
-  <div class="card-modern rounded-2xl max-w-2xl animate-slideUp w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
-    <!-- Header -->
-    <div class="p-6 border-b bg-gradient-to-r from-indigo-500 to-purple-600" style="border-color: var(--border-color);">
-      <div class="flex justify-between items-center">
-        <h2 id="recipeModalTitle" class="text-xl font-bold"><i class="fas fa-book mr-2"></i>เพิ่ม/แก้ไขสูตร</h2>
-        <button onclick="closeRecipeModal()" class="text-white hover:text-red-400 text-2xl transition transition-all duration-200">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
+<!-- Recipe Modal -->
+<div id="recipeModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" style="display:none;">
+  <div class="glass rounded-lg max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col text-white">
+
+    <div class="bg-white/10 p-4 border-b border-white/20">
+      <h2 id="recipeModalTitle" class="text-xl font-bold"><i class="fas fa-book mr-2"></i>จัดการสูตรอาหาร</h2>
     </div>
 
-    <!-- Body -->
-    <div class="p-6 overflow-y-auto flex-1 space-y-4">
+    <div class="p-6 overflow-y-auto space-y-4">
       <!-- Product Selection -->
       <div>
-        <label class="block font-bold mb-2" for="modalRecipeProductSelect">เลือกสินค้า</label>
-        <select id="modalRecipeProductSelect" onchange="handleProductSelectChange(this.value)" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white">
-          <option value="" class="text-black" disabled selected>-- เลือกสินค้าเพื่อเริ่ม --</option>
+        <label class="block font-bold mb-2" for="modalRecipeProductSelect">สินค้า</label>
+        <select id="modalRecipeProductSelect" onchange="handleProductSelectChange(this.value)" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white">
+          <option value="" class="text-black">-- เลือกสินค้า --</option>
         </select>
       </div>
 
-      <!-- Current Recipe Items List -->
+      <!-- Current Recipe List -->
       <div>
-        <h3 class="font-bold mb-3">รายการวัตถุดิบในสูตร</h3>
-        <div id="modalRecipeListContainer" class="space-y-2">
+        <label class="block font-bold mb-2">รายการวัตถุดิบในสูตร</label>
+        <div id="modalRecipeListContainer" class="bg-white/10 rounded-lg p-4 min-h-[150px] max-h-[250px] overflow-y-auto">
           <p class="text-center text-white/70 p-4">กรุณาเลือกสินค้า...</p>
         </div>
       </div>
 
-      <!-- Add Material Form -->
-      <div class="bg-white/10 p-4 rounded-lg space-y-3">
-        <h4 class="font-bold">เพิ่มวัตถุดิบใหม่</h4>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div>
-            <label class="block text-sm mb-1" for="modalRecipeMaterialSelect">วัตถุดิบ</label>
-            <select id="modalRecipeMaterialSelect" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white" disabled>
+      <!-- Add Material Section -->
+      <div class="border-t border-white/20 pt-4">
+        <label class="block font-bold mb-2">เพิ่มวัตถุดิบ</label>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div class="md:col-span-1">
+            <select id="modalRecipeMaterialSelect" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white" disabled>
               <option value="" class="text-black">...</option>
             </select>
           </div>
-          <div>
-            <label class="block text-sm mb-1" for="modalRecipeQtyInput">จำนวน</label>
-            <input type="number" step="0.01" min="0.01" id="modalRecipeQtyInput" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 bg-white/20 border-2 border-white/30 text-white" placeholder="0.00" disabled>
+          <div class="md:col-span-1">
+            <input type="number" step="0.01" min="0.01" id="modalRecipeQtyInput" placeholder="จำนวน" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30" disabled>
+          </div>
+          <div class="md:col-span-1">
+            <button type="button" id="modalRecipeAddButton" onclick="addRecipeItem()" class="w-full px-6 py-3 bg-green-500 hover:bg-green-600 rounded-lg font-bold transition opacity-50 cursor-not-allowed" disabled>
+              <i class="fas fa-plus mr-2"></i>เพิ่ม
+            </button>
           </div>
         </div>
-        <button id="modalRecipeAddButton" onclick="addRecipeItem()" type="button" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 shadow-lg transform hover:scale-105 transition p-3 rounded-lg font-bold transition transition-all duration-200 opacity-50 cursor-not-allowed" disabled>
-          <i class="fas fa-plus mr-2"></i>เพิ่มวัตถุดิบลงในสูตร
-        </button>
       </div>
     </div>
 
     <!-- Footer -->
-    <div class="border-t p-6 flex justify-end" style="border-color: var(--border-color); background: var(--bg-secondary);">
-      <button onclick="closeRecipeModal()" class="px-6 py-3 bg-gradient-to-r from-gray-500 to-gray-600 hover:bg-gray-600 rounded-lg font-bold transition transition-all duration-200">
-        <i class="fas fa-times mr-2"></i>ปิด
-      </button>
+    <div class="bg-white/10 p-4 border-t border-white/20 flex justify-end">
+      <button type="button" onclick="closeRecipeModal()" class="px-6 py-2 bg-gray-500 hover:bg-gray-600 rounded-lg font-bold transition">ปิด</button>
     </div>
   </div>
 </div>
 
 <!-- Main Container -->
-<div id="mainApp style="display:none; padding-top: 5rem;" class="md:pt-24" class="pb-20 md:pb-0">
+<div id="mainApp" style="display:none;" class="pb-20 md:pb-0">
 
 <!-- Dashboard Page -->
 <div id="page-dashboard" class="page active container mx-auto p-4 max-w-7xl">
   <h1 class="text-3xl font-bold text-white mb-6"><i class="fas fa-chart-line mr-2"></i>Dashboard</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-    <!-- Revenue Card -->
-    <div class="glass-card p-6 hover:scale-105 transition-transform duration-300 animate-slideUp" style="animation-delay: 0s;">
-      <div class="flex items-center justify-between mb-4">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-xl">
-          <i class="fas fa-money-bill-wave text-2xl text-white"></i>
+    <div class="dashboard-card dashboard-card-revenue">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="dashboard-card-title">รายรับวันนี้</p>
+          <p class="dashboard-card-value" id="dashRevenue">0</p>
         </div>
-        <div class="text-right">
-          <p class="text-sm font-medium" style="color: var(--text-secondary);">รายรับวันนี้</p>
-          <h3 class="text-3xl font-bold text-gradient" id="dashRevenue">฿0.00</h3>
+        <div class="dashboard-card-icon">
+          <i class="fas fa-dollar-sign"></i>
         </div>
-      </div>
-      <div class="flex items-center text-green-500 text-sm font-medium">
-        <i class="fas fa-arrow-up mr-1"></i>
-        <span>ยอดรวมทั้งหมด</span>
       </div>
     </div>
-
-    <!-- Cost Card -->
-    <div class="glass-card p-6 hover:scale-105 transition-transform duration-300 animate-slideUp" style="animation-delay: 0s;" style="animation-delay: 0.1s;">
-      <div class="flex items-center justify-between mb-4">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center shadow-xl">
-          <i class="fas fa-receipt text-2xl text-white"></i>
+    <div class="dashboard-card dashboard-card-cost">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="dashboard-card-title">ต้นทุนรวม</p>
+          <p class="dashboard-card-value" id="dashCost">0</p>
         </div>
-        <div class="text-right">
-          <p class="text-sm font-medium" style="color: var(--text-secondary);">ต้นทุนรวม</p>
-          <h3 class="text-3xl font-bold text-gradient" id="dashCost">฿0.00</h3>
+        <div class="dashboard-card-icon">
+          <i class="fas fa-money-bill"></i>
         </div>
-      </div>
-      <div class="flex items-center text-red-500 text-sm font-medium">
-        <i class="fas fa-calculator mr-1"></i>
-        <span>ค่าใช้จ่ายทั้งหมด</span>
       </div>
     </div>
-
-    <!-- Profit Card -->
-    <div class="glass-card p-6 hover:scale-105 transition-transform duration-300 animate-slideUp" style="animation-delay: 0s;" style="animation-delay: 0.2s;">
-      <div class="flex items-center justify-between mb-4">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-xl">
-          <i class="fas fa-chart-line text-2xl text-white"></i>
+    <div class="dashboard-card dashboard-card-profit">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="dashboard-card-title">กำไรสุทธิ</p>
+          <p class="dashboard-card-value" id="dashProfit">0</p>
         </div>
-        <div class="text-right">
-          <p class="text-sm font-medium" style="color: var(--text-secondary);">กำไรสุทธิ</p>
-          <h3 class="text-3xl font-bold text-gradient" id="dashProfit">฿0.00</h3>
+        <div class="dashboard-card-icon">
+          <i class="fas fa-chart-line"></i>
         </div>
-      </div>
-      <div class="flex items-center text-blue-500 text-sm font-medium">
-        <i class="fas fa-piggy-bank mr-1"></i>
-        <span>รายรับ - ต้นทุน</span>
       </div>
     </div>
-
-    <!-- Items Sold Card -->
-    <div class="glass-card p-6 hover:scale-105 transition-transform duration-300 animate-slideUp" style="animation-delay: 0s;" style="animation-delay: 0.3s;">
-      <div class="flex items-center justify-between mb-4">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center shadow-xl">
-          <i class="fas fa-shopping-cart text-2xl text-white"></i>
+    <div class="dashboard-card dashboard-card-items">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="dashboard-card-title">สินค้าที่ขายได้</p>
+          <p class="dashboard-card-value" id="dashItems">0</p>
         </div>
-        <div class="text-right">
-          <p class="text-sm font-medium" style="color: var(--text-secondary);">สินค้าที่ขายได้</p>
-          <h3 class="text-3xl font-bold text-gradient" id="dashItems">0</h3>
+        <div class="dashboard-card-icon">
+          <i class="fas fa-shopping-cart"></i>
         </div>
-      </div>
-      <div class="flex items-center text-purple-500 text-sm font-medium">
-        <i class="fas fa-box-open mr-1"></i>
-        <span>จำนวนรายการ</span>
       </div>
     </div>
   </div>
-  <div class="card-modern p-6">
-    <h3 class="text-xl font-bold mb-4">สินค้าขายดี 5 อันดับ</h3>
+  <div class="dashboard-card">
+    <h3 class="text-xl font-bold mb-4" style="color: var(--text-primary);">สินค้าขายดี 5 อันดับ</h3>
     <div id="topProducts"></div>
   </div>
 </div>
@@ -1501,7 +1094,7 @@
             id="orderChannelSelect"
             onchange="onChannelChange()"
             class="text-sm font-medium text-gray-800 border-none focus:ring-0 cursor-pointer">
-            <option value=">กำลังโหลด...</option>
+            <option value="">กำลังโหลด...</option>
           </select>
         </div>
 
@@ -1513,11 +1106,11 @@
             type="text"
             id="orderNumberInput"
             placeholder="กรอกหมายเลข Order"
-            class="text-lg font-bold text-purple-600 border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200border-b-2 border-purple-300 focus:outline-none focus:border-purple-500 w-40"
+            class="text-lg font-bold text-purple-600 border-b-2 border-purple-300 focus:outline-none focus:border-purple-500 w-40"
             style="display:none;">
         </div>
 
-        <button onclick="clearCart()" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg transform hover:scale-105 transition text-white px-4 py-2 rounded-lg shadow-lg transition transition-all duration-200">
+        <button onclick="clearCart()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg transition">
           <i class="fas fa-trash mr-2"></i>Clear
         </button>
       </div>
@@ -1539,7 +1132,7 @@
               type="text"
               id="searchProduct"
               placeholder="ค้นหาสินค้า... (ชื่อ, รหัส)"
-              class="w-full pl-10 pr-4 py-3 border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
               onkeyup="debouncedSearch()">
           </div>
 
@@ -1547,10 +1140,10 @@
             <i class="fas fa-filter absolute left-3 top-3.5 text-gray-400"></i>
             <select
               id="categoryFilter"
-              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+              class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
               onchange="filterByCategory()">
               
-              <option value=">ทุกหมวดหมู่</option>
+              <option value="">ทุกหมวดหมู่</option>
               </select>
           </div>
 
@@ -1583,25 +1176,18 @@
     <div class="lg:col-span-1">
       <div class="bg-white rounded-lg shadow-lg sticky top-4 overflow-hidden">
 
-        <!-- Cart Header with Modern Gradient -->
-        <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6 rounded-t-lg shadow-xl">
-          <div class="flex items-center justify-between">
-            <div>
-              <h3 class="text-2xl font-bold flex items-center">
-                <i class="fas fa-shopping-cart mr-3"></i>รายการสั่งซื้อ
-              </h3>
-              <p class="text-sm opacity-90 mt-1">
-                <span id="cartItemCount">0</span> รายการในตะกร้า
-              </p>
-            </div>
-            <div class="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center">
-              <i class="fas fa-receipt text-2xl"></i>
-            </div>
-          </div>
+        <!-- Cart Header -->
+        <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4">
+          <h3 class="text-xl font-bold">
+            <i class="fas fa-shopping-cart mr-2"></i>รายการสั่งซื้อ
+          </h3>
+          <p class="text-sm opacity-90 mt-1">
+            <span id="cartItemCount">0</span> รายการ
+          </p>
         </div>
 
         <!-- Cart Items -->
-        <div id="cartItems" class="p-4 max-h-96 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 overflow-y-auto min-h-[200px] bg-gray-50">
+        <div id="cartItems" class="p-4 max-h-96 overflow-y-auto min-h-[200px] bg-gray-50">
           <div class="text-center py-12 text-gray-400">
             <i class="fas fa-shopping-basket text-5xl mb-3 opacity-50"></i>
             <p class="text-sm">ยังไม่มีรายการ</p>
@@ -1618,7 +1204,7 @@
             <button
               onclick="clearDiscount()"
               id="clearDiscountBtn"
-              class="text-xs text-red-600 hover:text-red-800 font-medium transition-all duration-200"
+              class="text-xs text-red-600 hover:text-red-800 font-medium"
               style="display:none;">
               <i class="fas fa-times-circle mr-1"></i>ล้างส่วนลด
             </button>
@@ -1638,17 +1224,17 @@
                 placeholder="จำนวน"
                 min="0"
                 step="0.01"
-                class="w-full px-3 py-2 text-sm border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
             </div>
             <select
               id="discountType"
-              class="px-3 py-2 text-sm border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+              class="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
               <option value="percent">%</option>
               <option value="amount">฿</option>
             </select>
             <button
               onclick="applyCustomDiscount()"
-              class="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition transition-all duration-200">
+              class="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition">
               <i class="fas fa-check"></i>
             </button>
           </div>
@@ -1705,17 +1291,17 @@
         <div class="p-4 bg-gray-50 border-t border-gray-200 space-y-2">
           <button
             onclick="checkout()"
-            class="w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white py-4 rounded-lg font-bold text-lg shadow-lg transition transform hover:scale-105 transition-all duration-200">
+            class="w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white py-4 rounded-lg font-bold text-lg shadow-lg transition transform hover:scale-105">
             <i class="fas fa-check-circle mr-2"></i>ชำระเงิน
           </button>
           <button
             onclick="openPaymentSplit()"
-            class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white py-3 rounded-lg font-bold shadow-md transition transition-all duration-200">
+            class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white py-3 rounded-lg font-bold shadow-md transition">
             <i class="fas fa-money-check-alt mr-2"></i>แบ่งชำระเงิน
           </button>
           <button
             onclick="holdOrder()"
-            class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-3 rounded-lg font-bold shadow-md transition transition-all duration-200">
+            class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-3 rounded-lg font-bold shadow-md transition">
             <i class="fas fa-pause-circle mr-2"></i>พักออเดอร์
           </button>
         </div>
@@ -1731,17 +1317,17 @@
     <h1 class="text-3xl font-bold text-white"><i class="fas fa-box mr-2"></i>สินค้า</h1>
     <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-3">
       
-      <button onclick="showManageOptionsModal()" class="glass text-white px-5 py-3 rounded-lg font-bold hover:bg-white/20 transition text-left transition-all duration-200">
+      <button onclick="showManageOptionsModal()" class="glass text-white px-5 py-3 rounded-lg font-bold hover:bg-white/20 transition text-left">
         <i class="fas fa-sliders-h mr-2"></i>จัดการตัวเลือก (Options)
       </button>
-      <button onclick="showManageCombosModal()" class="glass text-white px-5 py-3 rounded-lg font-bold hover:bg-white/20 transition text-left transition-all duration-200">
+      <button onclick="showManageCombosModal()" class="glass text-white px-5 py-3 rounded-lg font-bold hover:bg-white/20 transition text-left">
         <i class="fas fa-layer-group mr-2"></i>จัดการคอมโบ (Combos)
       </button>
       
-      <button onclick="recalculateCosts()" class="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-3 rounded-lg font-bold hover:bg-orange-600 transition text-left transition-all duration-200">
+      <button onclick="recalculateCosts()" class="bg-orange-500 text-white px-5 py-3 rounded-lg font-bold hover:bg-orange-600 transition text-left">
         <i class="fas fa-calculator mr-2"></i>คำนวณต้นทุนใหม่
       </button>
-      <button onclick="showAddProductModal()" class="bg-gradient-to-r from-green-500 to-green-600 text-white px-5 py-3 rounded-lg font-bold hover:bg-green-600 transition text-left transition-all duration-200">
+      <button onclick="showAddProductModal()" class="bg-green-500 text-white px-5 py-3 rounded-lg font-bold hover:bg-green-600 transition text-left">
         <i class="fas fa-plus mr-2"></i>เพิ่มสินค้า (เดี่ยว)
       </button>
     </div>
@@ -1751,20 +1337,20 @@
     
     <div class="overflow-auto max-h-[70vh] rounded-lg border border-white/20">
       <table class="w-full min-w-[700px]" id="productsTable">
-        <thead>
-        <tr class="text-left">
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ชื่อสินค้า</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">หมวดหมู่</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ราคา</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ต้นทุน</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">กำไร</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">จัดการ</th>
+        <thead class="sticky top-0 bg-white/20 backdrop-blur-sm">
+          <tr class="text-white text-left">
+            <th class="p-3 font-bold">ชื่อสินค้า</th>
+            <th class="p-3 font-bold">หมวดหมู่</th>
+            <th class="p-3 font-bold">ราคา</th>
+            <th class="p-3 font-bold">ต้นทุน</th>
+            <th class="p-3 font-bold">กำไร</th>
+            <th class="p-3 font-bold text-center">จัดการ</th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="border-b hover:bg-opacity-50 transition" style="border-color: var(--border-color);">
+        <tbody id="productsTableBody" class="text-white">
+          <tr>
             <td colspan="6" class="p-8 text-center text-white/70">
-              <i class="fas fa-spinner fa-spin animate-pulse text-3xl"></i>
+              <i class="fas fa-spinner fa-spin text-3xl"></i>
               <p class="mt-2">กำลังโหลดรายการสินค้า...</p>
             </td>
           </tr>
@@ -1780,7 +1366,7 @@
   
   <div class="flex justify-between items-center mb-6">
     <h1 class="text-3xl font-bold text-white"><i class="fas fa-book mr-2"></i>สูตรอาหาร</h1>
-    <button onclick="showAddRecipeModal()" class="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2 rounded-lg font-bold hover:bg-green-600 transition transition-all duration-200">
+    <button onclick="showAddRecipeModal()" class="bg-green-500 text-white px-6 py-2 rounded-lg font-bold hover:bg-green-600 transition">
       <i class="fas fa-plus mr-2"></i>เพิ่ม/แก้ไขสูตร
     </button>
   </div>
@@ -1789,12 +1375,12 @@
     
     <div class="overflow-auto max-h-[70vh] rounded-lg border border-white/20">
       <table class="w-full min-w-[600px]" id="recipesTable">
-        <thead>
-        <tr class="text-left">
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">สินค้า (ที่มีสูตร)</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">จำนวนวัตถุดิบ</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ต้นทุน (จากสูตร)</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">จัดการสูตร</th>
+        <thead class="sticky top-0 bg-white/20 backdrop-blur-sm">
+          <tr class="text-white text-left">
+            <th class="p-3 font-bold">สินค้า (ที่มีสูตร)</th>
+            <th class="p-3 font-bold">จำนวนวัตถุดิบ</th>
+            <th class="p-3 font-bold">ต้นทุน (จากสูตร)</th>
+            <th class="p-3 font-bold text-center">จัดการสูตร</th>
           </tr>
         </thead>
         <tbody id="recipesTableBody" class="text-white">
@@ -1809,18 +1395,18 @@
 <div id="page-materials" class="page container mx-auto p-4 max-w-7xl">
   <div class="flex justify-between items-center mb-6">
     <h1 class="text-3xl font-bold text-white"><i class="fas fa-warehouse mr-2"></i>วัตถุดิบ</h1>
-    <button onclick="showAddMaterialModal()" class="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2 rounded-lg transition-all duration-200"><i class="fas fa-plus mr-2"></i>เพิ่มวัตถุดิบ</button>
+    <button onclick="showAddMaterialModal()" class="bg-green-500 text-white px-6 py-2 rounded-lg"><i class="fas fa-plus mr-2"></i>เพิ่มวัตถุดิบ</button>
   </div>
   <div class="bg-white rounded-lg shadow-lg p-6">
     <table class="w-full">
       <thead>
-        <tr class="text-left">
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">รหัสวัตถุดิบ</th>
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ชื่อวัตถุดิบ</th>
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">หน่วย</th>
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ราคาต่อหน่วย</th>
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ผู้จัดจำหน่าย</th>
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">จัดการ</th>
+        <tr class="bg-purple-600 text-white">
+          <th class="p-3">รหัสวัตถุดิบ</th>
+          <th class="p-3">ชื่อวัตถุดิบ</th>
+          <th class="p-3">หน่วย</th>
+          <th class="p-3">ราคาต่อหน่วย</th>
+          <th class="p-3">ผู้จัดจำหน่าย</th>
+          <th class="p-3">จัดการ</th>
         </tr>
       </thead>
       <tbody id="materialsTableBody"></tbody>
@@ -1835,14 +1421,14 @@
     <div class="bg-white rounded-lg shadow-lg p-6">
       <div class="flex justify-between items-center mb-4">
         <h3 class="text-xl font-bold">ค่าใช้จ่ายรายวัน</h3>
-        <button onclick="showAddDailyCostModal()" class="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg transition-all duration-200"><i class="fas fa-plus"></i></button>
+        <button onclick="showAddDailyCostModal()" class="bg-green-500 text-white px-4 py-2 rounded-lg"><i class="fas fa-plus"></i></button>
       </div>
       <div id="dailyCostsList"></div>
     </div>
     <div class="bg-white rounded-lg shadow-lg p-6">
       <div class="flex justify-between items-center mb-4">
         <h3 class="text-xl font-bold">ค่าใช้จ่ายรายเดือน</h3>
-        <button onclick="showAddMonthlyCostModal()" class="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg transition-all duration-200"><i class="fas fa-plus"></i></button>
+        <button onclick="showAddMonthlyCostModal()" class="bg-green-500 text-white px-4 py-2 rounded-lg"><i class="fas fa-plus"></i></button>
       </div>
       <div id="monthlyCostsList"></div>
     </div>
@@ -1856,14 +1442,14 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
       <div>
         <label class="block font-bold mb-2">วันที่เริ่มต้น</label>
-        <input type="date" id="reportStartDate" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 rounded-lg">
+        <input type="date" id="reportStartDate" class="w-full px-4 py-2 border rounded-lg">
       </div>
       <div>
         <label class="block font-bold mb-2">วันที่สิ้นสุด</label>
-        <input type="date" id="reportEndDate" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 rounded-lg">
+        <input type="date" id="reportEndDate" class="w-full px-4 py-2 border rounded-lg">
       </div>
       <div class="flex items-end">
-        <button onclick="loadReports()" class="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-2 rounded-lg transition-all duration-200">สร้างรายงาน</button>
+        <button onclick="loadReports()" class="w-full bg-purple-600 text-white px-6 py-2 rounded-lg">สร้างรายงาน</button>
       </div>
     </div>
   </div>
@@ -1876,10 +1462,10 @@
   <div class="flex flex-col md:flex-row justify-between md:items-center mb-6 gap-4">
     <h1 class="text-3xl font-bold text-white"><i class="fas fa-boxes mr-2"></i>จัดการสต็อก</h1>
     <div class="flex space-x-3">
-      <button onclick="showWasteModal()" class="flex-1 md:flex-none glass text-white px-5 py-3 rounded-lg font-bold hover:bg-white/20 transition bg-red-500/30 border border-red-400 hover:bg-red-500/50 transition-all duration-200">
+      <button onclick="showWasteModal()" class="flex-1 md:flex-none glass text-white px-5 py-3 rounded-lg font-bold hover:bg-white/20 transition bg-red-500/30 border border-red-400 hover:bg-red-500/50">
         <i class="fas fa-dumpster-fire mr-2"></i>บันทึกของเสีย
       </button>
-      <button onclick="showPurchaseModal()" class="flex-1 md:flex-none glass text-white px-5 py-3 rounded-lg font-bold hover:bg-white/20 transition bg-green-500/30 border border-green-400 hover:bg-green-500/50 transition-all duration-200">
+      <button onclick="showPurchaseModal()" class="flex-1 md:flex-none glass text-white px-5 py-3 rounded-lg font-bold hover:bg-white/20 transition bg-green-500/30 border border-green-400 hover:bg-green-500/50">
         <i class="fas fa-truck-loading mr-2"></i>รับของเข้า
       </button>
     </div>
@@ -1909,12 +1495,12 @@
     <h3 class="text-lg font-bold text-white mb-4">รายการสต็อกคงคลัง</h3>
     <div class="overflow-auto max-h-[60vh] rounded-lg border border-white/20">
       <table class="w-full min-w-[700px]" id="inventoryTable">
-        <thead>
-        <tr class="text-left">
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">วัตถุดิบ</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">คงเหลือ</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">ขั้นต่ำ</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">สถานะ</th>
+        <thead class="sticky top-0 bg-white/20 backdrop-blur-sm">
+          <tr class="text-white text-left">
+            <th class="p-3 font-bold">วัตถุดิบ</th>
+            <th class="p-3 font-bold">คงเหลือ</th>
+            <th class="p-3 font-bold">ขั้นต่ำ</th>
+            <th class="p-3 font-bold">สถานะ</th>
           </tr>
         </thead>
         <tbody id="inventoryTableBody" class="text-white">
@@ -1927,19 +1513,19 @@
     <h3 class="text-lg font-bold text-white mb-4">ประวัติการเคลื่อนไหว (50 รายการล่าสุด)</h3>
     <div class="overflow-auto max-h-[60vh] rounded-lg border border-white/20">
       <table class="w-full min-w-[700px]" id="stockLedgerTable">
-        <thead>
-        <tr class="text-left">
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">เวลา</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">วัตถุดิบ</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">จำนวน</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">เหตุผล</th>
-            <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">Order #</th>
+        <thead class="sticky top-0 bg-white/20 backdrop-blur-sm">
+          <tr class="text-white text-left">
+            <th class="p-3 font-bold">เวลา</th>
+            <th class="p-3 font-bold">วัตถุดิบ</th>
+            <th class="p-3 font-bold">จำนวน</th>
+            <th class="p-3 font-bold">เหตุผล</th>
+            <th class="p-3 font-bold">Order #</th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="border-b hover:bg-opacity-50 transition" style="border-color: var(--border-color);">
+        <tbody id="stockLedgerTableBody" class="text-white">
+          <tr>
             <td colspan="5" class="p-8 text-center text-white/70">
-              <i class="fas fa-spinner fa-spin animate-pulse text-3xl"></i>
+              <i class="fas fa-spinner fa-spin text-3xl"></i>
               <p class="mt-2">กำลังโหลดประวัติ...</p>
             </td>
           </tr>
@@ -1961,41 +1547,41 @@
 
   <!-- First Row: Shop Info & Account -->
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-    <div class="card-modern p-6">
+    <div class="bg-white rounded-lg shadow-lg p-6">
       <h3 class="text-xl font-bold mb-4">ข้อมูลร้าน</h3>
       <form onsubmit="saveSettings(event)">
         <div class="mb-4">
           <label class="block font-bold mb-2">ชื่อร้าน</label>
-          <input type="text" id="settingShopName" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 rounded-lg">
+          <input type="text" id="settingShopName" class="w-full px-4 py-2 border rounded-lg">
         </div>
         <div class="mb-4">
           <label class="block font-bold mb-2">หมายเลข PromptPay</label>
-          <input type="text" id="settingPromptPay" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 rounded-lg" placeholder="0812345678">
+          <input type="text" id="settingPromptPay" class="w-full px-4 py-2 border rounded-lg" placeholder="0812345678">
         </div>
         <div class="mb-4">
           <label class="block font-bold mb-2">รูปแบบหมายเลขออเดอร์</label>
-          <select id="settingOrderMode" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 rounded-lg">
+          <select id="settingOrderMode" class="w-full px-4 py-2 border rounded-lg">
             <option value="auto">อัตโนมัติ</option>
             <option value="manual">กำหนดเอง</option>
           </select>
         </div>
         <div class="mb-4">
           <label class="block font-bold mb-2">รูปแบบหมายเลขออเดอร์</label>
-          <input type="text" id="settingOrderFormat" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 rounded-lg" placeholder="ORD-{YYYYMMDD}-{###}">
+          <input type="text" id="settingOrderFormat" class="w-full px-4 py-2 border rounded-lg" placeholder="ORD-{YYYYMMDD}-{###}">
         </div>
-        <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white py-2 rounded-lg transition-all duration-200">บันทึกการตั้งค่า</button>
+        <button type="submit" class="w-full bg-purple-600 text-white py-2 rounded-lg">บันทึกการตั้งค่า</button>
       </form>
     </div>
 
-    <div class="card-modern p-6">
+    <div class="bg-white rounded-lg shadow-lg p-6">
       <h3 class="text-xl font-bold mb-4">บัญชี</h3>
-      <button onclick="showLicenseModal()" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-lg mb-4 transition-all duration-200">
+      <button onclick="showLicenseModal()" class="w-full bg-blue-500 text-white py-3 rounded-lg mb-4">
         <i class="fas fa-certificate mr-2"></i>สถานะสิทธิ์การใช้งาน
       </button>
-      <button onclick="showChangePasswordModal()" class="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 rounded-lg mb-4 transition-all duration-200">
+      <button onclick="showChangePasswordModal()" class="w-full bg-orange-500 text-white py-3 rounded-lg mb-4">
         <i class="fas fa-key mr-2"></i>เปลี่ยนรหัสผ่าน
       </button>
-      <button onclick="logout()" class="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-3 rounded-lg transition-all duration-200">
+      <button onclick="logout()" class="w-full bg-red-500 text-white py-3 rounded-lg">
         <i class="fas fa-sign-out-alt mr-2"></i>ออกจากระบบ
       </button>
     </div>
@@ -2009,7 +1595,7 @@
       <h3 class="text-xl font-bold">
         <i class="fas fa-pause-circle mr-2 text-orange-600"></i>ออเดอร์ที่พักไว้
       </h3>
-      <button onclick="refreshHeldOrders()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg text-sm transition transition-all duration-200">
+      <button onclick="refreshHeldOrders()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg text-sm transition">
         <i class="fas fa-sync-alt mr-2"></i>Refresh
       </button>
     </div>
@@ -2063,70 +1649,60 @@ var debouncedSearch = debounce(filterProducts, 300);
 // ============================================
 // DARK MODE MANAGEMENT
 // ============================================
-
 function toggleDarkMode() {
-  const body = document.body;
-  const isDark = body.classList.toggle('dark-mode');
+  var body = document.body;
+  var isDark = body.classList.toggle('dark-mode');
 
-  // Update icon and text
-  const icon = document.getElementById('darkModeIcon');
-  const text = document.getElementById('darkModeText');
+  // Update button UI
+  var icon = document.getElementById('darkModeIcon');
+  var text = document.getElementById('darkModeText');
 
-  if (icon && text) {
-    if (isDark) {
-      icon.className = 'fas fa-sun mr-2';
-      text.textContent = 'โหมดสว่าง';
-    } else {
-      icon.className = 'fas fa-moon mr-2';
-      text.textContent = 'โหมดมืด';
-    }
+  if (isDark) {
+    icon.className = 'fas fa-sun mr-2';
+    text.textContent = 'โหมดสว่าง';
+  } else {
+    icon.className = 'fas fa-moon mr-2';
+    text.textContent = 'โหมดมืด';
   }
 
   // Save to localStorage
-  localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+  localStorage.setItem('coffeeShopDarkMode', isDark ? 'dark' : 'light');
 
   // Save to Settings sheet (if logged in)
   if (appState.user && appState.user.sheetId) {
     google.script.run
       .withSuccessHandler(function(result) {
         if (result.success) {
-          console.log('Dark mode preference saved');
+          console.log('Dark mode preference saved to Settings sheet');
+        } else {
+          console.error('Failed to save dark mode:', result.message);
         }
       })
       .withFailureHandler(function(error) {
         console.error('Error saving dark mode:', error);
       })
-      .updateSettings(appState.user.sheetId, { 'DarkMode': isDark ? 'enabled' : 'disabled' });
+      .updateSettings(appState.user.sheetId, { 'DarkMode': isDark ? 'dark' : 'light' });
   }
 
-  // Show toast
-  Swal.fire({
-    icon: 'success',
-    title: isDark ? 'เปิดโหมดมืดแล้ว' : 'เปิดโหมดสว่างแล้ว',
-    toast: true,
-    position: 'top-end',
-    timer: 2000,
-    showConfirmButton: false
-  });
+  console.log('Dark mode:', isDark ? 'enabled' : 'disabled');
 }
 
 function loadDarkMode() {
-  // Priority: localStorage > Settings sheet > default
-  const localDarkMode = localStorage.getItem('darkMode');
+  // Priority: localStorage > Settings sheet > default (light)
+  var localMode = localStorage.getItem('coffeeShopDarkMode');
+  var isDark = false;
 
-  let isDark = false;
-
-  if (localDarkMode === 'enabled') {
+  if (localMode === 'dark') {
     isDark = true;
-  } else if (appState.settings && appState.settings.DarkMode === 'enabled') {
+  } else if (appState.settings && appState.settings.DarkMode === 'dark') {
     isDark = true;
-    localStorage.setItem('darkMode', 'enabled');
+    localStorage.setItem('coffeeShopDarkMode', 'dark');
   }
 
   if (isDark) {
     document.body.classList.add('dark-mode');
-    const icon = document.getElementById('darkModeIcon');
-    const text = document.getElementById('darkModeText');
+    var icon = document.getElementById('darkModeIcon');
+    var text = document.getElementById('darkModeText');
     if (icon) icon.className = 'fas fa-sun mr-2';
     if (text) text.textContent = 'โหมดสว่าง';
   }
@@ -2136,7 +1712,7 @@ function loadDarkMode() {
 
 // Initialize
 window.onload = function() {
-  loadDarkMode(); // Load dark mode first
+  loadDarkMode(); // Load dark mode preference first
   checkSession();
 };
 
@@ -2221,7 +1797,7 @@ function closeChangelogModal() {
 
 function loadVersionChangelog() {
   var content = document.getElementById('changelogContent');
-  content.innerHTML = '<div class="text-center text-gray-500 py-8"><i class="fas fa-spinner fa-spin animate-pulse text-3xl"></i><p class="mt-2">กำลังโหลด...</p></div>';
+  content.innerHTML = '<div class="text-center text-gray-500 py-8"><i class="fas fa-spinner fa-spin text-3xl"></i><p class="mt-2">กำลังโหลด...</p></div>';
 
   google.script.run
     .withSuccessHandler(function(result) {
@@ -2251,7 +1827,7 @@ function renderChangelog(changelog) {
 
   changelog.forEach(function(version, index) {
     var isLatest = index === 0;
-    var latestBadge = isLatest ? '<span class="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-3 py-1 rounded-full text-xs font-bold">ล่าสุด</span>' : '';
+    var latestBadge = isLatest ? '<span class="bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold">ล่าสุด</span>' : '';
     var containerClass = isLatest ? 'border-2 border-purple-500 rounded-lg p-4 bg-purple-50' : 'border-b pb-6';
 
     html += '<div class="mb-6 ' + containerClass + '">';
@@ -2491,21 +2067,7 @@ function showPage(pageName) {
   document.querySelectorAll('.page').forEach(function(p) {
     p.classList.remove('active');
   });
-  // Add fade out animation
-  document.querySelectorAll('.page').forEach(function(p) {
-    if (p.classList.contains('active')) {
-      p.style.animation = 'fadeOut 0.2s ease-out';
-    }
-  });
-
-  // Add fade in animation to new page
-  setTimeout(function() {
   document.getElementById('page-' + pageName).classList.add('active');
-    var newPage = document.getElementById('page-' + pageName);
-    if (newPage) {
-      newPage.style.animation = 'fadeIn 0.3s ease-in';
-    }
-  }, 200);
   
   if (pageName === 'dashboard') loadDashboard();
   if (pageName === 'sales') loadSalesPage();
@@ -2687,7 +2249,7 @@ function loadOrderChannels() {
   select.innerHTML = '';
 
   if (!appState.orderChannels || appState.orderChannels.length === 0) {
-    select.innerHTML = '<option value=">ไม่มีช่องทาง</option>';
+    select.innerHTML = '<option value="">ไม่มีช่องทาง</option>';
     return;
   }
 
@@ -3290,7 +2852,7 @@ function loadDashboard() {
         d.topProducts.forEach(function(p, i) {
           html += '<div class="flex justify-between py-2 border-b"><span>' + (i+1) + '. ' + p.name + '</span><span class="font-bold">' + p.quantity + ' ชิ้น</span></div>';
         });
-        document.getElementById('topProducts').innerHTML = html || '<p class="text-gray-500" style="color: var(--text-secondary);">ยังไม่มียอดขาย</p>';
+        document.getElementById('topProducts').innerHTML = html || '<p class="text-gray-500">ยังไม่มียอดขาย</p>';
       }
     })
     .getDashboardData(appState.user.sheetId, today);
@@ -3320,20 +2882,11 @@ function renderProductGrid(filteredProducts) {
   var html = '';
   activeProducts.forEach(function(p) {
     // Modern product card design
-    
-    html += '<div class="product-card group" onclick="addToCart(\'' + p['Product ID'] + '\')">';
+    html += '<div class="group bg-white border-2 border-gray-200 rounded-xl p-3 cursor-pointer hover:border-purple-400 hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1" onclick="addToCart(\'' + p['Product ID'] + '\')">';
 
-    // Product image/icon with gradient background
-    html += '<div class="w-full h-32 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900 dark:to-purple-900 rounded-lg mb-3 flex items-center justify-center overflow-hidden relative transition-all group-hover:scale-110">';
-    html += '<i class="fas fa-coffee text-4xl text-indigo-600 dark:text-indigo-300 group-hover:scale-110 transition-transform"></i>';
-    html += '<div class="absolute top-2 right-2 badge-modern bg-green-500 text-white text-xs">พร้อมขาย</div>';
-    html += '</div>';
-
-    // Product info
-    html += '<h4 class="font-bold text-lg mb-1 line-clamp-2" style="color: var(--text-primary);">' + p['Product Name'] + '</h4>';
-    html += '<p class="text-xs mb-2" style="color: var(--text-secondary);">' + (p.Category || 'อื่นๆ') + '</p>';
-    html += '<p class="text-2xl font-bold text-gradient">฿' + parseFloat(p.Price).toFixed(2) + '</p>';
-
+    // Product image or icon
+    html += '<div class="bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg h-24 flex items-center justify-center mb-3 group-hover:from-purple-200 group-hover:to-pink-200 transition">';
+    html += '<i class="fas fa-coffee text-4xl text-purple-500"></i>';
     html += '</div>';
 
     // Product info
@@ -3347,7 +2900,7 @@ function renderProductGrid(filteredProducts) {
 
     // Add button
     html += '<div class="mt-3 pt-3 border-t border-gray-200">';
-    html += '<button class="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white text-xs py-2 rounded-lg transition transition-all duration-200">';
+    html += '<button class="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs py-2 rounded-lg transition">';
     html += '<i class="fas fa-plus mr-1"></i>เพิ่ม';
     html += '</button>';
     html += '</div>';
@@ -3423,7 +2976,7 @@ function renderProductOptions() {
   var productId = currentProductOptions.productId;
 
   // Show loading
-  optionsContainer.innerHTML = '<div class="text-center py-8"><i class="fas fa-spinner fa-spin animate-pulse text-3xl text-purple-600"></i><p class="mt-2 text-gray-600">กำลังโหลด Options...</p></div>';
+  optionsContainer.innerHTML = '<div class="text-center py-8"><i class="fas fa-spinner fa-spin text-3xl text-purple-600"></i><p class="mt-2 text-gray-600">กำลังโหลด Options...</p></div>';
 
   // Load option groups from backend
   google.script.run
@@ -3862,7 +3415,7 @@ function renderCart() {
     appState.cart.forEach(function(item, idx) {
       var itemTotal = item.unitPrice * item.quantity;
 
-      html += '<div class="group relative p-4 mb-3 glass-card hover:shadow-xl transition-all duration-300 hover:scale-[1.02] cursor-pointer hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-200 transform hover:scale-[1.02] bg-white rounded-lg border border-gray-200 p-3 mb-3 hover:shadow-md transition">';
+      html += '<div class="bg-white rounded-lg border border-gray-200 p-3 mb-3 hover:shadow-md transition">';
 
       // Product name and price
       html += '<div class="flex justify-between items-start mb-2">';
@@ -3885,7 +3438,7 @@ function renderCart() {
 
       html += '<p class="text-xs text-gray-500 mt-1">฿' + parseFloat(item.unitPrice).toFixed(2) + ' / ชิ้น</p>';
       html += '</div>';
-      html += '<button onclick="removeFromCart(' + idx + ')" class="text-red-500 hover:text-red-700 transition transition-all duration-200">';
+      html += '<button onclick="removeFromCart(' + idx + ')" class="text-red-500 hover:text-red-700 transition">';
       html += '<i class="fas fa-times"></i>';
       html += '</button>';
       html += '</div>';
@@ -3893,11 +3446,11 @@ function renderCart() {
       // Quantity controls and item total
       html += '<div class="flex justify-between items-center pt-2 border-t border-gray-100">';
       html += '<div class="flex items-center space-x-2">';
-      html += '<button onclick="updateCartQty(' + idx + ', -1)" class="w-8 h-8 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg transform hover:scale-105 transition text-white rounded-lg transition flex items-center justify-center transition-all duration-200">';
+      html += '<button onclick="updateCartQty(' + idx + ', -1)" class="w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded-lg transition flex items-center justify-center">';
       html += '<i class="fas fa-minus text-xs"></i>';
       html += '</button>';
       html += '<span class="w-10 text-center font-bold text-gray-800">' + item.quantity + '</span>';
-      html += '<button onclick="updateCartQty(' + idx + ', 1)" class="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-lg transform hover:scale-105 transition text-white rounded-lg transition flex items-center justify-center transition-all duration-200">';
+      html += '<button onclick="updateCartQty(' + idx + ', 1)" class="w-8 h-8 bg-green-500 hover:bg-green-600 text-white rounded-lg transition flex items-center justify-center">';
       html += '<i class="fas fa-plus text-xs"></i>';
       html += '</button>';
       html += '</div>';
@@ -4076,10 +3629,10 @@ function refreshHeldOrders() {
     html += '<p class="text-sm text-gray-700 mt-2">' + itemCount + ' รายการ | ฿' + order.total.toFixed(2) + '</p>';
     html += '</div>';
     html += '<div class="flex space-x-2">';
-    html += '<button onclick="resumeHeldOrder(' + idx + ')" class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-lg transform hover:scale-105 transition text-white px-3 py-2 rounded-lg text-sm transition transition-all duration-200">';
+    html += '<button onclick="resumeHeldOrder(' + idx + ')" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg text-sm transition">';
     html += '<i class="fas fa-play mr-1"></i>กู้คืน';
     html += '</button>';
-    html += '<button onclick="deleteHeldOrder(' + idx + ')" class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg transform hover:scale-105 transition text-white px-3 py-2 rounded-lg text-sm transition transition-all duration-200">';
+    html += '<button onclick="deleteHeldOrder(' + idx + ')" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm transition">';
     html += '<i class="fas fa-trash"></i>';
     html += '</button>';
     html += '</div>';
@@ -4191,7 +3744,7 @@ function removeHeldOrderFromStorage(idx) {
 function showManageOptionsModal() {
   Swal.fire({
     title: 'Product Options Management',
-    html: '<p class="text-gray-600" style="color: var(--text-secondary);">ฟีเจอร์จัดการ Product Options จะพัฒนาในเวอร์ชันถัดไป</p><p class="text-sm text-gray-500 mt-2">ตอนนี้ Options ถูก hard-code ไว้ในระบบ</p>',
+    html: '<p class="text-gray-600">ฟีเจอร์จัดการ Product Options จะพัฒนาในเวอร์ชันถัดไป</p><p class="text-sm text-gray-500 mt-2">ตอนนี้ Options ถูก hard-code ไว้ในระบบ</p>',
     icon: 'info',
     confirmButtonText: 'เข้าใจแล้ว'
   });
@@ -4201,7 +3754,7 @@ function showManageOptionsModal() {
 function showManageCombosModal() {
   Swal.fire({
     title: 'Combo Sets Management',
-    html: '<p class="text-gray-600" style="color: var(--text-secondary);">ฟีเจอร์จัดการ Combo Sets จะพัฒนาในเวอร์ชันถัดไป</p><p class="text-sm text-gray-500 mt-2">ระบบ Combo อยู่ระหว่างการพัฒนา</p>',
+    html: '<p class="text-gray-600">ฟีเจอร์จัดการ Combo Sets จะพัฒนาในเวอร์ชันถัดไป</p><p class="text-sm text-gray-500 mt-2">ระบบ Combo อยู่ระหว่างการพัฒนา</p>',
     icon: 'info',
     confirmButtonText: 'เข้าใจแล้ว'
   });
@@ -4740,17 +4293,17 @@ function renderProductsTable() {
     
     // เราไม่แสดง ID แล้ว เพราะมันยาว
     return '<tr class="border-t border-white/10 hover:bg-white/10">' +
-      '<td class="p-4" style="color: var(--text-primary);">' + p['Product Name'] + '</td>' +
-      '<td class="p-4" style="color: var(--text-primary);">' + (p.Category || '-') + '</td>' +
-      '<td class="p-4" style="color: var(--text-primary);">฿' + price.toFixed(2) + '</td>' +
-      '<td class="p-4" style="color: var(--text-primary);">฿' + cost.toFixed(2) + '</td>' +
-      '<td class="p-4" style="color: var(--text-primary);">฿' + profit.toFixed(2) + '</td>' +
-      '<td class="p-4" style="color: var(--text-primary);">' +
+      '<td class="p-3 font-bold">' + p['Product Name'] + '</td>' +
+      '<td class="p-3">' + (p.Category || '-') + '</td>' +
+      '<td class="p-3">฿' + price.toFixed(2) + '</td>' +
+      '<td class="p-3 text-white/70">฿' + cost.toFixed(2) + '</td>' +
+      '<td class="p-3 ' + profitClass + '">฿' + profit.toFixed(2) + '</td>' +
+      '<td class="p-3 text-center">' +
         // [แก้ไข] เปลี่ยนไปเรียก Modal ใหม่
-        '<button onclick="editProduct(\'' + p['Product ID'] + '\')" class="text-blue-300 hover:text-blue-200 mr-4 transition transition-all duration-200" title="แก้ไข">' +
+        '<button onclick="editProduct(\'' + p['Product ID'] + '\')" class="text-blue-300 hover:text-blue-200 mr-4 transition" title="แก้ไข">' +
           '<i class="fas fa-edit"></i>' +
         '</button>' +
-        '<button onclick="deleteProduct(\'' + p['Product ID'] + '\')" class="text-red-400 hover:text-red-300 transition transition-all duration-200" title="ลบ">' +
+        '<button onclick="deleteProduct(\'' + p['Product ID'] + '\')" class="text-red-400 hover:text-red-300 transition" title="ลบ">' +
           '<i class="fas fa-trash"></i>' +
         '</button>' +
       '</td>' +
@@ -4802,14 +4355,14 @@ function renderMaterialsTable() {
   var tbody = document.getElementById('materialsTableBody');
   tbody.innerHTML = appState.materials.map(function(m) {
     return '<tr class="border-b hover:bg-gray-50">' +
-      '<td class="p-4" style="color: var(--text-primary);">' + m['Material ID'] + '</td>' +
-      '<td class="p-4" style="color: var(--text-primary);">' + m['Material Name'] + '</td>' +
-      '<td class="p-4" style="color: var(--text-primary);">' + m.Unit + '</td>' +
-      '<td class="p-4" style="color: var(--text-primary);">฿' + m['Price Per Unit'] + '</td>' +
-      '<td class="p-4" style="color: var(--text-primary);">' + (m.Supplier || '-') + '</td>' +
-      '<td class="p-4" style="color: var(--text-primary);">' +
-        '<button onclick="editMaterial(\'' + m['Material ID'] + '\')" class="text-blue-600 mr-2 transition-all duration-200"><i class="fas fa-edit"></i></button>' +
-        '<button onclick="deleteMaterial(\'' + m['Material ID'] + '\')" class="text-red-600 transition-all duration-200"><i class="fas fa-trash"></i></button>' +
+      '<td class="p-3">' + m['Material ID'] + '</td>' +
+      '<td class="p-3 font-bold">' + m['Material Name'] + '</td>' +
+      '<td class="p-3">' + m.Unit + '</td>' +
+      '<td class="p-3">฿' + m['Price Per Unit'] + '</td>' +
+      '<td class="p-3">' + (m.Supplier || '-') + '</td>' +
+      '<td class="p-3">' +
+        '<button onclick="editMaterial(\'' + m['Material ID'] + '\')" class="text-blue-600 mr-2"><i class="fas fa-edit"></i></button>' +
+        '<button onclick="deleteMaterial(\'' + m['Material ID'] + '\')" class="text-red-600"><i class="fas fa-trash"></i></button>' +
       '</td>' +
       '</tr>';
   }).join('');
@@ -4986,11 +4539,11 @@ function renderRecipesDashboard() {
     var recipeInfo = recipesByProduct[pid];
     
     return '<tr class="border-t border-white/10 hover:bg-white/10">' +
-      '<td class="p-4" style="color: var(--text-primary);">' + p['Product Name'] + '</td>' +
-      '<td class="p-4" style="color: var(--text-primary);">' + recipeInfo.count + ' รายการ</td>' +
-      '<td class="p-4" style="color: var(--text-primary);">฿' + recipeInfo.totalCost.toFixed(2) + '</td>' +
-      '<td class="p-4" style="color: var(--text-primary);">' +
-        '<button onclick="showEditRecipeModal(\'' + pid + '\')" class="text-blue-300 hover:text-blue-200 transition-all duration-200" title="จัดการสูตร">' +
+      '<td class="p-3 font-bold">' + p['Product Name'] + '</td>' +
+      '<td class="p-3">' + recipeInfo.count + ' รายการ</td>' +
+      '<td class="p-3 text-red-300">฿' + recipeInfo.totalCost.toFixed(2) + '</td>' +
+      '<td class="p-3 text-center">' +
+        '<button onclick="showEditRecipeModal(\'' + pid + '\')" class="text-blue-300 hover:text-blue-200" title="จัดการสูตร">' +
           '<i class="fas fa-edit"></i> จัดการ' +
         '</button>' +
       '</td>' +
@@ -5066,7 +4619,7 @@ function handleProductSelectChange(productId) {
   var listContainer = document.getElementById('modalRecipeListContainer');
   var materialSelect = document.getElementById('modalRecipeMaterialSelect');
   
-  listContainer.innerHTML = '<p class="text-center text-white/70 p-4"><i class="fas fa-spinner fa-spin animate-pulse"></i> กำลังโหลด...</p>';
+  listContainer.innerHTML = '<p class="text-center text-white/70 p-4"><i class="fas fa-spinner fa-spin"></i> กำลังโหลด...</p>';
   materialSelect.innerHTML = '<option value="" class="text-black">กำลังโหลด...</option>';
 
   // 1. โหลดรายการวัตถุดิบ (Materials) มาใส่ Dropdown
@@ -5091,7 +4644,7 @@ function handleProductSelectChange(productId) {
           '<p class="font-bold">' + r['Material Name'] + '</p>' +
           '<p class="text-sm text-white/70">' + r.Quantity + ' ' + r.Unit + '</p>' +
         '</div>' +
-        '<button onclick="deleteRecipeItem(\'' + r['Recipe ID'] + '\')" class="text-red-400 hover:text-red-200 transition px-3 py-2 transition-all duration-200" title="ลบ">' +
+        '<button onclick="deleteRecipeItem(\'' + r['Recipe ID'] + '\')" class="text-red-400 hover:text-red-200 transition px-3 py-2" title="ลบ">' +
           '<i class="fas fa-trash"></i>' +
         '</button>' +
       '</div>';
@@ -5260,10 +4813,10 @@ function renderDailyCosts(costs) {
       '</div>' +
       '<div class="text-right">' +
         '<p class="font-bold text-red-600">฿' + c.Amount + '</p>' +
-        '<button onclick="deleteCost(\'DailyCosts\', \'' + c.ID + '\')" class="text-red-600 text-sm transition-all duration-200"><i class="fas fa-trash"></i></button>' +
+        '<button onclick="deleteCost(\'DailyCosts\', \'' + c.ID + '\')" class="text-red-600 text-sm"><i class="fas fa-trash"></i></button>' +
       '</div>' +
       '</div>';
-  }).join('') || '<p class="text-gray-500" style="color: var(--text-secondary);">ยังไม่มีค่าใช้จ่าย</p>';
+  }).join('') || '<p class="text-gray-500">ยังไม่มีค่าใช้จ่าย</p>';
 }
 
 function renderMonthlyCosts(costs) {
@@ -5276,10 +4829,10 @@ function renderMonthlyCosts(costs) {
       '</div>' +
       '<div class="text-right">' +
         '<p class="font-bold text-red-600">฿' + c.Amount + '</p>' +
-        '<button onclick="deleteCost(\'MonthlyCosts\', \'' + c.ID + '\')" class="text-red-600 text-sm transition-all duration-200"><i class="fas fa-trash"></i></button>' +
+        '<button onclick="deleteCost(\'MonthlyCosts\', \'' + c.ID + '\')" class="text-red-600 text-sm"><i class="fas fa-trash"></i></button>' +
       '</div>' +
       '</div>';
-  }).join('') || '<p class="text-gray-500" style="color: var(--text-secondary);">ยังไม่มีค่าใช้จ่าย</p>';
+  }).join('') || '<p class="text-gray-500">ยังไม่มีค่าใช้จ่าย</p>';
 }
 
 function showAddDailyCostModal() {
@@ -5433,21 +4986,22 @@ function renderReport(sales) {
         <p class="text-sm text-gray-600">จำนวนรายการ</p>
         <p class="text-2xl font-bold text-purple-600">${sales.length}</p>
       </div>
+    </div>
     <h3 class="text-xl font-bold mb-4">ยอดขายตามสินค้า</h3>
     <table class="w-full">
       <thead>
-        <tr class="text-left">
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">สินค้า</th>
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">จำนวน</th>
-          <th class="p-4 font-semibold" style="color: var(--text-primary); background: var(--glass-bg); ">รายรับ</th>
+        <tr class="bg-purple-600 text-white">
+          <th class="p-3">สินค้า</th>
+          <th class="p-3">จำนวน</th>
+          <th class="p-3">รายรับ</th>
         </tr>
       </thead>
       <tbody>
         ${sorted.map(function(p) {
           return '<tr class="border-b">' +
-            '<td class="p-4" style="color: var(--text-primary);">' + p.name + '</td>' +
-            '<td class="p-4" style="color: var(--text-primary);">' + p.qty + '</td>' +
-            '<td class="p-4" style="color: var(--text-primary);">฿' + p.revenue.toFixed(2) + '</td>' +
+            '<td class="p-3">' + p.name + '</td>' +
+            '<td class="p-3">' + p.qty + '</td>' +
+            '<td class="p-3">฿' + p.revenue.toFixed(2) + '</td>' +
             '</tr>';
         }).join('')}
       </tbody>
@@ -5467,8 +5021,8 @@ function loadSettings() {
         document.getElementById('settingOrderMode').value = result.data['Order Number Mode'] || 'auto';
         document.getElementById('settingOrderFormat').value = result.data['Order Number Format'] || 'ORD-{YYYYMMDD}-{###}';
 
-        // Load theme from settings
-        loadTheme();
+        // Load dark mode from settings
+        loadDarkMode();
 
         // Refresh held orders when entering settings page
         refreshHeldOrders();
@@ -5806,11 +5360,11 @@ var lowStockChartInstance = null; // ตัวแปรสำหรับเก�
 function loadInventoryPage() {
   // 1. แสดง Loading
   var tableBody = document.getElementById('inventoryTableBody');
-  tableBody.innerHTML = '<tr><td colspan="4" class="p-8 text-center text-white/70"><i class="fas fa-spinner fa-spin animate-pulse text-3xl"></i><p class="mt-2">กำลังโหลด...</p></td></tr>';
+  tableBody.innerHTML = '<tr><td colspan="4" class="p-8 text-center text-white/70"><i class="fas fa-spinner fa-spin text-3xl"></i><p class="mt-2">กำลังโหลด...</p></td></tr>';
   
   // 🔽🔽🔽 [เพิ่มใหม่] 🔽🔽🔽
   var ledgerBody = document.getElementById('stockLedgerTableBody');
-  ledgerBody.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-white/70"><i class="fas fa-spinner fa-spin animate-pulse text-3xl"></i><p class="mt-2">กำลังโหลด...</p></td></tr>';
+  ledgerBody.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-white/70"><i class="fas fa-spinner fa-spin text-3xl"></i><p class="mt-2">กำลังโหลด...</p></td></tr>';
   // 🔼🔼🔼 [สิ้นสุด] 🔼🔼🔼
 
 
@@ -5938,11 +5492,11 @@ function renderStockLedger(ledger) {
     var qtyStr = qty > 0 ? '+' + qty.toFixed(2) : qty.toFixed(2);
     
     return `<tr class="border-t border-white/10 hover:bg-white/10">
-      <td class="p-4" style="color: var(--text-primary);">${dateStr}</td>
-      <td class="p-4" style="color: var(--text-primary);">${item['Material Name']}</td>
-      <td class="p-4" style="color: var(--text-primary);">${qtyStr}</td>
-      <td class="p-4" style="color: var(--text-primary);">${item.Reason}</td>
-      <td class="p-4" style="color: var(--text-primary);">${item['Order Number'] || '-'}</td>
+      <td class="p-3 text-white/70 text-sm">${dateStr}</td>
+      <td class="p-3 font-bold">${item['Material Name']}</td>
+      <td class="p-3 font-bold ${qtyClass}">${qtyStr}</td>
+      <td class="p-3 text-white/80">${item.Reason}</td>
+      <td class="p-3 text-white/80">${item['Order Number'] || '-'}</td>
     </tr>`;
   }).join('');
 }
@@ -5976,10 +5530,10 @@ function renderInventoryTable(inventory) {
     }
     
     return `<tr class="border-t border-white/10 hover:bg-white/10">
-      <td class="p-4" style="color: var(--text-primary);">${item.name}</td>
-      <td class="p-4" style="color: var(--text-primary);">${stock.toFixed(2)} ${item.unit}</td>
-      <td class="p-4" style="color: var(--text-primary);">${minStock.toFixed(2)} ${item.unit}</td>
-      <td class="p-4" style="color: var(--text-primary);">
+      <td class="p-3 font-bold">${item.name}</td>
+      <td class="p-3">${stock.toFixed(2)} ${item.unit}</td>
+      <td class="p-3 text-white/70">${minStock.toFixed(2)} ${item.unit}</td>
+      <td class="p-3">
         <span class="px-3 py-1 rounded-full text-xs ${statusClass}">
           ${statusText}
         </span>
@@ -6081,7 +5635,7 @@ function closeManageCombosModal() {
 // 1. โหลดรายการ Combo ทั้งหมด (Column 1)
 function loadComboList() {
   var container = document.getElementById('comboListContainer');
-  container.innerHTML = '<p class="text-white/70"><i class="fas fa-spinner fa-spin animate-pulse mr-2"></i>กำลังโหลด...</p>';
+  container.innerHTML = '<p class="text-white/70"><i class="fas fa-spinner fa-spin mr-2"></i>กำลังโหลด...</p>';
   
   google.script.run
     .withSuccessHandler(function(r) {
@@ -6098,7 +5652,7 @@ function loadComboList() {
                  class="p-3 rounded-lg border-2 ${isActive ? 'bg-white/20 border-white' : 'bg-white/5 border-transparent'} hover:border-white/50 cursor-pointer transition">
               <div class="flex justify-between items-center">
                 <span class="font-bold">${combo.comboName}</span>
-                <button onclick="event.stopPropagation(); deleteCombo('${combo.comboId}')" class="text-red-400 hover:text-red-200 text-xs transition-all duration-200"><i class="fas fa-trash"></i></button>
+                <button onclick="event.stopPropagation(); deleteCombo('${combo.comboId}')" class="text-red-400 hover:text-red-200 text-xs"><i class="fas fa-trash"></i></button>
               </div>
               <p class="text-sm text-white/80">฿${combo.comboPrice}</p>
             </div>
@@ -6120,19 +5674,19 @@ function showAddComboForm() {
     <form id="comboForm" onsubmit="saveNewCombo(event)" class="space-y-3">
       <div>
         <label class="block text-sm mb-1">ชื่อ Combo (เช่น เซ็ตสุดคุ้ม)</label>
-        <input type="text" id="comboNameInput" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white" required>
+        <input type="text" id="comboNameInput" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white" required>
       </div>
       <div class="grid grid-cols-2 gap-3">
         <div>
           <label class="block text-sm mb-1">ราคาปกติ (รวม)</label>
-          <input type="number" id="comboRegularPriceInput" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white" placeholder="0.00">
+          <input type="number" id="comboRegularPriceInput" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white" placeholder="0.00">
         </div>
         <div>
           <label class="block text-sm mb-1">ราคา Combo (พิเศษ)</label>
-          <input type="number" id="comboPriceInput" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white" required placeholder="0.00">
+          <input type="number" id="comboPriceInput" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white" required placeholder="0.00">
         </div>
       </div>
-      <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-lg transform hover:scale-105 transition p-3 rounded-lg font-bold transition transition-all duration-200">
+      <button type="submit" class="w-full bg-green-500 hover:bg-green-600 p-3 rounded-lg font-bold transition">
         <i class="fas fa-save mr-2"></i>บันทึกและเริ่มเพิ่มสินค้า
       </button>
     </form>
@@ -6196,7 +5750,7 @@ function loadComboDetails(comboId) {
   loadComboList(); // Refresh list เพื่อไฮไลท์
   
   var container = document.getElementById('comboDetailsContainer');
-  container.innerHTML = '<p class="text-center text-white/70 p-8"><i class="fas fa-spinner fa-spin animate-pulse mr-2"></i>กำลังโหลด...</p>';
+  container.innerHTML = '<p class="text-center text-white/70 p-8"><i class="fas fa-spinner fa-spin mr-2"></i>กำลังโหลด...</p>';
   
   // ดึงข้อมูล Combo (รวม Items)
   google.script.run
@@ -6217,7 +5771,7 @@ function loadComboDetails(comboId) {
                   <p class="font-bold">${productName}</p>
                   <p class="text-sm text-white/70">จำนวน: ${item.quantity} | ${item.allowOptions === 'Yes' ? 'เลือก Option ได้' : 'ห้ามมี Option'}</p>
                 </div>
-                <button onclick="deleteComboItem('${combo.comboId}', '${item.productId}')" class="text-red-400 hover:text-red-200 transition-all duration-200"><i class="fas fa-trash"></i></button>
+                <button onclick="deleteComboItem('${combo.comboId}', '${item.productId}')" class="text-red-400 hover:text-red-200"><i class="fas fa-trash"></i></button>
               </div>
             `;
           }).join('');
@@ -6237,18 +5791,18 @@ function loadComboDetails(comboId) {
 
           <div class="bg-white/10 p-4 rounded-lg space-y-3">
             <h4 class="font-bold">เพิ่มสินค้าลงใน Combo</h4>
-            <select id="comboItemProductSelect" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white">
+            <select id="comboItemProductSelect" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white">
               <option value="" class="text-black" disabled selected>-- เลือกสินค้า --</option>
               ${productOptions}
             </select>
             <div class="grid grid-cols-2 gap-3">
-              <input type="number" id="comboItemQtyInput" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white" value="1" min="1">
-              <select id="comboItemAllowOptions" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white">
+              <input type="number" id="comboItemQtyInput" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white" value="1" min="1">
+              <select id="comboItemAllowOptions" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white">
                 <option value="No">ห้ามมี Option</option>
                 <option value="Yes">อนุญาต Option</option>
               </select>
             </div>
-            <button onclick="addComboItem('${combo.comboId}')" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 shadow-lg transform hover:scale-105 transition p-3 rounded-lg font-bold transition transition-all duration-200">
+            <button onclick="addComboItem('${combo.comboId}')" class="w-full bg-blue-500 hover:bg-blue-600 p-3 rounded-lg font-bold transition">
               <i class="fas fa-plus mr-2"></i>เพิ่มสินค้า
             </button>
           </div>
@@ -6316,7 +5870,7 @@ function closeManageOptionsModal() {
 // 1. โหลดรายการ "กลุ่มตัวเลือก" (Column 1)
 function loadOptionGroupList() {
   var container = document.getElementById('optionGroupListContainer');
-  container.innerHTML = '<p class="text-white/70"><i class="fas fa-spinner fa-spin animate-pulse mr-2"></i>กำลังโหลด...</p>';
+  container.innerHTML = '<p class="text-white/70"><i class="fas fa-spinner fa-spin mr-2"></i>กำลังโหลด...</p>';
   
   google.script.run
     .withSuccessHandler(function(r) {
@@ -6333,7 +5887,7 @@ function loadOptionGroupList() {
                  class="p-3 rounded-lg border-2 ${isActive ? 'bg-white/20 border-white' : 'bg-white/5 border-transparent'} hover:border-white/50 cursor-pointer transition">
               <div class="flex justify-between items-center">
                 <span class="font-bold">${group.groupName}</span>
-                <button onclick="event.stopPropagation(); deleteOptionGroup('${group.groupId}')" class="text-red-400 hover:text-red-200 text-xs transition-all duration-200"><i class="fas fa-trash"></i></button>
+                <button onclick="event.stopPropagation(); deleteOptionGroup('${group.groupId}')" class="text-red-400 hover:text-red-200 text-xs"><i class="fas fa-trash"></i></button>
               </div>
               <p class="text-sm text-white/80">${group.selectionType} / ${group.required}</p>
             </div>
@@ -6355,25 +5909,25 @@ function showAddOptionGroupForm() {
     <form id="optionGroupForm" onsubmit="saveNewOptionGroup(event)" class="space-y-3">
       <div>
         <label class="block text-sm mb-1">ชื่อกลุ่ม (เช่น ขนาด, ความหวาน, ท็อปปิ้ง)</label>
-        <input type="text" id="groupNameInput" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white" required>
+        <input type="text" id="groupNameInput" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white" required>
       </div>
       <div class="grid grid-cols-2 gap-3">
         <div>
           <label class="block text-sm mb-1">ประเภทการเลือก</label>
-          <select id="groupTypeInput" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white">
+          <select id="groupTypeInput" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white">
             <option value="single">เลือกได้ 1 อย่าง</option>
             <option value="multiple">เลือกได้หลายอย่าง</option>
           </select>
         </div>
         <div>
           <label class="block text-sm mb-1">จำเป็นต้องเลือก?</label>
-          <select id="groupRequiredInput" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white">
+          <select id="groupRequiredInput" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white">
             <option value="No">ไม่จำเป็น</option>
             <option value="Yes">จำเป็น</option>
           </select>
         </div>
       </div>
-      <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-lg transform hover:scale-105 transition p-3 rounded-lg font-bold transition transition-all duration-200">
+      <button type="submit" class="w-full bg-green-500 hover:bg-green-600 p-3 rounded-lg font-bold transition">
         <i class="fas fa-save mr-2"></i>บันทึกกลุ่ม
       </button>
     </form>
@@ -6437,7 +5991,7 @@ function loadOptionDetails(groupId) {
   loadOptionGroupList(); // Refresh list
   
   var container = document.getElementById('optionDetailsContainer');
-  container.innerHTML = '<p class="text-center text-white/70 p-8"><i class="fas fa-spinner fa-spin animate-pulse mr-2"></i>กำลังโหลด...</p>';
+  container.innerHTML = '<p class="text-center text-white/70 p-8"><i class="fas fa-spinner fa-spin mr-2"></i>กำลังโหลด...</p>';
   var group = appState.optionGroups.find(g => g.groupId === groupId);
   
   google.script.run
@@ -6457,7 +6011,7 @@ function loadOptionDetails(groupId) {
                   <p class="font-bold">${opt.optionName}${priceText}</p>
                   <p class="text-sm text-white/70">ลำดับ: ${opt.displayOrder} | ${opt.isDefault === 'Yes' ? 'ค่าเริ่มต้น' : ''}</p>
                 </div>
-                <button onclick="deleteOption('${opt.optionId}')" class="text-red-400 hover:text-red-200 transition-all duration-200"><i class="fas fa-trash"></i></button>
+                <button onclick="deleteOption('${opt.optionId}')" class="text-red-400 hover:text-red-200"><i class="fas fa-trash"></i></button>
               </div>
             `;
           }).join('');
@@ -6472,14 +6026,14 @@ function loadOptionDetails(groupId) {
             <div class="grid grid-cols-2 gap-3">
               <div>
                 <label class="block text-sm mb-1">ชื่อตัวเลือก (เช่น เล็ก, หวานน้อย)</label>
-                <input type="text" id="optionNameInput" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white" required>
+                <input type="text" id="optionNameInput" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white" required>
               </div>
               <div>
                 <label class="block text-sm mb-1">ราคาที่เพิ่ม (+฿)</label>
-                <input type="number" id="optionPriceInput" class="w-full px-4 py-3 rounded-xl border-2 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 bg-white/20 border-2 border-white/30 text-white" value="0" min="0">
+                <input type="number" id="optionPriceInput" class="w-full p-3 rounded-lg bg-white/20 border-2 border-white/30 text-white" value="0" min="0">
               </div>
             </div>
-            <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 shadow-lg transform hover:scale-105 transition p-3 rounded-lg font-bold transition transition-all duration-200">
+            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 p-3 rounded-lg font-bold transition">
               <i class="fas fa-plus mr-2"></i>เพิ่มตัวเลือก
             </button>
           </form>
