@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Admin - Coffee Shop Manager</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body { font-family: 'Sarabun', sans-serif; }
+    .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+  </style>
+</head>
+<body class="gradient-bg min-h-screen">
+
+<!-- Login Modal -->
+<div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+    <div class="text-center mb-6">
+      <i class="fas fa-user-shield text-6xl text-purple-600"></i>
+      <h2 class="text-2xl font-bold mt-4 text-gray-800">Super Admin Login</h2>
+      <p class="text-gray-600">Coffee Shop Manager</p>
+    </div>
+    <form onsubmit="handleAdminLogin(event)">
+      <div class="mb-6">
+        <label class="block text-gray-700 mb-2">Master Password</label>
+        <input type="password" id="masterPassword" class="w-full px-4 py-2 border rounded-lg" required autofocus>
+      </div>
+      <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg font-bold">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- Main App -->
+<div id="mainApp" style="display:none;">
+  
+  <!-- Header -->
+  <div class="bg-white shadow-lg mb-6">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-800"><i class="fas fa-user-shield mr-2"></i>Super Admin Panel</h1>
+          <p class="text-gray-600">Coffee Shop Management System</p>
+        </div>
+        <button onclick="logout()" class="bg-red-500 text-white px-6 py-2 rounded-lg"><i class="fas fa-sign-out-alt mr-2"></i>Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Container -->
+  <div class="max-w-7xl mx-auto px-4 pb-6">
+    
+    <!-- Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-gray-500 text-sm">Total Shops</p>
+            <p class="text-3xl font-bold text-purple-600" id="totalShops">0</p>
+          </div>
+          <i class="fas fa-store text-4xl text-purple-200"></i>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-gray-500 text-sm">Active</p>
+            <p class="text-3xl font-bold text-green-600" id="activeShops">0</p>
+          </div>
+          <i class="fas fa-check-circle text-4xl text-green-200"></i>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-gray-500 text-sm">Inactive</p>
+            <p class="text-3xl font-bold text-red-600" id="inactiveShops">0</p>
+          </div>
+          <i class="fas fa-times-circle text-4xl text-red-200"></i>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-gray-500 text-sm">Expiring Soon</p>
+            <p class="text-3xl font-bold text-orange-600" id="expiringShops">0</p>
+          </div>
+          <i class="fas fa-exclamation-triangle text-4xl text-orange-200"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+      <div class="flex justify-between items-center">
+        <h2 class="text-xl font-bold">Shops Management</h2>
+        <button onclick="showAddShopModal()" class="bg-green-500 text-white px-6 py-3 rounded-lg font-bold"><i class="fas fa-plus mr-2"></i>Add New Shop</button>
+      </div>
+    </div>
+
+    <!-- Shops Table -->
+    <div class="bg-white rounded-lg shadow-lg p-6">
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-purple-600 text-white">
+              <th class="p-3">Shop ID</th>
+              <th class="p-3">Shop Name</th>
+              <th class="p-3">Email</th>
+              <th class="p-3">Package</th>
+              <th class="p-3">End Date</th>
+              <th class="p-3">Days Left</th>
+              <th class="p-3">Status</th>
+              <th class="p-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="shopsTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let shops = [];
+
+function handleAdminLogin(e) {
+  e.preventDefault();
+  const password = document.getElementById('masterPassword').value;
+  
+  Swal.fire({ title: 'Logging in...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+  
+  google.script.run
+    .withSuccessHandler(function(result) {
+      if (result.success) {
+        Swal.close();
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'block';
+        loadShops();
+      } else {
+        Swal.fire('Error', result.message, 'error');
+      }
+    })
+    .withFailureHandler(function(error) {
+      Swal.fire('Error', error.message, 'error');
+    })
+    .superAdminLogin(password);
+}
+
+function loadShops() {
+  Swal.fire({ title: 'Loading shops...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+  
+  google.script.run
+    .withSuccessHandler(function(result) {
+      Swal.close();
+      if (result.success) {
+        shops = result.data;
+        renderStats();
+        renderShopsTable();
+      } else {
+        Swal.fire('Error', result.message, 'error');
+      }
+    })
+    .withFailureHandler(function(error) {
+      Swal.close();
+      Swal.fire('Error', error.message, 'error');
+    })
+    .getAllShops();
+}
+
+function renderStats() {
+  const total = shops.length;
+  const active = shops.filter(s => s.Status === 'active').length;
+  const inactive = shops.filter(s => s.Status === 'inactive').length;
+  
+  const today = new Date();
+  const expiringSoon = shops.filter(s => {
+    const endDate = new Date(s['End Date']);
+    const daysLeft = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
+    return daysLeft <= 30 && daysLeft > 0 && s.Status === 'active';
+  }).length;
+  
+  document.getElementById('totalShops').textContent = total;
+  document.getElementById('activeShops').textContent = active;
+  document.getElementById('inactiveShops').textContent = inactive;
+  document.getElementById('expiringShops').textContent = expiringSoon;
+}
+
+function renderShopsTable() {
+  const tbody = document.getElementById('shopsTableBody');
+  const today = new Date();
+  
+  tbody.innerHTML = shops.map(shop => {
+    const endDate = new Date(shop['End Date']);
+    const daysLeft = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
+    
+    let statusBadge = '';
+    if (shop.Status === 'active') {
+      statusBadge = '<span class="px-2 py-1 bg-green-200 text-green-800 rounded">Active</span>';
+    } else {
+      statusBadge = '<span class="px-2 py-1 bg-red-200 text-red-800 rounded">Inactive</span>';
+    }
+    
+    let daysLeftBadge = '';
+    if (daysLeft < 0) {
+      daysLeftBadge = '<span class="px-2 py-1 bg-red-200 text-red-800 rounded">Expired</span>';
+    } else if (daysLeft <= 7) {
+      daysLeftBadge = `<span class="px-2 py-1 bg-red-200 text-red-800 rounded">${daysLeft} days</span>`;
+    } else if (daysLeft <= 30) {
+      daysLeftBadge = `<span class="px-2 py-1 bg-orange-200 text-orange-800 rounded">${daysLeft} days</span>`;
+    } else {
+      daysLeftBadge = `<span class="px-2 py-1 bg-green-200 text-green-800 rounded">${daysLeft} days</span>`;
+    }
+    
+    return `
+      <tr class="border-b hover:bg-gray-50">
+        <td class="p-3 font-mono text-sm">${shop['Shop ID']}</td>
+        <td class="p-3 font-bold">${shop['Shop Name']}</td>
+        <td class="p-3">${shop.Email}</td>
+        <td class="p-3">
+          <span class="px-2 py-1 bg-purple-200 text-purple-800 rounded">
+            ${shop.Package === 'monthly' ? 'Monthly' : 'Yearly'}
+          </span>
+        </td>
+        <td class="p-3">${formatDate(shop['End Date'])}</td>
+        <td class="p-3">${daysLeftBadge}</td>
+        <td class="p-3">${statusBadge}</td>
+        <td class="p-3">
+          <div class="flex space-x-2">
+            <button onclick="viewShop('${shop['Shop ID']}')" class="text-blue-600 hover:text-blue-800" title="View"><i class="fas fa-eye"></i></button>
+            <button onclick="renewLicense('${shop['Shop ID']}')" class="text-green-600 hover:text-green-800" title="Renew"><i class="fas fa-sync"></i></button>
+            <button onclick="editShop('${shop['Shop ID']}')" class="text-orange-600 hover:text-orange-800" title="Edit"><i class="fas fa-edit"></i></button>
+            ${shop.Status === 'active' ? 
+              `<button onclick="toggleStatus('${shop['Shop ID']}', 'inactive')" class="text-red-600 hover:text-red-800" title="Deactivate"><i class="fas fa-ban"></i></button>` :
+              `<button onclick="toggleStatus('${shop['Shop ID']}', 'active')" class="text-green-600 hover:text-green-800" title="Activate"><i class="fas fa-check"></i></button>`
+            }
+          </div>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+
+function showAddShopModal() {
+  Swal.fire({
+    title: 'Add New Shop',
+    html: `
+      <div class="text-left">
+        <div class="mb-4">
+          <label class="block font-bold mb-2">Shop Name</label>
+          <input id="shopName" class="swal2-input w-full" placeholder="Shop Name">
+        </div>
+        <div class="mb-4">
+          <label class="block font-bold mb-2">Email</label>
+          <input id="shopEmail" type="email" class="swal2-input w-full" placeholder="Email">
+        </div>
+        <div class="mb-4">
+          <label class="block font-bold mb-2">Password</label>
+          <input id="shopPassword" type="password" class="swal2-input w-full" placeholder="Password">
+        </div>
+        <div class="mb-4">
+          <label class="block font-bold mb-2">Package</label>
+          <select id="shopPackage" class="swal2-input w-full">
+            <option value="monthly">Monthly (99 THB)</option>
+            <option value="yearly">Yearly (999 THB)</option>
+          </select>
+        </div>
+      </div>
+    `,
+    width: '600px',
+    confirmButtonText: 'Create Shop',
+    showCancelButton: true,
+    preConfirm: () => {
+      const shopName = document.getElementById('shopName').value;
+      const email = document.getElementById('shopEmail').value;
+      const password = document.getElementById('shopPassword').value;
+      const packageType = document.getElementById('shopPackage').value;
+      
+      if (!shopName || !email || !password) {
+        Swal.showValidationMessage('Please fill all fields!');
+        return false;
+      }
+      
+      return { shopName, email, password, package: packageType };
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({ title: 'Creating shop...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+      
+      google.script.run
+        .withSuccessHandler(function(r) {
+          if (r.success) {
+            Swal.fire('Success!', `Shop created successfully!\n\nShop ID: ${r.shopId}\nEmail: ${result.value.email}\nPassword: ${result.value.password}`, 'success');
+            loadShops();
+          } else {
+            Swal.fire('Error', r.message, 'error');
+          }
+        })
+        .withFailureHandler(function(error) {
+          Swal.fire('Error', error.message, 'error');
+        })
+        .addNewShop(result.value);
+    }
+  });
+}
+
+function viewShop(shopId) {
+  const shop = shops.find(s => s['Shop ID'] === shopId);
+  if (!shop) return;
+  
+  const endDate = new Date(shop['End Date']);
+  const today = new Date();
+  const daysLeft = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
+  
+  Swal.fire({
+    title: shop['Shop Name'],
+    html: `
+      <div class="text-left space-y-2">
+        <p><strong>Shop ID:</strong> <code class="bg-gray-100 px-2 py-1 rounded">${shop['Shop ID']}</code></p>
+        <p><strong>Email:</strong> ${shop.Email}</p>
+        <p><strong>Package:</strong> <span class="px-2 py-1 bg-purple-200 rounded">${shop.Package}</span></p>
+        <p><strong>Status:</strong> <span class="px-2 py-1 ${shop.Status === 'active' ? 'bg-green-200' : 'bg-red-200'} rounded">${shop.Status}</span></p>
+        <p><strong>Start Date:</strong> ${formatDate(shop['Start Date'])}</p>
+        <p><strong>End Date:</strong> ${formatDate(shop['End Date'])}</p>
+        <p><strong>Days Left:</strong> <span class="${daysLeft < 30 ? 'text-red-600' : 'text-green-600'} font-bold">${daysLeft} days</span></p>
+        <p><strong>Created:</strong> ${formatDate(shop['Created At'])}</p>
+        <p><strong>Sheet ID:</strong> <code class="bg-gray-100 px-2 py-1 rounded text-xs">${shop['Sheet ID']}</code></p>
+        <p><strong>Folder ID:</strong> <code class="bg-gray-100 px-2 py-1 rounded text-xs">${shop['Folder ID']}</code></p>
+      </div>
+    `,
+    icon: 'info',
+    width: '600px'
+  });
+}
+
+function renewLicense(shopId) {
+  const shop = shops.find(s => s['Shop ID'] === shopId);
+  if (!shop) return;
+  
+  Swal.fire({
+    title: 'Renew License',
+    html: `
+      <div class="text-left mb-4">
+        <p><strong>Shop:</strong> ${shop['Shop Name']}</p>
+        <p><strong>Current End Date:</strong> ${formatDate(shop['End Date'])}</p>
+      </div>
+      <select id="renewPackage" class="swal2-input w-full">
+        <option value="monthly">Extend 1 Month (99 THB)</option>
+        <option value="yearly">Extend 1 Year (999 THB)</option>
+      </select>
+    `,
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Renew',
+    preConfirm: () => {
+      return document.getElementById('renewPackage').value;
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({ title: 'Renewing license...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+      
+      google.script.run
+        .withSuccessHandler(function(r) {
+          if (r.success) {
+            Swal.fire('Success!', `License renewed!\nNew end date: ${formatDate(r.newEndDate)}`, 'success');
+            loadShops();
+          } else {
+            Swal.fire('Error', r.message, 'error');
+          }
+        })
+        .renewLicense(shopId, result.value);
+    }
+  });
+}
+
+function editShop(shopId) {
+  const shop = shops.find(s => s['Shop ID'] === shopId);
+  if (!shop) return;
+  
+  Swal.fire({
+    title: 'Edit Shop',
+    html: `
+      <div class="text-left">
+        <div class="mb-4">
+          <label class="block font-bold mb-2">Shop Name</label>
+          <input id="editShopName" class="swal2-input w-full" value="${shop['Shop Name']}">
+        </div>
+        <div class="mb-4">
+          <label class="block font-bold mb-2">Email</label>
+          <input id="editEmail" type="email" class="swal2-input w-full" value="${shop.Email}">
+        </div>
+        <div class="mb-4">
+          <label class="block font-bold mb-2">New Password (leave empty to keep current)</label>
+          <input id="editPassword" type="password" class="swal2-input w-full" placeholder="New Password">
+        </div>
+      </div>
+    `,
+    width: '600px',
+    showCancelButton: true,
+    confirmButtonText: 'Update',
+    preConfirm: () => {
+      const updateData = {
+        'Shop Name': document.getElementById('editShopName').value,
+        'Email': document.getElementById('editEmail').value
+      };
+      
+      const newPassword = document.getElementById('editPassword').value;
+      if (newPassword) {
+        updateData['Password Hash'] = newPassword;
+      }
+      
+      return updateData;
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({ title: 'Updating shop...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+      
+      google.script.run
+        .withSuccessHandler(function(r) {
+          if (r.success) {
+            Swal.fire('Success!', 'Shop updated successfully!', 'success');
+            loadShops();
+          } else {
+            Swal.fire('Error', r.message, 'error');
+          }
+        })
+        .updateShop(shopId, result.value);
+    }
+  });
+}
+
+function toggleStatus(shopId, newStatus) {
+  const shop = shops.find(s => s['Shop ID'] === shopId);
+  if (!shop) return;
+  
+  const action = newStatus === 'active' ? 'Activate' : 'Deactivate';
+  
+  Swal.fire({
+    title: `${action} Shop?`,
+    text: `Are you sure you want to ${action.toLowerCase()} "${shop['Shop Name']}"?`,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: `Yes, ${action}!`,
+    confirmButtonColor: newStatus === 'active' ? '#10b981' : '#ef4444'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      google.script.run
+        .withSuccessHandler(function(r) {
+          if (r.success) {
+            Swal.fire('Success!', `Shop ${action.toLowerCase()}d successfully!`, 'success');
+            loadShops();
+          } else {
+            Swal.fire('Error', r.message, 'error');
+          }
+        })
+        .updateShop(shopId, { Status: newStatus });
+    }
+  });
+}
+
+function logout() {
+  Swal.fire({
+    title: 'Logout?',
+    text: 'Are you sure you want to logout?',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, Logout'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      location.reload();
+    }
+  });
+}
+</script>
+
+</body>
+</html>
