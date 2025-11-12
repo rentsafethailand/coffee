@@ -815,20 +815,6 @@
   </div>
 </div>
 
-    <!-- Footer Actions -->
-    <div class="border-t border-gray-200 p-4 bg-gray-50">
-      <div class="flex space-x-3">
-        <button onclick="closeProductOptionsModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-3 rounded-lg font-bold transition transition-all duration-200">
-          <i class="fas fa-times mr-2"></i>ยกเลิก
-        </button>
-        <button onclick="confirmAddToCart()" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-3 rounded-lg font-bold transition transition-all duration-200">
-          <i class="fas fa-cart-plus mr-2"></i>เพิ่มลงตะกร้า
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Combo Selection Modal - Enhanced Design -->
 <div id="comboModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md modal-backdrop flex items-center justify-center z-50 animate-fadeIn" style="display:none;">
   <div class="card-modern max-w-3xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col animate-slideUp shadow-2xl">
@@ -889,7 +875,6 @@
     </div>
   </div>
 </div>
-</div>
 
 <!-- Checkout Success Modal - Enhanced Design -->
 <div id="checkoutSuccessModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 animate-fadeIn" style="display:none;">
@@ -916,8 +901,6 @@
         </button>
       </div>
     </div>
-  </div>
-</div>
   </div>
 </div>
 
@@ -1063,8 +1046,6 @@
         <i class="fas fa-check-circle mr-2"></i>ยืนยันชำระเงิน
       </button>
     </div>
-  </div>
-</div>
 
 <!-- Receipt Print Modal -->
 <div id="receiptPrintModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm modal-backdrop flex items-center justify-center z-50 animate-fadeIn overflow-auto" style="display:none;">
@@ -5438,7 +5419,6 @@ function renderReport(sales) {
         <p class="text-sm text-gray-600">จำนวนรายการ</p>
         <p class="text-2xl font-bold text-purple-600">${sales.length}</p>
       </div>
-    </div>
     <h3 class="text-xl font-bold mb-4">ยอดขายตามสินค้า</h3>
     <table class="w-full">
       <thead>
