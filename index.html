@@ -3481,9 +3481,17 @@ function removeFromCart(idx) {
   renderCart();
 }
 
-function clearCart() {
+function clearCart(skipConfirm) {
   if (appState.cart.length === 0) return;
 
+  // ถ้าเรียกจากหลังบันทึก order (skipConfirm = true) ให้ล้างเลยโดยไม่ต้องถาม
+  if (skipConfirm === true) {
+    appState.cart = [];
+    renderCart();
+    return;
+  }
+
+  // ถ้าเรียกจากปุ่ม Clear ให้ถามยืนยันก่อน
   Swal.fire({
     title: 'ยืนยันการล้างตะกร้า?',
     text: 'รายการทั้งหมดจะถูกลบ',
@@ -3911,7 +3919,7 @@ function processCheckout(orderNumber, paymentMethods) {
     document.getElementById('successTotal').textContent = total.toFixed(2);
     document.getElementById('checkoutSuccessModal').style.display = 'flex';
 
-    clearCart();
+    clearCart(true); // ล้างตะกร้าอัตโนมัติโดยไม่ต้องถามยืนยัน
 
     // Regenerate order number for auto channels
     if (appState.currentChannel && appState.currentChannel['Order Number Mode'] === 'auto') {
