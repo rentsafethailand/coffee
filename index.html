@@ -6110,7 +6110,7 @@ function loadComboList() {
                  class="p-3 rounded-lg border-2 ${isActive ? 'bg-white/20 border-white' : 'bg-white/5 border-transparent'} hover:border-white/50 cursor-pointer transition">
               <div class="flex justify-between items-center">
                 <span class="font-bold">${combo.comboName}</span>
-                <button onclick="event.stopPropagation(); deleteCombo('${combo.comboId}')" class="text-red-400 hover:text-red-200 text-xs"><i class="fas fa-trash"></i></button>
+                <button onclick="event.stopPropagation(); deleteCombo(&quot;${combo.comboId}&quot;)" class="text-red-400 hover:text-red-200 text-xs"><i class="fas fa-trash"></i></button>
               </div>
               <p class="text-sm text-white/80">฿${combo.comboPrice}</p>
             </div>
@@ -6345,7 +6345,7 @@ function loadOptionGroupList() {
                  class="p-3 rounded-lg border-2 ${isActive ? 'bg-white/20 border-white' : 'bg-white/5 border-transparent'} hover:border-white/50 cursor-pointer transition">
               <div class="flex justify-between items-center">
                 <span class="font-bold">${group.groupName}</span>
-                <button onclick="event.stopPropagation(); deleteOptionGroup('${group.groupId}')" class="text-red-400 hover:text-red-200 text-xs"><i class="fas fa-trash"></i></button>
+                <button onclick="event.stopPropagation(); deleteOptionGroup(&quot;${group.groupId}&quot;)" class="text-red-400 hover:text-red-200 text-xs"><i class="fas fa-trash"></i></button>
               </div>
               <p class="text-sm text-white/80">${group.selectionType} / ${group.required}</p>
             </div>
