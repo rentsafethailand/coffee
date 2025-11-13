@@ -4758,10 +4758,10 @@ function renderProductsTable() {
       '<td class="p-3 ' + profitClass + '">฿' + profit.toFixed(2) + '</td>' +
       '<td class="p-3 text-center">' +
         // [แก้ไข] เปลี่ยนไปเรียก Modal ใหม่
-        '<button onclick="editProduct(\'' + p['Product ID'] + '\')" class="text-blue-300 hover:text-blue-200 mr-4 transition" title="แก้ไข">' +
+        '<button onclick="editProduct(&quot;' + p['Product ID'] + '&quot;)" class="text-blue-300 hover:text-blue-200 mr-4 transition" title="แก้ไข">' +
           '<i class="fas fa-edit"></i>' +
         '</button>' +
-        '<button onclick="deleteProduct(\'' + p['Product ID'] + '\')" class="text-red-400 hover:text-red-300 transition" title="ลบ">' +
+        '<button onclick="deleteProduct(&quot;' + p['Product ID'] + '&quot;)" class="text-red-400 hover:text-red-300 transition" title="ลบ">' +
           '<i class="fas fa-trash"></i>' +
         '</button>' +
       '</td>' +
@@ -6106,7 +6106,7 @@ function loadComboList() {
         container.innerHTML = r.data.map(function(combo) {
           var isActive = combo.comboId === currentComboId;
           return `
-            <div onclick="loadComboDetails('${combo.comboId}')" 
+            <div onclick="loadComboDetails(&quot;${combo.comboId}&quot;)"
                  class="p-3 rounded-lg border-2 ${isActive ? 'bg-white/20 border-white' : 'bg-white/5 border-transparent'} hover:border-white/50 cursor-pointer transition">
               <div class="flex justify-between items-center">
                 <span class="font-bold">${combo.comboName}</span>
@@ -6229,7 +6229,7 @@ function loadComboDetails(comboId) {
                   <p class="font-bold">${productName}</p>
                   <p class="text-sm text-white/70">จำนวน: ${item.quantity} | ${item.allowOptions === 'Yes' ? 'เลือก Option ได้' : 'ห้ามมี Option'}</p>
                 </div>
-                <button onclick="deleteComboItem('${combo.comboId}', '${item.productId}')" class="text-red-400 hover:text-red-200"><i class="fas fa-trash"></i></button>
+                <button onclick="deleteComboItem(&quot;${combo.comboId}&quot;, &quot;${item.productId}&quot;)" class="text-red-400 hover:text-red-200"><i class="fas fa-trash"></i></button>
               </div>
             `;
           }).join('');
@@ -6260,7 +6260,7 @@ function loadComboDetails(comboId) {
                 <option value="Yes">อนุญาต Option</option>
               </select>
             </div>
-            <button onclick="addComboItem('${combo.comboId}')" class="w-full bg-blue-500 hover:bg-blue-600 p-3 rounded-lg font-bold transition">
+            <button onclick="addComboItem(&quot;${combo.comboId}&quot;)" class="w-full bg-blue-500 hover:bg-blue-600 p-3 rounded-lg font-bold transition">
               <i class="fas fa-plus mr-2"></i>เพิ่มสินค้า
             </button>
           </div>
@@ -6341,7 +6341,7 @@ function loadOptionGroupList() {
         container.innerHTML = r.data.map(function(group) {
           var isActive = group.groupId === currentGroupId;
           return `
-            <div onclick="loadOptionDetails('${group.groupId}')" 
+            <div onclick="loadOptionDetails(&quot;${group.groupId}&quot;)"
                  class="p-3 rounded-lg border-2 ${isActive ? 'bg-white/20 border-white' : 'bg-white/5 border-transparent'} hover:border-white/50 cursor-pointer transition">
               <div class="flex justify-between items-center">
                 <span class="font-bold">${group.groupName}</span>
@@ -6469,7 +6469,7 @@ function loadOptionDetails(groupId) {
                   <p class="font-bold">${opt.optionName}${priceText}</p>
                   <p class="text-sm text-white/70">ลำดับ: ${opt.displayOrder} | ${opt.isDefault === 'Yes' ? 'ค่าเริ่มต้น' : ''}</p>
                 </div>
-                <button onclick="deleteOption('${opt.optionId}')" class="text-red-400 hover:text-red-200"><i class="fas fa-trash"></i></button>
+                <button onclick="deleteOption(&quot;${opt.optionId}&quot;)" class="text-red-400 hover:text-red-200"><i class="fas fa-trash"></i></button>
               </div>
             `;
           }).join('');
@@ -6759,10 +6759,10 @@ function renderSalesTable(data) {
       <td class="px-4 py-3 text-right font-bold text-green-600">฿${(order.total || 0).toFixed(2)}</td>
       <td class="px-4 py-3 text-center">${formatPaymentMethod(order.paymentMethod)}</td>
       <td class="px-4 py-3 text-center">
-        ${order.slipUrl ? '<button onclick="viewSlip(\'' + order.slipUrl + '\')" class="text-blue-600 hover:text-blue-800"><i class="fas fa-image"></i></button>' : '-'}
+        ${order.slipUrl ? '<button onclick="viewSlip(&quot;' + order.slipUrl + '&quot;)" class="text-blue-600 hover:text-blue-800"><i class="fas fa-image"></i></button>' : '-'}
       </td>
       <td class="px-4 py-3 text-center">
-        <button onclick="viewOrderDetails('${order.orderId}')" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm">
+        <button onclick="viewOrderDetails(&quot;${order.orderId}&quot;)" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm">
           <i class="fas fa-eye mr-1"></i>ดูรายละเอียด
         </button>
       </td>
