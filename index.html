@@ -5001,7 +5001,7 @@ function renderRecipesDashboard() {
       '<td class="p-3">' + recipeInfo.count + ' รายการ</td>' +
       '<td class="p-3 text-red-300">฿' + recipeInfo.totalCost.toFixed(2) + '</td>' +
       '<td class="p-3 text-center">' +
-        '<button onclick="showEditRecipeModal(\'' + pid + '\')" class="text-blue-300 hover:text-blue-200" title="จัดการสูตร">' +
+        '<button onclick="showEditRecipeModal(&quot;' + pid + '&quot;)" class="text-blue-300 hover:text-blue-200" title="จัดการสูตร">' +
           '<i class="fas fa-edit"></i> จัดการ' +
         '</button>' +
       '</td>' +
@@ -5102,7 +5102,7 @@ function handleProductSelectChange(productId) {
           '<p class="font-bold">' + r['Material Name'] + '</p>' +
           '<p class="text-sm text-white/70">' + r.Quantity + ' ' + r.Unit + '</p>' +
         '</div>' +
-        '<button onclick="deleteRecipeItem(\'' + r['Recipe ID'] + '\')" class="text-red-400 hover:text-red-200 transition px-3 py-2" title="ลบ">' +
+        '<button onclick="deleteRecipeItem(&quot;' + r['Recipe ID'] + '&quot;)" class="text-red-400 hover:text-red-200 transition px-3 py-2" title="ลบ">' +
           '<i class="fas fa-trash"></i>' +
         '</button>' +
       '</div>';
@@ -5271,7 +5271,7 @@ function renderDailyCosts(costs) {
       '</div>' +
       '<div class="text-right">' +
         '<p class="font-bold text-red-600">฿' + c.Amount + '</p>' +
-        '<button onclick="deleteCost(\'DailyCosts\', \'' + c.ID + '\')" class="text-red-600 text-sm"><i class="fas fa-trash"></i></button>' +
+        '<button onclick="deleteCost(&quot;DailyCosts&quot;, &quot;' + c.ID + '&quot;)" class="text-red-600 text-sm"><i class="fas fa-trash"></i></button>' +
       '</div>' +
       '</div>';
   }).join('') || '<p class="text-gray-500" style="color: var(--text-secondary);">ยังไม่มีค่าใช้จ่าย</p>';
@@ -5287,7 +5287,7 @@ function renderMonthlyCosts(costs) {
       '</div>' +
       '<div class="text-right">' +
         '<p class="font-bold text-red-600">฿' + c.Amount + '</p>' +
-        '<button onclick="deleteCost(\'MonthlyCosts\', \'' + c.ID + '\')" class="text-red-600 text-sm"><i class="fas fa-trash"></i></button>' +
+        '<button onclick="deleteCost(&quot;MonthlyCosts&quot;, &quot;' + c.ID + '&quot;)" class="text-red-600 text-sm"><i class="fas fa-trash"></i></button>' +
       '</div>' +
       '</div>';
   }).join('') || '<p class="text-gray-500" style="color: var(--text-secondary);">ยังไม่มีค่าใช้จ่าย</p>';
