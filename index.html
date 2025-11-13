@@ -1999,32 +1999,7 @@ function checkSession() {
   }
 }
 
-function handleLogin(e) {
-  e.preventDefault();
-  var email = document.getElementById('loginEmail').value;
-  var password = document.getElementById('loginPassword').value;
-
-  Swal.fire({ title: 'กำลังเข้าสู่ระบบ...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
-
-  google.script.run
-    .withSuccessHandler(function(result) {
-      if (result.success) {
-        appState.user = result.data;
-        localStorage.setItem('coffeeShopSession', JSON.stringify(result.data));
-        Swal.close();
-        if (result.data.showWarning) {
-          Swal.fire({ icon: 'warning', title: 'แจ้งเตือนสิทธิ์การใช้งาน', text: `สิทธิ์การใช้งานของคุณจะหมดอายุในอีก ${result.data.daysLeft} วัน!`, toast: true, position: 'top-end', timer: 5000, showConfirmButton: false });
-        }
-        showApp();
-      } else {
-        Swal.fire('ผิดพลาด', result.message, 'error');
-      }
-    })
-    .withFailureHandler(function(error) {
-      Swal.fire('ผิดพลาด', error.message, 'error');
-    })
-    .login(email, password);
-}
+// handleLogin is now defined in <head> to avoid ReferenceError
 
 function showApp() {
   document.getElementById('loginModal').style.display = 'none';
