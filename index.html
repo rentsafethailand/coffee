@@ -4219,7 +4219,7 @@ function handleRenameCategory(event) {
     cancelButtonText: 'ยกเลิก'
   }).then(function(result) {
     if (result.isConfirmed) {
-      Swal.fire({ title: 'กำลังอัปเดต...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+      Swal.fire({ title: 'กำลังอัปเดต...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
       google.script.run
         .withSuccessHandler(function(r) {
           if (r.success) {
@@ -4257,7 +4257,7 @@ function handleDeleteCategory(event) {
     cancelButtonText: 'ยกเลิก'
   }).then(function(result) {
     if (result.isConfirmed) {
-      Swal.fire({ title: 'กำลังลบ...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+      Swal.fire({ title: 'กำลังลบ...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
       google.script.run
         .withSuccessHandler(function(r) {
           if (r.success) {
@@ -5147,7 +5147,7 @@ window.addEventListener('DOMContentLoaded', function() {
 // Frontend helper functions below
 
 function getOrderChannelsFromBackend() {
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     google.script.run
       .withSuccessHandler(resolve)
       .withFailureHandler(reject)
@@ -5156,7 +5156,7 @@ function getOrderChannelsFromBackend() {
 }
 
 function addOrderChannelToBackend(data) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     google.script.run
       .withSuccessHandler(resolve)
       .withFailureHandler(reject)
@@ -5165,7 +5165,7 @@ function addOrderChannelToBackend(data) {
 }
 
 function updateOrderChannelInBackend(channelId, data) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     google.script.run
       .withSuccessHandler(resolve)
       .withFailureHandler(reject)
@@ -5174,7 +5174,7 @@ function updateOrderChannelInBackend(channelId, data) {
 }
 
 function deleteOrderChannelFromBackend(channelId) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     google.script.run
       .withSuccessHandler(resolve)
       .withFailureHandler(reject)
@@ -5183,7 +5183,7 @@ function deleteOrderChannelFromBackend(channelId) {
 }
 
 function generateOrderNumberForChannelFromBackend(channelId) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     google.script.run
       .withSuccessHandler(resolve)
       .withFailureHandler(reject)
@@ -5219,7 +5219,7 @@ function calculateDiscountLocal(amount, discountValue, discountType) {
 }
 
 function getDiscountPresetsFromBackend() {
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     google.script.run
       .withSuccessHandler(resolve)
       .withFailureHandler(reject)
@@ -5228,7 +5228,7 @@ function getDiscountPresetsFromBackend() {
 }
 
 function addDiscountPresetToBackend(data) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     google.script.run
       .withSuccessHandler(resolve)
       .withFailureHandler(reject)
@@ -5283,7 +5283,7 @@ function validatePaymentSplitLocal(totalAmount, payments) {
 }
 
 function savePaymentSplitToBackend(orderNumber, totalAmount, payments) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     google.script.run
       .withSuccessHandler(resolve)
       .withFailureHandler(reject)
@@ -5292,7 +5292,7 @@ function savePaymentSplitToBackend(orderNumber, totalAmount, payments) {
 }
 
 function getPaymentSplitsFromBackend(orderNumber) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     google.script.run
       .withSuccessHandler(resolve)
       .withFailureHandler(reject)
@@ -5301,7 +5301,7 @@ function getPaymentSplitsFromBackend(orderNumber) {
 }
 
 function getPaymentSummaryFromBackend(startDate, endDate) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     google.script.run
       .withSuccessHandler(resolve)
       .withFailureHandler(reject)
@@ -5568,13 +5568,13 @@ function closePurchaseModal() {
 
 function savePurchase(event) {
   event.preventDefault();
-  Swal.fire({ title: 'กำลังบันทึก...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-  
+  Swal.fire({ title: 'กำลังบันทึก...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+
   var materialId = document.getElementById('purchaseMaterialSelect').value;
   var quantity = document.getElementById('purchaseQty').value;
-  
+
   google.script.run
-    .withSuccessHandler(r => {
+    .withSuccessHandler(function(r) {
       if (r.success) {
         Swal.fire('สำเร็จ!', 'รับของเข้าสต็อกเรียบร้อย', 'success');
         closePurchaseModal();
@@ -5602,14 +5602,14 @@ function closeWasteModal() {
 
 function saveWaste(event) {
   event.preventDefault();
-  Swal.fire({ title: 'กำลังบันทึก...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-  
+  Swal.fire({ title: 'กำลังบันทึก...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
+
   var materialId = document.getElementById('wasteMaterialSelect').value;
   var quantity = document.getElementById('wasteQty').value;
   var reason = document.getElementById('wasteReason').value;
-  
+
   google.script.run
-    .withSuccessHandler(r => {
+    .withSuccessHandler(function(r) {
       if (r.success) {
         Swal.fire('สำเร็จ!', 'บันทึกของเสียเรียบร้อย', 'success');
         closeWasteModal();
@@ -5710,7 +5710,7 @@ function saveNewCombo(event) {
     comboPrice: parseFloat(document.getElementById('comboPriceInput').value) || 0
   };
   
-  Swal.fire({ title: 'กำลังสร้าง...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+  Swal.fire({ title: 'กำลังสร้าง...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
   google.script.run
     .withSuccessHandler(function(r) {
       if (r.success) {
@@ -5951,7 +5951,7 @@ function saveNewOptionGroup(event) {
     required: document.getElementById('groupRequiredInput').value
   };
   
-  Swal.fire({ title: 'กำลังสร้าง...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+  Swal.fire({ title: 'กำลังสร้าง...', allowOutsideClick: false, didOpen: function() { Swal.showLoading(); } });
   google.script.run
     .withSuccessHandler(function(r) {
       if (r.success) {
